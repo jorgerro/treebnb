@@ -1,6 +1,8 @@
 
 class User < ActiveRecord::Base
 
+  attr_reader :password
+
   before_validation :ensure_session_token
 
   validates :email,:session_token, presence: true, uniqueness: :true

@@ -2,10 +2,34 @@
 <html>
 <head>
   <title>Freebnb</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%#= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%#= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
+<h1>freebnb</h1>
+
+<% if current_user %>
+  <h4>Signed in as <%= current_user.fname %></h4>
+  <form action="<%= session_url %>" method="post" accept-charset="utf-8">
+    <input type="hidden" name="_method" value="delete">
+    <%= auth_token %>
+    <p><input type="submit" value="Log Out"></p>
+  </form>
+<% end  %>
+
+
+<% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+    <%= error %> <br>
+  <% end %>
+<% end %>
+
+<% if flash[:notice] %>
+  <% flash[:notice].each do |notice| %>
+    <%= notice %>
+  <% end %>
+<% end %>
+
 <body>
 
 <%= yield %>

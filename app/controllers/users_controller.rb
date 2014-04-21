@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 
     if @user.save
       sign_in(@user)
+      flash[:notice] = ["Welcome, #{ @user.fname }!"]
       redirect_to @user
     else
       flash.now[:errors] = @user.errors.full_messages
@@ -22,5 +23,8 @@ class UsersController < ApplicationController
     render :show
   end
 
-
+  private
+    def user_params
+      params.require(:user).permit(:fname, :lname, :password, :email)
+    end
 end
