@@ -1,14 +1,20 @@
-<h1>Sign In</h1>
+<h1>Sign Up</h1>
 
 <form action="<%= new_session_url %>" method="post">
 
   <%= auth_token %>
 
+  <label for="first_name">First Name</label>
+  <input type="text" name="user[fname]" value="" id="first_name">
+  <br>
+  <label for="last_name">Last Name</label>
+  <input type="text" name="user[lname]" value="" id="last_name">
+  <br>
   <label for="email">Email</label>
   <input type="text" name="user[email]" value="" id="email">
-
+  <br>
   <label for="password">Password</label>
   <input type="password" name="user[password]" value="" id="password">
-
-  <p><input type="submit" value="Sign In"></p>
+  <br>
+  <p><input type="submit" value="Sign Up"></p>
 </form>
