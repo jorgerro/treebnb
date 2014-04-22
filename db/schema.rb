@@ -11,10 +11,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140421161148) do
+ActiveRecord::Schema.define(version: 20140421211104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "room_requests", force: true do |t|
+    t.integer  "guest_id",   null: false
+    t.integer  "room_id",    null: false
+    t.date     "start_date", null: false
+    t.date     "end_date",   null: false
+    t.string   "status",     null: false
+    t.integer  "num_guests", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "room_requests", ["guest_id"], name: "index_room_requests_on_guest_id", using: :btree
+  add_index "room_requests", ["room_id"], name: "index_room_requests_on_room_id", using: :btree
+
+  create_table "rooms", force: true do |t|
+    t.integer  "owner_id",             null: false
+    t.string   "home_type",            null: false
+    t.string   "room_type",            null: false
+    t.string   "address_city",         null: false
+    t.integer  "num_possible_guests",  null: false
+    t.string   "title"
+    t.text     "description"
+    t.integer  "price_per_night"
+    t.integer  "num_bedrooms"
+    t.integer  "num_bathrooms"
+    t.string   "address_neighborhood"
+    t.string   "street_address"
+    t.string   "address_zip_code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rooms", ["owner_id"], name: "index_rooms_on_owner_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "fname",           null: false

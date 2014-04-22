@@ -23,6 +23,11 @@ class UsersController < ApplicationController
     render :show
   end
 
+  def edit
+    # form should include additional fields that were
+    # not included at signup as well as the original ones
+  end
+
   private
     def user_params
       params.require(:user).permit(:fname, :lname, :password, :email)

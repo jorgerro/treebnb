@@ -1,4 +1,7 @@
-== README
+
+Welcome to freebnb! The site about renting other people's treehouses and outdoor-ish living places, maybe.
+
+~~~ Default README ~~~
 
 This README would normally document whatever steps are necessary to get the
 application up and running.

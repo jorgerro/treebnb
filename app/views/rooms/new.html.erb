@@ -1,0 +1,61 @@
+<h2>List Your Place</h2>
+
+<form action="<%= rooms_url %>" method="post">
+  <%= auth_token %>
+
+  <input type="hidden" name="room[owner_id]" value="<%= current_user.id %>">
+
+  <label>
+    City
+    <select name="room[address_city]">
+      <option value=""></option>
+      <option value="los_angeles">Los Angeles</option>
+      <option value="new_york">New York</option>
+      <option value="seoul">Seoul</option>
+      <option value="kyoto">Kyoto</option>
+    </select>
+  </label>
+
+<br><br>
+
+  <label>
+    Home Type
+    <select name="room[home_type]">
+      <option value=""></option>
+      <option value="tree_house">Tree House</option>
+      <option value="cabin">Cabin</option>
+      <option value="boat">Boat</option>
+      <option value="masterpiece">Masterpiece</option>
+    </select>
+  </label>
+
+<br><br>
+
+  Room Type:
+  <label>
+    Entire House / Apt.
+    <input type="radio" name="room[room_type]" value="entire_space">
+  </label>
+  <label>
+    Private Room
+    <input type="radio" name="room[room_type]" value="private_room">
+  </label>
+  <label>
+    Shared Room
+    <input type="radio" name="room[room_type]" value="shared_room">
+  </label>
+
+<br><br>
+
+  <label>
+    Number of Guests
+    <select name="room[num_possible_guests]">
+      <option value=""></option>
+      <% (1..10).to_a.each do |num|  %>
+        <option value="<%= num %>"><%= num %></option>
+      <% end %>
+    </select>
+  </label>
+
+  <p><input type="submit" value="Create Your Listing!"></p>
+</form>
