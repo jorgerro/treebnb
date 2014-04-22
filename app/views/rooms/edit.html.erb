@@ -1,0 +1,149 @@
+<h2>Edit Your Listing</h2>
+
+<form action="<%= room_url(@room) %>" method="post">
+  <input type="hidden" name="_method" value="PATCH">
+  <%= auth_token %>
+
+  <input type="hidden" name="room[owner_id]" value="<%= current_user.id %>">
+
+  <label for="title">Title</label>
+  <input type="text" name="room[title]" value="<%= @room.title %>" id="title">
+
+  <label for="price_per_night">Price Per Night: $</label>
+  <input type="number" name="room[price_per_night]" min="1" max="2000"
+  value="<%= @room.price_per_night %>" id="price_per_night">
+
+  <br><br>
+
+  <label for="room_description">Description</label><br>
+    <textarea name="room[description]" rows="8" cols="40" id="room_description">
+      <%= @room.description %>
+    </textarea>
+
+<br><br>
+
+  <label>
+    City
+    <select name="room[address_city]">
+      <option value=""></option>
+      <option value="los_angeles"
+        <%= "selected" if @room.address_city == "los_angeles" %> >
+        Los Angeles
+      </option>
+      <option value="new_york"
+        <%= "selected" if @room.address_city == "new_york" %> >
+        New York
+      </option>
+      <option value="seoul"
+        <%= "selected" if @room.address_city == "seoul" %> >
+        Seoul
+      </option>
+      <option value="kyoto"
+        <%= "selected" if @room.address_city == "kyoto" %> >
+        Kyoto
+      </option>
+    </select>
+  </label>
+
+<br><br>
+
+Add Some Information About Your Listing's Location <br><br>
+
+  <label for="street_address">Street Address:</label>
+  <input type="text" name="room[street_address]"
+  value="<%= @room.street_address %>" id="street_address">
+
+  <label for="address_zip_code">Zip Code</label>
+  <input type="number" name="room[address_zip_code]"
+  value="<%= @room.address_zip_code %>" id="address_zip_code">
+
+<br><br>
+
+  <label for="address_neighborhood">Neighborhood:</label>
+  <input type="text" name="room[address_neighborhood]"
+  value="<%= @room.address_neighborhood %>" id="address_neighborhood">
+
+  <label>
+    Home Type
+    <select name="room[home_type]">
+      <option value=""></option>
+      <option value="tree_house"
+        <%= "selected" if @room.home_type == "tree_house" %> >
+        Tree House
+      </option>
+      <option value="cabin"
+        <%= "selected" if @room.home_type == "cabin" %> >
+        Cabin
+      </option>
+      <option value="boat"
+        <%= "selected" if @room.home_type == "boat" %> >
+        Boat
+      </option>
+      <option value="masterpiece"
+        <%= "selected" if @room.home_type == "masterpiece" %> >
+        Masterpiece
+      </option>
+    </select>
+  </label>
+
+<br><br>
+
+  Room Type: <br>
+  <label>
+    Entire House / Apt.
+    <input type="radio" name="room[room_type]" value="entire_space">
+  </label>
+  <br>
+  <label>
+    Private Room
+    <input type="radio" name="room[room_type]" value="private_room">
+  </label>
+  <br>
+  <label>
+    Shared Room
+    <input type="radio" name="room[room_type]" value="shared_room">
+  </label>
+
+<br><br>
+
+  <label>
+    Number of Guests
+    <select name="room[num_possible_guests]">
+      <option value=""></option>
+      <% (1..10).to_a.each do |num|  %>
+        <option value="<%= num %>"
+          <%= "selected" if @room.num_possible_guests == num %> >
+          <%= num %>
+        </option>
+      <% end %>
+    </select>
+  </label>
+
+  <label>
+    Number of Bedrooms
+    <select name="room[num_bedrooms]">
+      <option value=""></option>
+      <% (1..10).to_a.each do |num|  %>
+        <option value="<%= num %>"
+          <%= "selected" if @room.num_bedrooms == num %> >
+          <%= num %>
+        </option>
+      <% end %>
+    </select>
+  </label>
+
+  <label>
+    Number of Bathrooms
+    <select name="room[num_bathrooms]">
+      <option value=""></option>
+      <% (1..10).to_a.each do |num|  %>
+        <option value="<%= num %>"
+          <%= "selected" if @room.num_bathrooms == num %> >
+          <%= num %>
+        </option>
+      <% end %>
+    </select>
+  </label>
+
+  <p><input type="submit" value="Update Your Listing!"></p>
+</form>

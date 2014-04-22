@@ -1,14 +1,19 @@
 Freebnb::Application.routes.draw do
 
-  resources :users, except: [:index, :destroy]
-
-  resources :rooms
-
   resource :session, only: [:new, :create, :destroy]
 
-  root to: "sessions#new"
+  resources :users, except: [:index, :destroy] do
+    resources :rooms, only: :index
+    resources :room_requests, only: [:index]
+  end
 
+  resources :rooms do
+    resources :room_requests, only: [:new, :create]
+  end
 
+  resources :room_requests, only: [:show, :destroy, :update]
+
+  root to: "rooms#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

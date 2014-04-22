@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
 
   has_many :room_requests, through: :listings, source: :room_requests
 
-  has_one :guest, through: :room_requests, source: :guest
+  # has_one :guest, through: :room_requests, source: :guest
 
   def User.find_by_credentials(email, secret)
     @user = User.find_by_email(email)

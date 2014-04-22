@@ -19,4 +19,5 @@ class RoomRequest < ActiveRecord::Base
 
 
 
+
 end

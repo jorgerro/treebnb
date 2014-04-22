@@ -1,6 +1,9 @@
+ROOM SHOW
+<br><br>
 
-<%= "#{ @room.home_type } in #{ @room.address_city }" %>
+<%= "#{ @room.home_type } in #{ @room.address_city }, ID #{ @room.id }" %>
 
 <br><br>
 
-ROOM SHOW PAGE
+<a href="<%= edit_room_url(@room) %>">Edit</a>
+

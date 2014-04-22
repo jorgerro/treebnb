@@ -14,12 +14,23 @@
     color: #fff;
   }
 
+  a {
+    text-decoration: none;
+    font-weight: bold;
+  }
+
 </style>
 
-<h1>freebnb</h1>
+<a href="<%= root_url %>"><h1>freebnb</h1></a>
 
 <% if current_user %>
-  <h4>Signed in as <%= current_user.fname %></h4>
+
+  <h4>Signed in as
+    <a href="<%= user_url(current_user) %>">
+      <%= current_user.fname %>
+    </a>
+  </h4>
+
   <form action="<%= session_url %>" method="post" accept-charset="utf-8">
     <input type="hidden" name="_method" value="delete">
     <%= auth_token %>
