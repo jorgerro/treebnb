@@ -9,7 +9,11 @@ class RoomsController < ApplicationController
       @listings = @user.listings
       render :user_index
     else
-      @listings = Room.all
+      if current_user
+        @listings = Room.where("owner_id != ?", current_user.id)
+      else
+        @listings = Room.all
+      end
       render :index
     end
   end
@@ -30,6 +34,7 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
+    @owner = User.find(@room.owner_id)
     render :show
   end
 

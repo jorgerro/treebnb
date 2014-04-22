@@ -2,8 +2,16 @@ ROOM SHOW
 <br><br>
 
 <%= "#{ @room.home_type } in #{ @room.address_city }, ID #{ @room.id }" %>
+<br>
+Host: <a href="<%= user_url(@owner) %>">
+        <%= "#{ @owner.fname } #{ @owner.lname }" %>
+      </a>
 
 <br><br>
 
-<a href="<%= edit_room_url(@room) %>">Edit</a>
-
+<% if current_user.id == @room.owner_id %>
+  <a href="<%= edit_room_url(@room) %>">Edit</a>
+<% end %>
+<% if current_user.id != @room.owner_id %>
+  | <a href="<%= new_room_room_request_url(@room) %>">Request This Space</a>
+<% end %>

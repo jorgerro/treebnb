@@ -1,0 +1,15 @@
+
+<h3><%= @user.fname %>'s Trips</h3>
+
+<% unless @requests.empty? %>
+
+  <% @requests.each do |request| %>
+
+    <%= "This reservation starts on #{ request.start_date } and ends on #{ request.end_date }." %><br>
+
+    <%= "This reservation is for #{ request.num_guests }." %>
+    <%= "Status: #{ request.status }" %>
+    <hr>
+  <% end %>
+
+<% end %>

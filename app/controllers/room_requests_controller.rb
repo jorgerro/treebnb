@@ -1,17 +1,36 @@
 
 class RoomRequestsController < ApplicationController
 
-  def new
+  before_action :require_signed_in! #should instead require that you are the specific user
 
+  def new
+    @room = Room.find(params[:room_id])
+    render :new
   end
 
   def create
-
+    @room = Room.find(params[:room_id])
+    @request = RoomRequest.new(request_params)
+    if @request.save
+      redirect_to user_room_requests_url(current_user)
+    else
+      flash.now[:errors] = @request.errors.full_messages
+      render :new
+    end
   end
 
-  def show
-
+  def index
+    @user = User.find(params[:user_id])
+    @requests = @user.requests_to_stay
+    render :index
   end
+
+  private
+  def request_params
+    params.require(:request).permit(:start_date, :end_date, :status, :room_id,
+    :guest_id, :num_guests)
+  end
+
 
 
 

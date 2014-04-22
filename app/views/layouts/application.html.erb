@@ -36,6 +36,11 @@
     <%= auth_token %>
     <p><input type="submit" value="Log Out"></p>
   </form>
+
+<% else %>
+
+  <a href="<%= new_user_url %>">Sign Up</a> / <a href="<%= new_session_url %>">Sign In</a>
+
 <% end  %>
 
 

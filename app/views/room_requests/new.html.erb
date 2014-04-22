@@ -1,0 +1,24 @@
+<%# fail %>
+<h3>Make a Request</h3>
+
+<form action="<%= room_room_requests_url(@room) %>" method="post">
+  <%= auth_token %>
+  <input type="hidden" name="request[guest_id]" value="<%= current_user.id %>">
+  <input type="hidden" name="request[room_id]" value="<%= @room.id %>">
+  <input type="hidden" name="request[status]" value="PENDING">
+
+  <label for="start_date">Start Date</label>
+  <input type="date" name="request[start_date]" value="" id="start_date">
+
+  <label for="end_date">End Date</label>
+  <input type="date" name="request[end_date]" value="" id="end_date">
+
+  <select name="request[num_guests]" id="num_guests">
+    <% (1..10).to_a.each do |num| %>
+      <option value="<%= num %>"><%= num %></option>
+    <% end %>
+  </select>
+
+  <p><input type="submit" value="You make that request!"></p>
+</form>
+
