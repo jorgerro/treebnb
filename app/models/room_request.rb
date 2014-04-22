@@ -1,7 +1,14 @@
 
 class RoomRequest < ActiveRecord::Base
 
+  STATUS_STATES = [
+    "APPROVED",
+    "DENIED",
+    "PENDING"
+  ]
+
   validates :num_guests, :start_date, :end_date, presence: true
+  validates :status, inclusion: STATUS_STATES
 
   belongs_to(
     :guest,
