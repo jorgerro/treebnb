@@ -11,7 +11,10 @@ Freebnb::Application.routes.draw do
     resources :room_requests, only: [:new, :create]
   end
 
-  resources :room_requests, only: [:show, :destroy, :update]
+  resources :room_requests, only: [:show, :destroy, :update] do
+    post "approve", :on => :member
+    post "deny", :on => :member
+  end
 
   root to: "rooms#index"
 

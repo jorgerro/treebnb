@@ -8,8 +8,18 @@
 </head>
 
 <style>
+
+body, h1, h2, h3, h4, a, nav, ul, li, form, p, label {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font: inherit;
+}
+
+
   body {
-    background: url("http://imagizer.imageshack.us/a/img4/5356/tokidoki030.jpg");
+/*    background: url("http://imagizer.imageshack.us/a/img4/5356/tokidoki030.jpg");*/
+    background-color: #16B2B9;
     font-family: sans-serif;
     color: #fff;
   }
@@ -19,30 +29,102 @@
     font-weight: bold;
   }
 
+  a:visited {
+    color: #FFF;
+  }
+
+  h1 {
+
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  li {
+    display: inline-block;
+    padding: 10px;
+  }
+
+  .group:after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+
+  nav.primary {
+    background-color: #FFC755;
+  }
+
+  h1.logo-primary {
+    font-size: 20px;
+    float: left;
+    padding:10px;
+  }
+
+  ul.user-controls {
+    float: right;
+    font-size: 16px;
+  }
+
+  section.main {
+    margin: 50px 50px;
+    display: block;
+  }
+
 </style>
 
-<a href="<%= root_url %>"><h1>freebnb</h1></a>
+<nav class="primary group">
 
-<% if current_user %>
+  <a href="<%= root_url %>"><h1 class="logo-primary">freebnb</h1></a>
 
-  <h4>Signed in as
-    <a href="<%= user_url(current_user) %>">
-      <%= current_user.fname %>
-    </a>
-  </h4>
+  <ul class="user-controls group">
+    <% if current_user %>
 
-  <form action="<%= session_url %>" method="post" accept-charset="utf-8">
-    <input type="hidden" name="_method" value="delete">
-    <%= auth_token %>
-    <p><input type="submit" value="Log Out"></p>
-  </form>
+      <li>
+        <a href="<%= user_url(current_user) %>">
+          <%= current_user.fname %>
+        </a>
+      </li>
 
-<% else %>
+      <li>
+        <a href="<%= user_rooms_url(current_user) %>">
+          My Listings
+        </a>
+      </li>
 
-  <a href="<%= new_user_url %>">Sign Up</a> / <a href="<%= new_session_url %>">Sign In</a>
+      <li>
+        <a href="<%= user_room_requests_url(current_user) %>">
+          My Trips
+        </a>
+      </li>
 
-<% end  %>
+      <li>
+        <form action="<%= session_url %>" method="post" >
+          <input type="hidden" name="_method" value="delete">
+          <%= auth_token %>
+          <input type="submit" value="Log Out">
+        </form>
+      </li>
 
+    <% else %>
+
+      <li>
+        <a href="<%= new_user_url %>">
+          sign up
+        </a>
+      </li>
+      /
+      <li>
+        <a href="<%= new_session_url %>">
+          sign in
+        </a>
+      </li>
+
+    <% end  %>
+  </ul>
+
+</nav>
 
 <% if flash[:errors] %>
   <% flash[:errors].each do |error| %>
@@ -57,8 +139,8 @@
 <% end %>
 
 <body>
-
-<%= yield %>
-
+  <section class="main group">
+    <%= yield %>
+  </section>
 </body>
 </html>

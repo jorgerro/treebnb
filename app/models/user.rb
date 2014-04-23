@@ -35,6 +35,10 @@ class User < ActiveRecord::Base
     SecureRandom::urlsafe_base64
   end
 
+  def owns_room?(room)
+    room.owner_id == self.id
+  end
+
   def password=(secret)
     @password = secret
     self.password_digest = BCrypt::Password.create(secret)

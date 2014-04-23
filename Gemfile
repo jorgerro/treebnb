@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.1.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.4'
@@ -44,6 +45,9 @@ gem 'bcrypt', '~> 3.1.7'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'paperclip'
+gem 'figaro'
+gem 'aws-sdk'
 gem 'geocoder'
 
 group :development do
@@ -60,5 +64,4 @@ end
 # end
 
 gem 'factory_girl_rails'
-
 gem 'faker'

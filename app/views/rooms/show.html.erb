@@ -9,9 +9,44 @@ Host: <a href="<%= user_url(@owner) %>">
 
 <br><br>
 
-<% if current_user.id == @room.owner_id %>
-  <a href="<%= edit_room_url(@room) %>">Edit</a>
+<% if signed_in? %>
+  <% if current_user.id == @room.owner_id %>
+    <a href="<%= edit_room_url(@room) %>">Edit</a>
+  <% end %>
+  <% if current_user.id != @room.owner_id %>
+    | <a href="<%= new_room_room_request_url(@room) %>">Request This Space</a>
+  <% end %>
 <% end %>
-<% if current_user.id != @room.owner_id %>
-  | <a href="<%= new_room_room_request_url(@room) %>">Request This Space</a>
+
+<br><br>
+
+<% unless @requests.empty? %>
+  Requests to stay at this property: <br><br>
+  <% @requests.each do |request| %>
+
+    <%= "This request was made by #{ User.find(request.guest_id).fname }," %>
+    <%= "for #{ request.start_date } to #{ request.end_date }." %><br>
+
+    <%= "This reservation is for #{ request.num_guests }." %><br>
+    <%= "Status: #{ request.status }" %><br>
+
+    <% if request.status == "PENDING" && current_user && request.room.owner_id == current_user.id %>
+      <form action="<%= approve_room_request_url(request) %>" method="post">
+        <%= auth_token %>
+        <p><input type="submit" value="Approve"></p>
+      </form>
+
+      <form action="<%= deny_room_request_url(request) %>" method="post">
+        <%= auth_token %>
+        <p><input type="submit" value="Deny"></p>
+      </form>
+    <% end %>
+
+    <hr>
+  <% end %>
+
+<% else %>
+
+  <p>There are currently no requests to stay at this property.</p>
+
 <% end %>
