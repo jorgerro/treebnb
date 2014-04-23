@@ -50,3 +50,21 @@ Host: <a href="<%= user_url(@owner) %>">
   <p>There are currently no requests to stay at this property.</p>
 
 <% end %>
+
+# TODO: should later write some logic so that you can only comment if the user was your host or you stayed at the place
+
+<% if signed_in? %>
+<%= render "reviews/form", reviewable_type: "Room", reviewable_id: @room.id %>
+<% end %>
+
+<% unless @reviews.empty? %>
+  <h3 class="review">Reviews!</h3>
+  <ul class="comments group">
+    <% @reviews.each do |review| %>
+      <li>
+        <p><%= review.body %></p>
+        by <%= User.find(review.author_id).fname %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

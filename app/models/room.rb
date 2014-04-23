@@ -1,5 +1,6 @@
 
 class Room < ActiveRecord::Base
+  include Reviewable
 
   validates :home_type, :room_type, presence: true
   validates :num_possible_guests, :address_city, presence: true
@@ -17,6 +18,7 @@ class Room < ActiveRecord::Base
     :room_requests,
     class_name: "RoomRequest",
     foreign_key: :room_id,
-    primary_key: :id  )
+    primary_key: :id,
+    dependent: :destroy  )
 
 end

@@ -34,6 +34,7 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
+    @reviews = @room.reviews
     @owner = User.find(@room.owner_id)
     @requests = @room.room_requests
     render :show

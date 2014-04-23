@@ -1,5 +1,6 @@
 
 class User < ActiveRecord::Base
+  include Reviewable
 
   attr_reader :password
 
@@ -13,13 +14,22 @@ class User < ActiveRecord::Base
     :listings,
     class_name: "Room",
     foreign_key: :owner_id,
-    primary_key: :id  )
+    primary_key: :id,
+    dependent: :destroy  )
 
   has_many(
     :requests_to_stay,
     class_name: "RoomRequest",
     foreign_key: :guest_id,
-    primary_key: :id  )
+    primary_key: :id,
+    dependent: :destroy  )
+
+  has_many(
+    :authored_reviews,
+    class_name: "Review",
+    foreign_key: :author_id,
+    primary_key: :id,
+    dependent: :destroy  )
 
   has_many :room_requests, through: :listings, source: :room_requests
 

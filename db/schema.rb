@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140421211104) do
+ActiveRecord::Schema.define(version: 20140423133029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "reviews", force: true do |t|
+    t.text     "body",            null: false
+    t.integer  "author_id",       null: false
+    t.integer  "reviewable_id",   null: false
+    t.string   "reviewable_type", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reviews", ["author_id"], name: "index_reviews_on_author_id", using: :btree
+  add_index "reviews", ["reviewable_id"], name: "index_reviews_on_reviewable_id", using: :btree
 
   create_table "room_requests", force: true do |t|
     t.integer  "guest_id",   null: false

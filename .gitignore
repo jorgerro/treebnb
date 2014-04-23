@@ -18,3 +18,5 @@
 .DS_Store
 
 database.yml
+# Ignore application configuration
+/config/application.yml

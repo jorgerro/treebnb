@@ -1,0 +1,18 @@
+<h3>New Review</h3>
+<form action="<%= reviews_url %>" method="post">
+  <%= auth_token %>
+
+  <input type="hidden"
+  name="review[reviewable_type]"
+  value="<%= reviewable_type %>">
+
+  <input type="hidden"
+  name="review[reviewable_id]"
+  value="<%= reviewable_id %>">
+
+  <input type="hidden" name="review[author_id]" value="<%= current_user.id %>">
+
+  <textarea name="review[body]"></textarea>
+
+  <p><input type="submit" value="Save Review"></p>
+</form>

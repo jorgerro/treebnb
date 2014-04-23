@@ -16,6 +16,8 @@ Freebnb::Application.routes.draw do
     post "deny", :on => :member
   end
 
+  resources :reviews, only: [:create, :detroy]
+
   root to: "rooms#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
