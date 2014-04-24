@@ -23,6 +23,8 @@ class RoomRequest < ActiveRecord::Base
     foreign_key: :room_id,
     primary_key: :id  )
 
+  has_many :notifications, as: :notifiable, dependent: :destroy
+
   # has_one :host, through: :room, source: :owner
 
   def approved?

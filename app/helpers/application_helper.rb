@@ -8,4 +8,11 @@ module ApplicationHelper
     HTML
   end
 
+
+  def num_notifications
+    current_user.notifications.where(status: "UNREAD").length
+  end
+
+
+
 end

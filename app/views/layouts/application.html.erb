@@ -2,77 +2,10 @@
 <html>
 <head>
   <title>Freebnb</title>
-  <%#= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%#= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
-
-<style>
-
-body, h1, h2, h3, h4, a, nav, ul, li, form, p, label {
-  padding: 0;
-  margin: 0;
-  border: 0;
-  font: inherit;
-}
-
-
-  body {
-/*    background: url("http://imagizer.imageshack.us/a/img4/5356/tokidoki030.jpg");*/
-    background-color: #16B2B9;
-    font-family: sans-serif;
-    color: #fff;
-  }
-
-  a {
-    text-decoration: none;
-    font-weight: bold;
-  }
-
-  a:visited {
-    color: #FFF;
-  }
-
-  h1 {
-
-  }
-
-  ul {
-    list-style: none;
-  }
-
-  li {
-    display: inline-block;
-    padding: 10px;
-  }
-
-  .group:after {
-    clear: both;
-    content: "";
-    display: block;
-  }
-
-  nav.primary {
-    background-color: #FFC755;
-  }
-
-  h1.logo-primary {
-    font-size: 20px;
-    float: left;
-    padding:10px;
-  }
-
-  ul.user-controls {
-    float: right;
-    font-size: 16px;
-  }
-
-  section.main {
-    margin: 50px 50px;
-    display: block;
-  }
-
-</style>
 
 <nav class="primary group">
 
@@ -84,6 +17,19 @@ body, h1, h2, h3, h4, a, nav, ul, li, form, p, label {
       <li>
         <a href="<%= user_url(current_user) %>">
           <%= current_user.fname %>
+        </a>
+      </li>
+
+      <li>
+        <a href="#">
+          Notifications
+          <%= ": #{ num_notifications }" if num_notifications > 0 %>
+        </a>
+      </li>
+
+      <li>
+        <a href="<%= edit_user_url(current_user) %>">
+          Edit Profile
         </a>
       </li>
 

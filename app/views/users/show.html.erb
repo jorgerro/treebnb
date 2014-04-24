@@ -2,17 +2,23 @@
 
 <hr>
 
-<% if signed_in? %>
-<%= render "reviews/form", reviewable_type: "User", reviewable_id: @user.id %>
+<% if @user.avatar.exists? %>
+  <img src="<%= @user.avatar.url(:thumb) %>">
+  <!-- <img src="<%#= @user.avatar.url %>"> -->
 <% end %>
 
+<% if signed_in? %>
+<%= render "reviews/form", reviewable_type: "User", reviewable_id: @user.id %>
+<% end %><br>
+
 <% unless @reviews.empty? %>
-  <h3 class="review">Reviews!</h3>
+  <h3 class="review">Reviews</h3>
   <ul class="comments group">
     <% @reviews.each do |review| %>
       <li>
-        <p><%= review.body %></p>
+        <p><%= review.body %>
         by <%= User.find(review.author_id).fname %>
+        </p>
       </li>
     <% end %>
   </ul>

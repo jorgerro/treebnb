@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140423133029) do
+ActiveRecord::Schema.define(version: 20140423212348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "notifications", force: true do |t|
+    t.integer  "event_id",        null: false
+    t.integer  "user_id",         null: false
+    t.string   "status",          null: false
+    t.integer  "notifiable_id",   null: false
+    t.integer  "notifiable_type", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "notifications", ["event_id"], name: "index_notifications_on_event_id", using: :btree
+  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
   create_table "reviews", force: true do |t|
     t.text     "body",            null: false
@@ -63,17 +76,21 @@ ActiveRecord::Schema.define(version: 20140423133029) do
   add_index "rooms", ["owner_id"], name: "index_rooms_on_owner_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "fname",           null: false
-    t.string   "lname",           null: false
-    t.string   "email",           null: false
-    t.string   "password_digest", null: false
-    t.string   "session_token",   null: false
+    t.string   "fname",               null: false
+    t.string   "lname",               null: false
+    t.string   "email",               null: false
+    t.string   "password_digest",     null: false
+    t.string   "session_token",       null: false
     t.text     "description"
     t.string   "gender"
     t.date     "birthdate"
     t.string   "phone_number"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

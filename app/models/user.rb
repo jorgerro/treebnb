@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   validates :email,:session_token, presence: true, uniqueness: :true
   validates :fname, :lname, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
+  validates :gender, inclusion: { in: %w(M F O), allow_nil: true }
 
   has_many(
     :listings,
@@ -33,7 +34,18 @@ class User < ActiveRecord::Base
 
   has_many :room_requests, through: :listings, source: :room_requests
 
-  # has_one :guest, through: :room_requests, source: :guest
+  has_many(
+    :notifications,
+    class_name: "Notification",
+    foreign_key: :user_id,
+    primary_key: :id  )
+
+  # has_many :guests, through: :room_requests, source: :guest
+
+
+  has_attached_file :avatar, styles: { thumb: "100x100>" }
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+
 
   def User.find_by_credentials(email, secret)
     @user = User.find_by_email(email)

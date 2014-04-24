@@ -1,0 +1,47 @@
+<h2>Improve Your Profile</h2>
+<br>
+
+<form enctype="multipart/form-data" action="<%= user_url(@user) %>" method="post">
+  <input type="hidden" name="_method" value="PATCH">
+
+  <%= auth_token %>
+
+  <label for="avatar-upload">Upload / Change Your Profile Image</label>
+  <% if @user.avatar.exists? %>
+    <img src="<%= @user.avatar.url(:thumb) %>"><br>
+  <% end %>
+  <input type="file" name="user[avatar]" id="avatar-upload">
+
+<br><br>
+
+  <label for="first_name">First Name</label>
+  <input type="text"
+  name="user[fname]" value="<%= @user.fname %>" id="first_name">
+
+  <label for="last_name">Last Name</label>
+  <input type="text" name="user[lname]" value="<%= @user.lname %>" id="last_name">
+
+  <label for="email">Email</label>
+  <input type="text" name="user[email]" value="<%= @user.email %>" id="email">
+
+  <label for="birthdate">Birthdate</label>
+  <input type="date" name="user[birthdate]" value="<%= @user.birthdate %>" id="birthdate">
+
+  <label for="user_description" >Describe Yourself</label>
+  <textarea name="user[description]" id="user_description"><%= @user.description %></textarea>
+
+  <label for="phone_number">Phone Number</label>
+  <input type="number" name="user[phone_number]"
+  value="<%= @user.phone_number %>" id="phone_number">
+
+  <label for="gender">Gender</label>
+  <select name="user[gender]" id="gender">
+    <option value=""></option>
+    <option value="F" <%= "selected" if @user.gender == "F" %> >Female</option>
+    <option value="M" <%= "selected" if @user.gender == "M" %> >Male</option>
+    <option value="O" <%= "selected" if @user.gender == "O" %>>Other</option>
+  </select>
+
+<br><br>
+  <p><input type="submit" value="Edit Your Profile"></p>
+</form>
