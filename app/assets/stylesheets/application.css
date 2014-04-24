@@ -30,12 +30,16 @@
     font-weight: bold;
   }
 
-  label {
-    display: block;
-  }
-
   a:visited {
     color: #FFF;
+  }
+
+  a:hover {
+    color: #CA16C2;
+  }
+
+  label {
+    display: block;
   }
 
   h1 {
@@ -47,6 +51,15 @@
   }
 
   li {
+    display:inline;
+  }
+
+  li > a {
+    display: inline-block;
+    padding: 10px;
+  }
+
+  li > form {
     display: inline-block;
     padding: 10px;
   }
@@ -68,6 +81,7 @@
   }
 
   ul.user-controls {
+    position:relative;
     float: right;
     font-size: 16px;
   }
@@ -79,14 +93,45 @@
 
   strong#notification-count {
     font-size: 12px;
-    background-color: black;
+    background-color: #FF5A55;
     color: white;
-    padding: 5px 7px;
+    padding: 4px 7px;
     margin-left: 3px;
     border-radius: 100%;
   }
 
-  li#notification:hover strong#notification-count {
+  li:hover strong#notification-count {
     background-color: #EF000F;
     color: white;
+  }
+
+  ul.dropdown {
+    position: absolute;
+    border: 3px solid black;
+    top: 43px;
+    left: 77px;
+    background-color: #fff;
+    width: 200px;
+    display: none;
+  }
+
+  ul.dropdown > li > a:hover {
+    background-color: #9E9E9E;
+  }
+
+  ul.dropdown > li > a {
+    color: black;
+    display: block;
+    border-bottom: 3px solid black;
+    padding: 0;
+    font-size: 15px;
+    padding: 7px 0 10px 10px;
+  }
+
+  li#notification:hover > ul.dropdown {
+    display: block;
+  }
+
+  ul.dropdown > li:last-child > a{
+    border-bottom: 0;
   }

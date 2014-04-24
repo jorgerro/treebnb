@@ -20,13 +20,19 @@
         </a>
       </li>
 
-      <li>
-          Notifications
-        <strong id="notification-count">
-          <%= "#{ num_notifications }" if num_notifications > 0 %>
-        </strong>
+      <li id="notification">
+        <a href="#">Notifications
+          <strong id="notification-count">
+            <%= "#{ num_notifications }" %>
+          </strong>
+        </a>
+        <ul class="dropdown group">
+          <% current_user.notifications.each do |notification| %>
 
+            <li><a href="#">notification!</a></li>
 
+          <% end %>
+        </ul>
       </li>
 
       <li>

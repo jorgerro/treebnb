@@ -47,8 +47,6 @@ class RoomRequestsController < ApplicationController
     redirect_to @request.room
   end
 
-
-
   private
   def request_params
     params.require(:request).permit(:start_date, :end_date, :status, :room_id,
