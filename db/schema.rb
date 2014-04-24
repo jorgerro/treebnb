@@ -19,9 +19,9 @@ ActiveRecord::Schema.define(version: 20140423212348) do
   create_table "notifications", force: true do |t|
     t.integer  "event_id",        null: false
     t.integer  "user_id",         null: false
-    t.string   "status",          null: false
+    t.boolean  "is_read",         null: false
     t.integer  "notifiable_id",   null: false
-    t.integer  "notifiable_type", null: false
+    t.string   "notifiable_type", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

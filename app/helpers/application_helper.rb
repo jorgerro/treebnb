@@ -10,7 +10,7 @@ module ApplicationHelper
 
 
   def num_notifications
-    current_user.notifications.where(status: "UNREAD").length
+    current_user.notifications.unread.count
   end
 
 

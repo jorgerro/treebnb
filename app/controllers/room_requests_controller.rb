@@ -36,14 +36,12 @@ class RoomRequestsController < ApplicationController
   def approve
     @request = RoomRequest.find(params[:id])
     @request.approve!
-    @request.approval_notification
     redirect_to @request.room
   end
 
   def deny
     @request = RoomRequest.find(params[:id])
     @request.deny!
-    @request.denial_notification
     redirect_to @request.room
   end
 

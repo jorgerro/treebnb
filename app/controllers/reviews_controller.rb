@@ -33,17 +33,15 @@ class ReviewsController < ApplicationController
     if review.reviewable_type == "Room"
       @room = Room.find(review.reviewable_id)
       interested_person = @room.owner
-      event_id = 2
-          # notify user that someone has reviewed their property
+      event = :new_room_review
     else
       @user = User.find(review.reviewable_id)
       interested_person = @user
-      event_id = 1
-          # notify user that someone has reviewed their profile
+      event = :new_user_review
     end
 
-    Notification.create!({ event_id: event_id, user_id: interested_person.id,
-      status: "UNREAD", notifiable_id: review.id, notifiable_type: "Review"})
+    review.notifications.unread.create!({
+      event_id: EVENT_IDS[event], user_id: interested_person.id})
   end
 
   private

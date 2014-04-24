@@ -28,21 +28,8 @@ class RoomRequest < ActiveRecord::Base
   has_one :host, through: :room, source: :owner
 
   def new_request_notification
-    # 3 is hardcoded for the new request event
-    Notification.create!({ event_id: 3, user_id: self.host.id,
-      status: "UNREAD", notifiable_id: self.id, notifiable_type: "RoomRequest"})
-  end
-
-  def approval_notification
-    # 4 is hardcoded for request approval
-    Notification.create!({ event_id: 4, user_id: self.guest_id,
-      status: "UNREAD", notifiable_id: self.id, notifiable_type: "RoomRequest"})
-  end
-
-  def denial_notification
-    # 4 is hardcoded for request denial
-    Notification.create!({ event_id: 5, user_id: self.guest_id,
-      status: "UNREAD", notifiable_id: self.id, notifiable_type: "RoomRequest"})
+    self.notifications.unread.create!({
+      event_id: EVENT_IDS[:new_room_request], user_id: self.host.id })
   end
 
   def approved?
@@ -60,6 +47,8 @@ class RoomRequest < ActiveRecord::Base
   def deny!
     self.status = "DENIED"
     self.save!
+    self.notifications.unread.create!({
+      event_id: EVENT_IDS[:request_denied], user_id: self.guest_id })
   end
 
   def approve!
@@ -67,6 +56,8 @@ class RoomRequest < ActiveRecord::Base
     transaction do
       self.status = "APPROVED"
       self.save!
+      self.notifications.unread.create!({
+        event_id: EVENT_IDS[:request_approved], user_id: self.guest_id })
 
       overlapping_pending_requests.each do |req|
         req.status = "DENIED"

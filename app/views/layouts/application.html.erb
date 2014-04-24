@@ -28,9 +28,11 @@
         </a>
         <ul class="dropdown group">
           <% current_user.notifications.each do |notification| %>
-
-            <li><a href="#">notification!</a></li>
-
+            <li>
+              <a href="<%= notification.url || "#" %>">
+                <%= notification.text || "no text yet" %>
+              </a>
+            </li>
           <% end %>
         </ul>
       </li>
@@ -50,6 +52,12 @@
       <li>
         <a href="<%= user_room_requests_url(current_user) %>">
           My Trips
+        </a>
+      </li>
+
+      <li>
+        <a href="<%= new_room_url %>">
+          %%
         </a>
       </li>
 
