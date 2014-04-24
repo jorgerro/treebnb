@@ -46,8 +46,12 @@ class RoomsController < ApplicationController
   end
 
   def update
+
     @room = Room.find(params[:id])
     if @room.update(room_params)
+      picture_params["images"].each do |picture|
+        Picture.create!({ "image" => picture, "room_id" => params[:id] })
+      end
       redirect_to @room
     else
       flash.now[:errors] = @room.errors.full_messages
@@ -62,6 +66,10 @@ class RoomsController < ApplicationController
       :num_possible_guests, :address_city, :address_neighborhood,
       :street_address, :address_zip_code, :title, :description,
       :num_bedrooms, :num_bathrooms, :price_per_night )
+    end
+
+    def picture_params
+      params.require(:pictures).permit(images: [])
     end
 
 end

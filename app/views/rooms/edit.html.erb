@@ -1,10 +1,20 @@
 <h2>Edit Your Listing</h2>
 
-<form action="<%= room_url(@room) %>" method="post">
+<form action="<%= room_url(@room) %>"
+  enctype="multipart/form-data" method="post">
   <input type="hidden" name="_method" value="PATCH">
   <%= auth_token %>
 
+  <% unless @room.pictures.empty? %>
+    <% @room.pictures.each do |pictures| %>
+      <img src="<%= picture.image.url(:thumb) %>">
+    <% end %>
+  <% end %>
+
   <input type="hidden" name="room[owner_id]" value="<%= current_user.id %>">
+
+  <label for="image-upload">Select Photos to Upload</label>
+  <input type="file" name="pictures[images][]" id="image-upload" multiple>
 
   <label for="title">Title</label>
   <input type="text" name="room[title]" value="<%= @room.title %>" id="title">

@@ -21,4 +21,6 @@ class Room < ActiveRecord::Base
     primary_key: :id,
     dependent: :destroy  )
 
+    has_many :pictures
+
 end

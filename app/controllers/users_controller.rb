@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     if @user.save
       sign_in(@user)
       flash[:notice] = ["Welcome, #{ @user.fname }!"]
-      redirect_to @user
+      redirect_to edit_user_url(@user)
     else
       flash.now[:errors] = @user.errors.full_messages
       render :new
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
       redirect_to @user
     else
       flash.now[:errors] = @user.errors.full_messages
-      render :new
+      render :edit
     end
   end
 
