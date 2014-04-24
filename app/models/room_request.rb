@@ -25,7 +25,25 @@ class RoomRequest < ActiveRecord::Base
 
   has_many :notifications, as: :notifiable, dependent: :destroy
 
-  # has_one :host, through: :room, source: :owner
+  has_one :host, through: :room, source: :owner
+
+  def new_request_notification
+    # 3 is hardcoded for the new request event
+    Notification.create!({ event_id: 3, user_id: self.host.id,
+      status: "UNREAD", notifiable_id: self.id, notifiable_type: "RoomRequest"})
+  end
+
+  def approval_notification
+    # 4 is hardcoded for request approval
+    Notification.create!({ event_id: 4, user_id: self.guest_id,
+      status: "UNREAD", notifiable_id: self.id, notifiable_type: "RoomRequest"})
+  end
+
+  def denial_notification
+    # 4 is hardcoded for request denial
+    Notification.create!({ event_id: 5, user_id: self.guest_id,
+      status: "UNREAD", notifiable_id: self.id, notifiable_type: "RoomRequest"})
+  end
 
   def approved?
     self.status == "APPROVED"

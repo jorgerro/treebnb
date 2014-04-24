@@ -17,7 +17,7 @@ module Freebnb
     # config.time_zone = 'Central Time (US & Canada)'
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
+    # config.i18n.load_path += Dir[RaiSECRET_TOKENls.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
     config.initialize_on_precompile = false
@@ -27,7 +27,8 @@ module Freebnb
       s3_credentials: {
         bucket: ENV["S3_BUCKET"],
         access_key_id: ENV["S3_ACCESS_KEY"],
-        secret_access_key: ENV["S3_SECRET_KEY"]
+        secret_access_key: ENV["S3_SECRET_KEY"],
+        secret_key_base: ENV["SECRET_TOKEN"]
       }
     }
 

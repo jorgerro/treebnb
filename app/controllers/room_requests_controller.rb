@@ -14,6 +14,7 @@ class RoomRequestsController < ApplicationController
     @room = Room.find(params[:room_id])
     @request = RoomRequest.new(request_params)
     if @request.save
+      @request.new_request_notification
       redirect_to user_room_requests_url(current_user)
     else
       flash.now[:errors] = @request.errors.full_messages
@@ -35,12 +36,14 @@ class RoomRequestsController < ApplicationController
   def approve
     @request = RoomRequest.find(params[:id])
     @request.approve!
+    @request.approval_notification
     redirect_to @request.room
   end
 
   def deny
     @request = RoomRequest.find(params[:id])
     @request.deny!
+    @request.denial_notification
     redirect_to @request.room
   end
 
@@ -51,9 +54,5 @@ class RoomRequestsController < ApplicationController
     params.require(:request).permit(:start_date, :end_date, :status, :room_id,
     :guest_id, :num_guests)
   end
-
-
-
-
 
 end

@@ -76,3 +76,17 @@
     margin: 50px 50px;
     display: block;
   }
+
+  strong#notification-count {
+    font-size: 12px;
+    background-color: black;
+    color: white;
+    padding: 5px 7px;
+    margin-left: 3px;
+    border-radius: 100%;
+  }
+
+  li#notification:hover strong#notification-count {
+    background-color: #EF000F;
+    color: white;
+  }

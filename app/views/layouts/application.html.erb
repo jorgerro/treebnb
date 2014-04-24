@@ -21,10 +21,12 @@
       </li>
 
       <li>
-        <a href="#">
           Notifications
-          <%= ": #{ num_notifications }" if num_notifications > 0 %>
-        </a>
+        <strong id="notification-count">
+          <%= "#{ num_notifications }" if num_notifications > 0 %>
+        </strong>
+
+
       </li>
 
       <li>
