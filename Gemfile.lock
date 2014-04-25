@@ -165,6 +165,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   better_errors
   binding_of_caller
+  cocaine
   coffee-rails (~> 4.0.0)
   factory_girl_rails
   faker

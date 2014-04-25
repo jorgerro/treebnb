@@ -49,6 +49,7 @@ gem 'paperclip'
 gem 'figaro'
 gem 'aws-sdk'
 gem 'geocoder'
+gem 'cocaine'
 
 group :development do
   gem 'better_errors'

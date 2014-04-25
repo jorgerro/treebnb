@@ -52,6 +52,8 @@ class RoomsController < ApplicationController
       picture_params["images"].each do |picture|
         Picture.create!({ "image" => picture, "room_id" => params[:id] })
       end
+      # Picture.create!(picture_params)
+
       redirect_to @room
     else
       flash.now[:errors] = @room.errors.full_messages
@@ -71,5 +73,9 @@ class RoomsController < ApplicationController
     def picture_params
       params.require(:pictures).permit(images: [])
     end
+
+    # def picture_params
+    #   params.require(:picture).permit(:image)
+    # end
 
 end

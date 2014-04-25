@@ -9,6 +9,12 @@ Host: <a href="<%= user_url(@owner) %>">
 
 <br><br>
 
+<% unless @room.pictures.empty? %>
+  <% @room.pictures.each do |picture| %>
+    <img src="<%= picture.image.url(:thumb_big) %>">
+  <% end %>
+<% end %>
+
 <% if signed_in? %>
   <% if current_user.id == @room.owner_id %>
     <a href="<%= edit_room_url(@room) %>">Edit</a>
