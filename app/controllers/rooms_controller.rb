@@ -49,8 +49,10 @@ class RoomsController < ApplicationController
 
     @room = Room.find(params[:id])
     if @room.update(room_params)
-      picture_params["images"].each do |picture|
-        Picture.create!({ "image" => picture, "room_id" => params[:id] })
+      unless picture_params.empty?
+        picture_params["images"].each do |picture|
+          Picture.create!({ "image" => picture, "room_id" => params[:id] })
+        end
       end
       # Picture.create!(picture_params)
 
@@ -71,7 +73,7 @@ class RoomsController < ApplicationController
     end
 
     def picture_params
-      params.require(:pictures).permit(images: [])
+      params.permit(:pictures).permit(images: [])
     end
 
     # def picture_params
