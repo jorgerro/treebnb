@@ -1,0 +1,20 @@
+
+<h3>All Notifications:</h3>
+<hr>
+<br>
+<ul id="notifications-index">
+  <% if @notifications %>
+      <% @notifications.order("is_read")
+                        .where(user_id: current_user.id)
+                        .each do |notification| %>
+
+      <li class="notification">
+          <a href="<%= notification_url(notification) %>">
+            <%= notification.is_read == true ?
+            "&Oslash".html_safe : "O".html_safe %>
+            <%= notification.text %>
+          </a>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

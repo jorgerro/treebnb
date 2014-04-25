@@ -1,0 +1,15 @@
+
+<article class="room-request">
+
+  <%= "Status: #{ request.status }" %><br>
+
+  <%= "#{ MAKE_NICE[room.home_type] } in #{ MAKE_NICE[room.address_city] }" %>
+
+  <p>
+    <%= "This reservation starts on #{ format_time(request.start_date) }, ends on #{ format_time(request.end_date) } and is for #{ request.num_guests }." %>
+  </p>
+
+  <%= "Made #{ time_ago_in_words(request.created_at) } ago." %>
+
+
+</article>

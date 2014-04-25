@@ -16,10 +16,6 @@
   <label for="image-upload">Select Photos to Upload</label>
   <input type="file" name="pictures[images][]" id="image-upload" multiple>
 
-  <!-- <label for="image-upload">Select A Photo</label>
-  <input type="file" name="pictures[image]" id="image-upload">
-  <input type="hidden" name="picture[room_id]" value="<%#= @room.id %>"> -->
-
   <label for="title">Title</label>
   <input type="text" name="room[title]" value="<%= @room.title %>" id="title">
 
@@ -40,6 +36,7 @@
     City
     <select name="room[address_city]">
       <option value=""></option>
+      <!-- <%#= CITIES.each do |city| %> -->
       <option value="los_angeles"
         <%= "selected" if @room.address_city == "los_angeles" %> >
         Los Angeles

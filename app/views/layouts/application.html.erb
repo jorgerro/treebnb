@@ -21,16 +21,23 @@
       </li>
 
       <li id="notification">
-        <a href="#">Notifications
+        <a href="<%= notifications_url %>">Notifications
           <strong id="notification-count">
             <%= "#{ num_notifications }" %>
           </strong>
         </a>
         <ul class="dropdown group">
-          <% current_user.notifications.each do |notification| %>
+
             <li>
-              <a href="<%= notification.url || "#" %>">
-                <%= notification.text || "no text yet" %>
+              <a href="<%= notifications_url %>">
+                See All Notifications
+              </a>
+            </li>
+
+          <% current_user.notifications.unread.each do |notification| %>
+            <li>
+              <a href="<%= notification_url(notification) %>">
+                <%= notification.text %>
               </a>
             </li>
           <% end %>

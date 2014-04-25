@@ -55,6 +55,7 @@ class Notification < ActiveRecord::Base
   end
 
   def url
+    @url = '#'
     case self.event_name
     when :new_user_review
       @review = Review.find(self.notifiable_id)

@@ -16,6 +16,8 @@ Freebnb::Application.routes.draw do
     post "deny", :on => :member
   end
 
+  resources :notifications, only: [:index, :show]
+
   resources :reviews, only: [:create, :detroy]
 
   root to: "rooms#index"

@@ -1,15 +1,16 @@
 
-<h3><%= @user.fname %>'s Trips</h3>
+<h3><%= @user.fname %>'s Trips</h3><br>
 
 <% unless @requests.empty? %>
 
   <% @requests.each do |request| %>
 
-    <%= "This reservation starts on #{ request.start_date } and ends on #{ request.end_date }." %><br>
+    <%= render partial: "layouts/room_request", locals: { request: request, room: request.room }  %>
 
-    <%= "This reservation is for #{ request.num_guests }." %>
-    <%= "Status: #{ request.status }" %>
     <hr>
+
   <% end %>
 
 <% end %>
+
+<!-- should i include the rooms when i get @requests in the controller? -->

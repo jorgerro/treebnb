@@ -13,6 +13,10 @@ module ApplicationHelper
     current_user.notifications.unread.count
   end
 
+  def format_time(time)
+    time.strftime "%A, %b %d %Y"
+  end
+
 
 
 end

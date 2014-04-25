@@ -1,7 +1,7 @@
 ROOM SHOW
 <br><br>
 
-<%= "#{ @room.home_type } in #{ @room.address_city }, ID #{ @room.id }" %>
+  <%= "#{ MAKE_NICE[@room.home_type] } in #{ MAKE_NICE[@room.address_city] }" %>
 <br>
 Host: <a href="<%= user_url(@owner) %>">
         <%= "#{ @owner.fname } #{ @owner.lname }" %>
@@ -30,11 +30,12 @@ Host: <a href="<%= user_url(@owner) %>">
   Requests to stay at this property: <br><br>
   <% @requests.each do |request| %>
 
-    <%= "This request was made by #{ User.find(request.guest_id).fname }," %>
-    <%= "for #{ request.start_date } to #{ request.end_date }." %><br>
+  <%= "Status: #{ request.status }" %><br>
+  <p>
+    <%= "This reservation starts on #{ format_time(request.start_date) }, ends on #{ format_time(request.end_date) } and is for #{ request.num_guests }." %>
+  </p>
 
-    <%= "This reservation is for #{ request.num_guests }." %><br>
-    <%= "Status: #{ request.status }" %><br>
+  <%= "Made #{ time_ago_in_words(request.created_at) } ago." %>
 
     <% if request.status == "PENDING" && current_user && request.room.owner_id == current_user.id %>
       <form action="<%= approve_room_request_url(request) %>" method="post">
@@ -53,23 +54,24 @@ Host: <a href="<%= user_url(@owner) %>">
 
 <% else %>
 
-  <p>There are currently no requests to stay at this property.</p>
+  <p>There are currently no requests to stay at this property.</p><br>
 
 <% end %>
 
-# TODO: should later write some logic so that you can only comment if the user was your host or you stayed at the place
+<!-- # TODO: should later write some logic so that you can only comment if the user was your host or you stayed at the place -->
 
 <% if signed_in? %>
 <%= render "reviews/form", reviewable_type: "Room", reviewable_id: @room.id %>
-<% end %>
+<% end %><br>
 
 <% unless @reviews.empty? %>
-  <h3 class="review">Reviews!</h3>
+  <h3 class="review">Reviews!</h3><br>
   <ul class="comments group">
     <% @reviews.each do |review| %>
       <li>
-        <p><%= review.body %></p>
+        <p><%= review.body %>
         by <%= User.find(review.author_id).fname %>
+        </p>
       </li>
     <% end %>
   </ul>

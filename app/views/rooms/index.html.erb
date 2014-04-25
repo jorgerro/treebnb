@@ -1,10 +1,10 @@
-<h3>All Listings</h3>
+<h3>All Listings</h3><hr>
 
 <% @listings.each do |room| %>
   <a href="<%= room_url(room) %>">
-    <%= "#{ room.home_type } in #{ room.address_city }, ID #{ room.id }" %>
+    <%= "#{ MAKE_NICE[room.home_type] } in #{ MAKE_NICE[room.address_city] }" %>
   </a>
-  <br>
+  <br><br>
 <% end %>
 
 <br><br>

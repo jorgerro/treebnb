@@ -135,3 +135,11 @@
   ul.dropdown > li:last-child > a{
     border-bottom: 0;
   }
+
+  ul#notifications-index {
+    width: 600px;
+  }
+
+  li.notification {
+    padding: 10px;
+  }
