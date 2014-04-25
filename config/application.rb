@@ -28,7 +28,6 @@ module Freebnb
         bucket: ENV["S3_BUCKET"],
         access_key_id: ENV["S3_ACCESS_KEY"],
         secret_access_key: ENV["S3_SECRET_KEY"],
-        secret_key_base: ENV["SECRET_TOKEN"]
       }
     }
 
