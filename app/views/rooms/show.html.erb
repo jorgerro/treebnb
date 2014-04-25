@@ -13,7 +13,7 @@ Host: <a href="<%= user_url(@owner) %>">
   <% @room.pictures.each do |picture| %>
     <img src="<%= picture.image.url(:thumb_big) %>">
   <% end %>
-<% end %>
+<% end %><br>
 
 <% if signed_in? %>
   <% if current_user.id == @room.owner_id %>

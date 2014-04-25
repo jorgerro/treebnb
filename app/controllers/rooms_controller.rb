@@ -46,15 +46,14 @@ class RoomsController < ApplicationController
   end
 
   def update
-
     @room = Room.find(params[:id])
+
     if @room.update(room_params)
-      unless picture_params.empty?
-        picture_params["images"].each do |picture|
-          Picture.create!({ "image" => picture, "room_id" => params[:id] })
+      if params[:pictures]
+        params[:pictures][:images].each do |image|
+          @room.pictures.create!({ image: image })
         end
       end
-      # Picture.create!(picture_params)
 
       redirect_to @room
     else
@@ -71,13 +70,5 @@ class RoomsController < ApplicationController
       :street_address, :address_zip_code, :title, :description,
       :num_bedrooms, :num_bathrooms, :price_per_night )
     end
-
-    def picture_params
-      params.permit(:pictures).permit(images: [])
-    end
-
-    # def picture_params
-    #   params.require(:picture).permit(:image)
-    # end
 
 end
