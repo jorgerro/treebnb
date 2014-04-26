@@ -50,6 +50,7 @@ gem 'figaro'
 gem 'aws-sdk'
 gem 'geocoder'
 gem 'cocaine'
+gem 'mapbox-rails'
 
 group :development do
   gem 'better_errors'
