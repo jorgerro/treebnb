@@ -1,0 +1,11 @@
+
+<form action="<%= messages_url %>" method="post">
+    <%= auth_token %>
+
+  <input type="hidden" name="message[sender_id]" value="<%= current_user.id %>">
+  <input type="hidden" name="message[recipient_id]" value="<%= recipient_id %>">
+
+  <textarea name="message[body]"></textarea>
+
+  <p><input type="submit" value="Send!"></p>
+</form>

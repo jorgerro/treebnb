@@ -32,24 +32,28 @@ class Notification < ActiveRecord::Base
     message =
     case self.event_name
       when :new_user_review
-        @review = Review.find(self.notifiable_id)
+        @review = self.notifiable
         "#{ @review.author.fname } #{ @review.author.lname } reviewed your profile."
       when :new_room_review
-        @review = Review.find(self.notifiable_id)
-        @room = Room.find(@review.reviewable_id)
-        "#{ @review.author.fname } #{ @review.author.lname } reviewed #{ @room.home_type } in #{ @room.address_city }"
+        @review = self.notifiable
+        @room = @review.reviewable
+        "#{ @review.author.fname } #{ @review.author.lname } reviewed #{ MAKE_NICE[@room.home_type] } in #{ MAKE_NICE[@room.address_city] }"
       when :new_room_request
-        @request = RoomRequest.find(self.notifiable_id)
-        @room = Room.find(@request.room_id)
+        @request = self.notifiable
+        @room = @request.room
         "#{ @request.guest.fname } #{ @request.guest.lname } has requested your listing: #{ @room.home_type } in #{ @room.address_city }"
       when :request_approved
-        @request = RoomRequest.find(self.notifiable_id)
-        @room = Room.find(@request.room_id)
+        @request = self.notifiable
+        @room = @request.room
         "Your request to stay at #{ @room.home_type } in #{ @room.address_city } has been accepted."
       when :request_denied
-        @request = RoomRequest.find(self.notifiable_id)
-        @room = Room.find(@request.room_id)
+        @request = self.notifiable
+        @room = @request.room
         "Your request to stay at #{ @room.home_type } in #{ @room.address_city } has been denied."
+      when :new_message
+        @message = self.notifiable
+        @sender = @message.sender
+        "You have a new message from #{ @sender.fname } #{ @sender.lname }."
       end
     return message
   end
@@ -58,24 +62,28 @@ class Notification < ActiveRecord::Base
     @url = '#'
     case self.event_name
     when :new_user_review
-      @review = Review.find(self.notifiable_id)
+      @review = self.notifiable
       @url = "#{ user_url(self.user) }"
     when :new_room_review
-      @review = Review.find(self.notifiable_id)
-      @room = Room.find(@review.reviewable_id)
+      @review = self.notifiable
+      @room = @review.reviewable
       @url = "#{ room_url(@room) }"
     when :new_room_request
-      @request = RoomRequest.find(self.notifiable_id)
-      @room = Room.find(@request.room_id)
+      @request = self.notifiable
+      @room = @request.room
       @url = "#{ room_url(@room) }"
     when :request_approved
-      @request = RoomRequest.find(self.notifiable_id)
-      @user = User.find(@request.guest_id)
+      @request = self.notifiable
+      @user = @request.guest
       @url = "#{ user_room_requests_url(@user) }"
     when :request_denied
-      @request = RoomRequest.find(self.notifiable_id)
-      @user = User.find(@request.guest_id)
+      @request = self.notifiable
+      @user = @request.guest
       @url = "#{ user_room_requests_url(@user) }"
+    when :new_message
+      @message = self.notifiable
+      @thread = @message.thread
+      @url = "#{ message_thread_url(@thread) }"
     end
     return @url
   end

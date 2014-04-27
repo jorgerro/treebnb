@@ -1,0 +1,18 @@
+<% if @messages %>
+<h3 class="thread"><%= @thread.user_two.fname %> and <%= @thread.user_one.fname %> </h3>
+
+  <ul class="thread-messages">
+    <% @messages.each do |message| %>
+
+      <li class="message group">
+
+        <img src="<%= message.sender.avatar.url(:thumb) %>" class="avatar-thread">
+        <p><%= message.body %></p>
+        <time class="time-ago"><%= "#{ time_ago_in_words(message.created_at) } ago." %></time>
+        <br><br>
+
+      </li>
+
+    <% end %>
+  </ul>
+<% end %>

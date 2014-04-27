@@ -144,3 +144,31 @@
   li.notification {
     padding: 10px;
   }
+
+  li.message {
+    background-color: #71D7DC;
+    display:block;
+    padding: 10px;
+    border-radius: 15px;
+    margin: 15px;
+  }
+
+  li.message p {
+    padding: 15px;
+  }
+
+  img.avatar-thread {
+    height: 40px;
+    width:auto;
+    border-radius: 20px;
+    float:left;
+    padding: 15px;
+  }
+
+  time.time-ago {
+    font-size: 12px;
+  }
+
+  h3.thread {
+    padding: 15px;
+  }

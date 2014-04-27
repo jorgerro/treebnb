@@ -41,7 +41,28 @@ class User < ActiveRecord::Base
     foreign_key: :user_id,
     primary_key: :id  )
 
-  has_attached_file :avatar, styles: { thumb: "100x100>" }
+  has_many(
+    :sent_messages,
+    class_name: "Message",
+    foreign_key: :sender_id,
+    primary_key: :id  )
+
+  has_many(
+    :received_messages,
+    class_name: "Message",
+    foreign_key: :recipient_id,
+    primary_key: :id  )
+
+
+
+  # has_many(
+  #   :threads,
+  #   class_name: "MessageThread",
+  #   foreign_key: :author_id,
+  #   primary_key: :id  )
+
+  has_attached_file :avatar, styles: { thumb: "100x100>" },
+  default_url: "https://s3.amazonaws.com/freebnb_dev/users/avatars/000/000/default_avatar/default_avatar.jpg"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
   def User.find_by_credentials(email, secret)

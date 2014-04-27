@@ -11,10 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140424193509) do
+ActiveRecord::Schema.define(version: 20140426181324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "message_threads", force: true do |t|
+    t.integer  "user_one_id", null: false
+    t.integer  "user_two_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "message_threads", ["user_one_id", "user_two_id"], name: "index_message_threads_on_user_one_id_and_user_two_id", unique: true, using: :btree
+  add_index "message_threads", ["user_one_id"], name: "index_message_threads_on_user_one_id", using: :btree
+  add_index "message_threads", ["user_two_id"], name: "index_message_threads_on_user_two_id", using: :btree
+
+  create_table "messages", force: true do |t|
+    t.integer  "sender_id",    null: false
+    t.integer  "recipient_id", null: false
+    t.text     "body",         null: false
+    t.boolean  "is_read",      null: false
+    t.integer  "thread_id",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "messages", ["recipient_id"], name: "index_messages_on_recipient_id", using: :btree
+  add_index "messages", ["sender_id"], name: "index_messages_on_sender_id", using: :btree
+  add_index "messages", ["thread_id"], name: "index_messages_on_thread_id", using: :btree
 
   create_table "notifications", force: true do |t|
     t.integer  "event_id",        null: false

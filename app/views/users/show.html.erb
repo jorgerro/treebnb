@@ -2,10 +2,8 @@
 
 <hr>
 
-<% if @user.avatar.exists? %>
   <img src="<%= @user.avatar.url(:thumb) %>">
-  <!-- <img src="<%#= @user.avatar.url %>"> -->
-<% end %><br>
+<br>
 <%= "Member since #{ time_ago_in_words(@user.created_at) } ago." %>
 <br><br>
 
@@ -23,5 +21,13 @@
         </p>
       </li>
     <% end %>
-  </ul>
+  </ul><br>
+<% end %>
+
+
+<% if signed_in? %>
+  <h3>Send <%= @user.fname %> a Message</p>
+  <p>
+    <%= render partial: "messages/form", locals: { recipient_id: @user.id } %>
+  </p>
 <% end %>
