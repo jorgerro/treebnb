@@ -145,6 +145,12 @@
     padding: 10px;
   }
 
+  ul.thread-messages {
+    margin: 50px;
+    display:block;
+    width: 600px;
+  }
+
   li.message {
     background-color: #71D7DC;
     display:block;
