@@ -4,7 +4,8 @@ class NotificationsController < ApplicationController
   before_action :require_signed_in!
 
   def index
-    @notifications = Notification.all
+    @notifications = Notification.where(user_id: current_user.id)
+                                 .order("is_read")
     render :index
   end
 

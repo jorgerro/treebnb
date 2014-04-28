@@ -1,7 +1,5 @@
 <h3><%= @user.fname %>'s Listings</h3><hr>
 
-  <div id='user-rooms-map'></div>
-
 <% @listings.each do |room| %>
   <a href="<%= room_url(room) %>">
     <%= "#{ MAKE_NICE[room.home_type] } in #{ MAKE_NICE[room.address_city] }" %>
@@ -11,59 +9,3 @@
 
 <br><br>
 
-
-  <script>
-  var map = L.mapbox.map('user-rooms-map', 'jorgerro.i3fn8jnl')
-          .setView([43.3333, 11.3333], 2);
-
-  var myLayer = L.mapbox.featureLayer().addTo(map);
-
-  // The GeoJSON representing the two point features
-
-  var geoJson = {
-      type: 'FeatureCollection',
-      features: [
-
-      <% @listings.each do |room| %>
-      {
-          type: 'Feature',
-          properties: {
-              title: '<%=  "#{ room.display_title }"  %>',
-              'marker-color': '#f00',
-              'marker-size': 'medium',
-              'marker-symbol': 'campsite',
-              url: '<%= room_url(room) %>'
-          },
-          geometry: {
-              type: 'Point',
-              coordinates: [<%=  room.longitude  %>, <%=  room.latitude  %>]
-          }
-      },
-
-      <% end %>
-
-      {
-          type: 'Feature',
-          properties: {
-              title: 'Baltimore, MD',
-              'marker-color': '#f00',
-              'marker-size': 'medium',
-              url: 'http://en.wikipedia.org/wiki/Baltimore'
-          },
-          geometry: {
-              type: 'Point',
-              coordinates: [-76.60767, 39.28755]
-          }
-      }
-
-
-    ]
-  };
-
-  // Pass features and a custom factory function to the map
-  myLayer.setGeoJSON(geoJson);
-  myLayer.on('click', function(e) {
-      // e.layer.unbindPopup();
-      window.open(e.layer.feature.properties.url);
-  });
-  </script>

@@ -18,29 +18,46 @@
     margin: 0;
     border: 0;
     font: inherit;
+    vertical-align: baseline;
+  }
+
+  input[type="text"],
+  button,
+  textarea {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    font:inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+
+    outline: 0;
+    background: transparent;
+    color: inherit;
+    display: inline-block;
   }
 
   #map {
     position:relative;
-    top:-25px;
     bottom:0;
     width:100%;
     height: 500px;
     z-index: -1;
   }
 
-  #user-rooms-map {
+  #all-rooms-map {
     position:relative;
     bottom:0;
     width:100%;
     height: 500px;
-    z-index:0;
+    z-index:-1;
   }
 
   body {
     background-color: #f7f7f7;
     font-family: sans-serif;
     color: #5a5a5a;
+    line-height: normal;
   }
 
   a {
@@ -91,6 +108,8 @@
 
   nav.primary {
     background-color: #FFF;
+    background-image:
+    -webkit-linear-gradient(top, #fff 0%, #f9f9f9 49%, #f2f2f2 51%, #f0f0f0 100%);
     height:50px;
     min-width: 950px;
     width: auto;
@@ -114,7 +133,7 @@
     padding: 10px 0;
   }
 
-  ul.user-controls {
+  ul.primary-controls {
     position:relative;
     float: right;
     font-size: 16px;
@@ -141,6 +160,37 @@
     color: white;
   }
 
+  ul.user-controls {
+    position: absolute;
+    border: 3px solid black;
+    top: 43px;
+    left: -150px;
+    background-color: #fff;
+    width: 200px;
+    display: none;
+  }
+
+  ul.user-controls > li > a:hover {
+    background-color: #9E9E9E;
+  }
+
+  ul.user-controls > li > a {
+    color: black;
+    display: block;
+    border-bottom: 3px solid black;
+    padding: 0;
+    font-size: 12px;
+    padding: 7px 5px 10px 10px;
+  }
+
+  li#controls:hover > ul.user-controls {
+    display: block;
+  }
+
+  ul.user-controls > li:last-child > a{
+    border-bottom: 0;
+  }
+
   ul.dropdown {
     position: absolute;
     border: 3px solid black;
@@ -164,7 +214,7 @@
     padding: 7px 5px 10px 10px;
   }
 
-  li#notification:hover > ul.dropdown {
+  li#notifications:hover > ul.dropdown {
     display: block;
   }
 
@@ -190,20 +240,20 @@
     background-color: #71D7DC;
     display:block;
     padding: 10px;
-    border-radius: 15px;
+    border-radius: 10px;
     margin: 15px;
   }
 
   li.message p {
-    padding: 15px;
+    padding: 5px;
   }
 
   img.avatar-thread {
     height: 40px;
     width:auto;
-    border-radius: 20px;
+    border-radius: 10px;
     float:left;
-    padding: 15px;
+    padding: 5px;
   }
 
   time.time-ago {

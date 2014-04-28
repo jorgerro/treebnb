@@ -4,9 +4,7 @@
 <br>
 <ul id="notifications-index">
   <% if @notifications %>
-      <% @notifications.order("is_read")
-                        .where(user_id: current_user.id)
-                        .each do |notification| %>
+      <% @notifications.each do |notification| %>
 
       <li class="notification">
           <a href="<%= notification_url(notification) %>">

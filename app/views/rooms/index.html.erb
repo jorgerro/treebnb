@@ -1,4 +1,4 @@
-  <div id='map'></div>
+  <div id='all-rooms-map'></div>
   <script>
   var map = L.mapbox.map('map', 'examples.map-9ijuk24y')
       .setView([34.1009953, -117.8194197], 2);
@@ -15,6 +15,64 @@
 <% end %>
 
 <br><br>
+
+
+  <script>
+  var map = L.mapbox.map('all-rooms-map', 'jorgerro.i3fn8jnl')
+          .setView([43.3333, 11.3333], 2);
+
+  var myLayer = L.mapbox.featureLayer().addTo(map);
+
+  // The GeoJSON representing the two point features
+
+  var geoJson = {
+      type: 'FeatureCollection',
+      features: [
+
+      <% @listings.each do |room| %>
+      {
+          type: 'Feature',
+          properties: {
+              title: '<%=  "#{ room.display_title }"  %>',
+              'marker-color': '#f00',
+              'marker-size': 'medium',
+              'marker-symbol': 'campsite',
+              url: '<%= room_url(room) %>'
+          },
+          geometry: {
+              type: 'Point',
+              coordinates: [<%=  room.longitude  %>, <%=  room.latitude  %>]
+          }
+      },
+
+      <% end %>
+
+      {
+          type: 'Feature',
+          properties: {
+              title: 'Baltimore, MD',
+              'marker-color': '#f00',
+              'marker-size': 'medium',
+              url: 'http://en.wikipedia.org/wiki/Baltimore'
+          },
+          geometry: {
+              type: 'Point',
+              coordinates: [-76.60767, 39.28755]
+          }
+      }
+
+
+    ]
+  };
+
+  // Pass features and a custom factory function to the map
+  myLayer.setGeoJSON(geoJson);
+  myLayer.on('click', function(e) {
+      // e.layer.unbindPopup();
+      window.open(e.layer.feature.properties.url);
+  });
+  </script>
+
 
 
 

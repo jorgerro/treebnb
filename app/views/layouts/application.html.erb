@@ -13,16 +13,43 @@
 
   <a href="<%= root_url %>"><h1 class="logo-primary">treebnb</h1></a>
 
-  <ul class="user-controls group">
+  <ul class="primary-controls group">
     <% if current_user %>
 
-      <li>
+      <li id="controls">
         <a href="<%= user_url(current_user) %>">
           <%= current_user.fname %>
         </a>
+        <ul class="user-controls">
+          <li>
+            <a href="<%= edit_user_url(current_user) %>">
+              Edit Profile
+            </a>
+          </li>
+
+          <li>
+            <a href="<%= user_rooms_url(current_user) %>">
+              My Listings
+            </a>
+          </li>
+
+          <li>
+            <a href="<%= user_room_requests_url(current_user) %>">
+              My Trips
+            </a>
+          </li>
+
+          <li>
+            <form action="<%= session_url %>" method="post" >
+              <input type="hidden" name="_method" value="delete">
+              <%= auth_token %>
+              <input type="submit" value="Log Out">
+            </form>
+          </li>
+        </ul>
       </li>
 
-      <li id="notification">
+      <li id="notifications">
         <a href="<%= notifications_url %>">
           <img src="https://s3.amazonaws.com/freebnb_dev/icons/mail_icon.png"
           id="mail-icon">
@@ -49,35 +76,9 @@
       </li>
 
       <li>
-        <a href="<%= edit_user_url(current_user) %>">
-          Edit Profile
-        </a>
-      </li>
-
-      <li>
-        <a href="<%= user_rooms_url(current_user) %>">
-          My Listings
-        </a>
-      </li>
-
-      <li>
-        <a href="<%= user_room_requests_url(current_user) %>">
-          My Trips
-        </a>
-      </li>
-
-      <li>
         <a href="<%= new_room_url %>">
-          List
+          List Your Space
         </a>
-      </li>
-
-      <li>
-        <form action="<%= session_url %>" method="post" >
-          <input type="hidden" name="_method" value="delete">
-          <%= auth_token %>
-          <input type="submit" value="Log Out">
-        </form>
       </li>
 
     <% else %>
