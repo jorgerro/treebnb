@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140426181324) do
+ActiveRecord::Schema.define(version: 20140427233553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "availabilities", force: true do |t|
+    t.integer  "room_id"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "availabilities", ["room_id"], name: "index_availabilities_on_room_id", using: :btree
 
   create_table "message_threads", force: true do |t|
     t.integer  "user_one_id", null: false
@@ -106,6 +116,8 @@ ActiveRecord::Schema.define(version: 20140426181324) do
     t.string   "address_zip_code"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "rooms", ["owner_id"], name: "index_rooms_on_owner_id", using: :btree

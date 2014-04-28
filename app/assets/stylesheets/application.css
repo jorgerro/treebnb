@@ -20,23 +20,41 @@
     font: inherit;
   }
 
+  #map {
+    position:relative;
+    top:-25px;
+    bottom:0;
+    width:100%;
+    height: 500px;
+    z-index: -1;
+  }
+
+  #user-rooms-map {
+    position:relative;
+    bottom:0;
+    width:100%;
+    height: 500px;
+    z-index:0;
+  }
+
   body {
-    background-color: #16B2B9;
+    background-color: #f7f7f7;
     font-family: sans-serif;
-    color: #fff;
+    color: #5a5a5a;
   }
 
   a {
     text-decoration: none;
     font-weight: bold;
+    color: #5a5a5a;
   }
 
   a:visited {
-    color: #FFF;
+    color: #5a5a5a;
   }
 
   a:hover {
-    color: #CA16C2;
+    color: #16B2B9;
   }
 
   label {
@@ -57,7 +75,7 @@
 
   li > a {
     display: inline-block;
-    padding: 10px;
+    padding: 15px 10px;
   }
 
   li > form {
@@ -72,13 +90,28 @@
   }
 
   nav.primary {
-    background-color: #FFC755;
+    background-color: #FFF;
+    height:50px;
+    min-width: 950px;
+    width: auto;
+  }
+
+  nav.primary > ul > li {
+    line-height: 18px;
+    color: #5a5a5a;
+  }
+
+  #mail-icon {
+    position: relative;
+    top: 4px;
   }
 
   h1.logo-primary {
-    font-size: 20px;
+    font-size: 30px;
     float: left;
-    padding:10px;
+    color: #16B2B9;
+    margin-left: 60px;
+    padding: 10px 0;
   }
 
   ul.user-controls {
@@ -93,6 +126,8 @@
   }
 
   strong#notification-count {
+    position: relative;
+    top: -1px;
     font-size: 12px;
     background-color: #16B2B9;
     color: white;

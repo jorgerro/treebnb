@@ -1,3 +1,10 @@
+  <div id='map'></div>
+  <script>
+  var map = L.mapbox.map('map', 'examples.map-9ijuk24y')
+      .setView([34.1009953, -117.8194197], 2);
+  </script>
+
+
 <h3>All Listings</h3><hr>
 
 <% @listings.each do |room| %>
@@ -8,3 +15,6 @@
 <% end %>
 
 <br><br>
+
+
+
