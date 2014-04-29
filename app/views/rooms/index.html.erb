@@ -1,11 +1,13 @@
-  <div id='all-rooms-map'></div>
-  <script>
+<h2>All Listings</h2>
+
+
+<div id='all-rooms-map'></div>
+<script>
   var map = L.mapbox.map('map', 'examples.map-9ijuk24y')
       .setView([34.1009953, -117.8194197], 2);
-  </script>
+</script>
 
 
-<h3>All Listings</h3><hr>
 
 <% @listings.each do |room| %>
   <a href="<%= room_url(room) %>">
@@ -30,13 +32,15 @@
       features: [
 
       <% @listings.each do |room| %>
+
       {
           type: 'Feature',
           properties: {
               title: '<%=  "#{ room.display_title }"  %>',
               'marker-color': '#f00',
               'marker-size': 'medium',
-              'marker-symbol': 'campsite',
+              'marker-color': '#CA16C2',
+              'marker-symbol': '',
               url: '<%= room_url(room) %>'
           },
           geometry: {
@@ -51,7 +55,7 @@
           type: 'Feature',
           properties: {
               title: 'Baltimore, MD',
-              'marker-color': '#f00',
+              'marker-color': '#CA16C2',
               'marker-size': 'medium',
               url: 'http://en.wikipedia.org/wiki/Baltimore'
           },

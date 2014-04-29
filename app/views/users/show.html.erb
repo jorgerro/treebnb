@@ -1,11 +1,14 @@
-<%= @user.fname %>'s show page
+<div class="profile-picture">
 
-<hr>
+  <img src="<%= @user.avatar.url(:thumb) %>" class="profile-thumb">
 
-  <img src="<%= @user.avatar.url(:thumb) %>">
-<br>
-<%= "Member since #{ time_ago_in_words(@user.created_at) } ago." %>
-<br><br>
+</div>
+
+
+<div class="profile-info">
+  <h2>Hey, I'm <%= @user.fname.capitalize %>!</h2>
+  <%= "Member since #{ format_member_since(@user.created_at) }." %>
+</div>
 
 <% if signed_in? %>
 <%= render "reviews/form", reviewable_type: "User", reviewable_id: @user.id %>

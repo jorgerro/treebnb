@@ -1,0 +1,36 @@
+DESIGN SPECIFICATION # TREEBNB
++++++++++++++++++++++++++++++++++++
+
+
+COLORS
+======
+Favorite Blue: #16B2B9
+White: #fff
+Green: #0c6
+Gray background: #f7f7f7
+Pink: #CA16C2
+Black text: #333
+Gray lines: #ccc
+Dark Gray text: #5a5a5a
+Yellow List Button: #fde44c
+Light Yellow: #fde44c
+
+
+TEXT
+====
+Regular font family: sans-serif
+Regular line height: normal
+Regular font size: 16px
+Header 1 font size: 48px
+Header 2 font size: 24px
+Notification count font size: 12px
+Letter spacing: 3px
+
+
+BORDER
+======
+Stroke: solid
+Regular width: 1px
+Profile picture width: 5px
+Thumbnail picture width: 3px
+

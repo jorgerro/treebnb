@@ -1,0 +1,96 @@
+  /* RESETS */
+
+  body, h1, h2, h3, h4, a, nav, ul, li, form, p, label, section, article {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    font-size: 100%;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="submit"],
+  button,
+  textarea {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    font:inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+
+    outline: 0;
+    background: transparent;
+    color: inherit;
+    display: inline-block;
+    box-sizing: content-box;
+  }
+
+
+  /* General tags, global styles */
+
+
+  body {
+    background-color: #f7f7f7;
+    font-family: sans-serif;
+    color: #5a5a5a;
+    line-height: normal;
+  }
+
+  a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #5a5a5a;
+  }
+
+  a:visited {
+    color: #5a5a5a;
+  }
+
+  a:hover {
+    color: #16B2B9;
+  }
+
+  label {
+    display: block;
+  }
+
+  h1 {
+
+  }
+
+  h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  li {
+    display:inline;
+  }
+
+  li > a {
+    display: inline-block;
+    padding: 15px 10px;
+  }
+
+  li > form {
+    display: inline-block;
+    padding: 10px;
+  }
+
+
+  /* Clearfix */
+
+
+  .group:after {
+    clear: both;
+    content: "";
+    display: block;
+  }

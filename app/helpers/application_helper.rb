@@ -17,6 +17,10 @@ module ApplicationHelper
     time.strftime "%A, %b %d %Y"
   end
 
+  def format_member_since(time)
+    time.strftime "%B %Y"
+  end
+
 
 
 end

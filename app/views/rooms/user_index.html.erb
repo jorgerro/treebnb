@@ -1,4 +1,4 @@
-<h3><%= @user.fname %>'s Listings</h3><hr>
+<h2><%= @user.fname %>'s Listings</h2>
 
 <% @listings.each do |room| %>
   <a href="<%= room_url(room) %>">

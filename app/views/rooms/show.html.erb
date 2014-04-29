@@ -1,8 +1,5 @@
-ROOM SHOW
-<br><br>
+<h2><%= "#{ MAKE_NICE[@room.home_type] } in #{ MAKE_NICE[@room.address_city] }" %></h2>
 
-  <%= "#{ MAKE_NICE[@room.home_type] } in #{ MAKE_NICE[@room.address_city] }" %>
-<br>
 Host: <a href="<%= user_url(@owner) %>">
         <%= "#{ @owner.fname } #{ @owner.lname }" %>
       </a>

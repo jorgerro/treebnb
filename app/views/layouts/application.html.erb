@@ -5,116 +5,128 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
-  <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js'></script>
-  <link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css' rel='stylesheet' />
 </head>
 
 <nav class="primary group">
+  <div class="header-wrap group">
+    <a href="<%= root_url %>"><h1 class="logo-primary">treebnb</h1></a>
 
-  <a href="<%= root_url %>"><h1 class="logo-primary">treebnb</h1></a>
+    <ul class="primary-controls group">
+      <% if current_user %>
 
-  <ul class="primary-controls group">
-    <% if current_user %>
-
-      <li id="controls">
-        <a href="<%= user_url(current_user) %>">
-          <%= current_user.fname %>
-        </a>
-        <ul class="user-controls">
-          <li>
-            <a href="<%= edit_user_url(current_user) %>">
-              Edit Profile
-            </a>
-          </li>
-
-          <li>
-            <a href="<%= user_rooms_url(current_user) %>">
-              My Listings
-            </a>
-          </li>
-
-          <li>
-            <a href="<%= user_room_requests_url(current_user) %>">
-              My Trips
-            </a>
-          </li>
-
-          <li>
-            <form action="<%= session_url %>" method="post" >
-              <input type="hidden" name="_method" value="delete">
-              <%= auth_token %>
-              <input type="submit" value="Log Out">
-            </form>
-          </li>
-        </ul>
-      </li>
-
-      <li id="notifications">
-        <a href="<%= notifications_url %>">
-          <img src="https://s3.amazonaws.com/freebnb_dev/icons/mail_icon.png"
-          id="mail-icon">
-          <strong id="notification-count">
-            <%= "#{ num_notifications }" %>
-          </strong>
-        </a>
-        <ul class="dropdown group">
+        <li id="controls">
+          <a href="<%= user_url(current_user) %>">
+            <img src="<%= current_user.avatar.url(:thumb) %>" id="user-nav-img">
+            <%= current_user.fname %>
+          </a>
+          <ul class="user-controls">
 
             <li>
-              <a href="<%= notifications_url %>">
-                See All Notifications
+              <a href="<%= user_room_requests_url(current_user) %>">
+                My Trips
               </a>
             </li>
 
-          <% current_user.notifications.unread.each do |notification| %>
             <li>
-              <a href="<%= notification_url(notification) %>">
-                <%= notification.text %>
+              <a href="<%= user_rooms_url(current_user) %>">
+                My Listings
               </a>
             </li>
-          <% end %>
-        </ul>
-      </li>
 
-      <li>
-        <a href="<%= new_room_url %>">
-          List Your Space
-        </a>
-      </li>
+            <li>
+              <a href="<%= user_url(current_user) %>">
+                View Profile
+              </a>
+            </li>
 
-    <% else %>
+            <li>
+              <a href="<%= edit_user_url(current_user) %>">
+                Edit Profile
+              </a>
+            </li>
 
-      <li>
-        <a href="<%= new_user_url %>">
-          sign up
-        </a>
-      </li>
-      /
-      <li>
-        <a href="<%= new_session_url %>">
-          sign in
-        </a>
-      </li>
+            <li id="signout-li">
+              <form action="<%= session_url %>" method="post" >
+                <input type="hidden" name="_method" value="delete">
+                <%= auth_token %>
+                <input id="signout-button" type="submit" value="Sign Out">
+              </form>
+            </li>
+          </ul>
+        </li>
 
-    <% end  %>
-  </ul>
+        <li id="notifications">
+          <a href="<%= notifications_url %>">
+            <img src="https://s3.amazonaws.com/freebnb_dev/icons/mail_icon.png"
+            id="mail-icon">
+            <strong id="notification-count">
+              <%= "#{ num_notifications }" %>
+            </strong>
+          </a>
+          <ul class="dropdown group">
 
+              <li>
+                <a href="<%= notifications_url %>">
+                  See All Notifications
+                </a>
+              </li>
+
+            <% current_user.notifications.unread.each do |notification| %>
+              <li>
+                <a href="<%= notification_url(notification) %>">
+                  <%= notification.text %>
+                </a>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+
+        <li>
+          <a class="button-to-list" href="<%= new_room_url %>">
+            LIST YOUR SPACE
+          </a>
+        </li>
+
+      <% else %>
+
+        <li>
+          <a href="<%= new_user_url %>">
+            sign up
+          </a>
+        </li>
+        /
+        <li>
+          <a href="<%= new_session_url %>">
+            sign in
+          </a>
+        </li>
+
+      <% end  %>
+    </ul>
+  </div>
 </nav>
 
-<% if flash[:errors] %>
-  <% flash[:errors].each do |error| %>
-    <%= error %> <br>
-  <% end %>
-<% end %>
-
-<% if flash[:notice] %>
-  <% flash[:notice].each do |notice| %>
-    <%= notice %>
-  <% end %>
-<% end %>
 
 <body>
 
   <section class="main group">
+
+      <% if flash[:errors] %>
+    <section class="errors">
+        <% flash[:errors].each do |error| %>
+          <p><%= error %></p>
+        <% end %>
+    </section>
+      <% end %>
+
+      <% if flash[:notice] %>
+    <section class="notices">
+        <% flash[:notice].each do |notice| %>
+          <p><%= notice %></p>
+        <% end %>
+    </section>
+      <% end %>
+
     <%= yield %>
   </section>
 </body>

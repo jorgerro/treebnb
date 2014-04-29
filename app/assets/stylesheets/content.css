@@ -1,0 +1,36 @@
+
+/* Errors & Notices */
+
+section.errors {
+  background-color: #fef09c;
+  border-radius: 5px;
+  color: #5a5a5a;
+  margin-bottom: 20px;
+  padding: 5px;
+  font-weight: bold;
+}
+
+section.errors p {
+  padding:5px;
+}
+
+section.notices {
+  background-color: #71d7dc;
+  border-radius: 5px;
+  color: #FFF;
+  margin-bottom: 20px;
+  padding: 5px;
+  font-weight: bold;
+}
+
+section.notices p {
+  padding:5px;
+}
+
+/* Main section */
+
+section.main {
+  display: block;
+  width: 950px;
+  margin: 20px auto;
+}
