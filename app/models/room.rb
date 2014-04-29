@@ -6,7 +6,7 @@ class Room < ActiveRecord::Base
   include Reviewable
 
   validates :home_type, :room_type, presence: true
-  validates :num_possible_guests, :address_city, presence: true
+  validates :num_possible_guests, :address_zip_code, presence: true
   # validates :address_neighborhood, presence: true
   # validates :street_address, :address_zip_code, presence: true
   # can fill out these fields after creating the listing
@@ -32,7 +32,8 @@ class Room < ActiveRecord::Base
     has_many :pictures, inverse_of: :room, dependent: :destroy
 
     def full_address
-      "#{ self.address_city }, #{ self.address_zip_code }"
+      #"#{ self.address_city }
+      self.address_zip_code
     end
 
     def display_title
