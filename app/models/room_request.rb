@@ -9,6 +9,7 @@ class RoomRequest < ActiveRecord::Base
 
   validates :num_guests, :start_date, :end_date, presence: true
   validates :status, inclusion: STATUS_STATES
+  validate :check_availability
   validate :does_not_overlap_approved_request
 
   belongs_to(
@@ -68,6 +69,24 @@ class RoomRequest < ActiveRecord::Base
 
   private
 
+  def check_availability
+    conditions = <<-SQL
+      ((room_id = :room_id)
+        AND (start_date <= :start_date)
+        AND (end_date >= :end_date))
+    SQL
+
+    overlapping_availabilities = Availability.where(conditions, {
+      room_id: self.room_id,
+      start_date: self.start_date,
+      end_date: self.end_date
+    })
+
+    if overlapping_availabilities.empty?
+      errors[:base] << "The room is not available during those dates."
+    end
+  end
+
   def assign_pending_status
     self.status ||= "PENDING"
   end
@@ -75,8 +94,8 @@ class RoomRequest < ActiveRecord::Base
   def overlapping_requests
     conditions = <<-SQL
       ((room_id = :room_id)
-        AND (start_date < :end_date)
-        AND (end_date > :start_date))
+        AND (start_date <= :end_date)
+        AND (end_date >= :start_date))
     SQL
 
     overlapping_requests = RoomRequest.where(conditions, {

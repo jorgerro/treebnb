@@ -8,7 +8,7 @@
 
 room_types = ["shared_room", "private_room", "entire_space"]
 
-
+home_types = ["yurt", "camp", "chalet", "cottage", "hut", "lodge","shack", "shanty","shed", "hovel", "deckhouse"]
 
 100.times do |x|
 

@@ -23,6 +23,22 @@ Host: <a href="<%= user_url(@owner) %>">
 
 <br><br>
 
+<% if !@room.availabilities.empty? %>
+  Available:<br>
+
+  <% @room.availabilities.each do |availability| %>
+      <%= "From #{ format_time(availability.start_date) } to #{ format_time(availability.end_date) }" %>
+  <% end %>
+
+<% else %>
+
+  This room is not currently available to request.
+
+<% end %>
+<br><br>
+
+
+
 <% unless @requests.empty? %>
   Requests to stay at this property: <br><br>
   <% @requests.each do |request| %>

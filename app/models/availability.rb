@@ -1,7 +1,7 @@
 
 class Availability < ActiveRecord::Base
 
-  validates :room, :start_date, :end_date
+  validates :room, :start_date, :end_date, presence: true
 
   belongs_to(
     :room,

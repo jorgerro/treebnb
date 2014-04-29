@@ -7,8 +7,69 @@
     border: 5px solid #16B2B9;
     float:left;
     margin: 0 20px 20px 0;
+    width:230px;
   }
 
   .profile-info {
 /*    margin-top: 20px;*/
+  }
+
+
+  /* Reviews */
+
+  section.profile-sidebar {
+    float:left;
+    width: 240px;
+    margin-right: 20px;
+  }
+
+  section.profile-content {
+    float:left;
+    width: 660px;
+    padding-left: 20px;
+    border-left: 1px solid #ccc;
+  }
+
+  article.profile-description {
+    margin: 20px 0;
+  }
+
+  .reviews {
+  }
+
+  .review {
+    border-top: 1px solid #ccc;
+  /*  margin-top: 20px;*/
+    margin-bottom: 20px;
+  }
+
+  .review > header {
+    margin-top: 20px;
+  }
+
+  .review-thumb {
+    float: left;
+  }
+
+  .review-thumb > a {
+  }
+
+  .review-thumb > a > img {
+    border: 3px solid #00f;
+    margin-right: 20px;
+  }
+
+  .post-info {
+  }
+
+  .review-info h3 {
+    font-weight: bold;
+  }
+
+  .review-info time {
+    color: #999;
+  }
+
+  .reviews-text {
+    margin-left: 80px;
   }

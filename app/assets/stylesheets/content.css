@@ -27,10 +27,34 @@ section.notices p {
   padding:5px;
 }
 
+
+/* Home page */
+
+section.home-page-articles {
+/*  width: 950px;*/
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+section.home-page-articles article:first-child {
+  margin:0;
+}
+
+article.home-page {
+  width: 305px;
+  float:left;
+  margin-left:14px;
+  padding: 0;
+}
+
+
+
+
 /* Main section */
 
 section.main {
   display: block;
   width: 950px;
   margin: 20px auto;
+/*  background-color: #fff;*/
 }

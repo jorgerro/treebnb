@@ -1,0 +1,18 @@
+<form action="<%= availabilities_url %>" method="post">
+
+  <%= auth_token %>
+
+  <label for="room_id">Room ID</label>
+  <input type="number" name="availability[room_id]"
+  value="<%= @availability.room_id %>" id="room_id">
+
+  <label for="start_date">Start Date</label>
+  <input type="date" name="availability[start_date]"
+  value="<%= @availability.start_date %>" id="start_date">
+
+  <label for="end_date">End Date</label>
+  <input type="date" name="availability[end_date]"
+  value="@availability.end_date" id="end_date">
+
+  <p><input type="submit" value="Continue &rarr;"></p>
+</form>

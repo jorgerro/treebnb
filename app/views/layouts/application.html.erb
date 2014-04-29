@@ -111,23 +111,41 @@
 
   <section class="main group">
 
-      <% if flash[:errors] %>
-    <section class="errors">
-        <% flash[:errors].each do |error| %>
-          <p><%= error %></p>
-        <% end %>
-    </section>
-      <% end %>
+    <% if flash[:errors] %>
+        <section class="errors">
+            <% flash[:errors].each do |error| %>
+              <p><%= error %></p>
+            <% end %>
+        </section>
+          <% end %>
 
-      <% if flash[:notice] %>
-    <section class="notices">
-        <% flash[:notice].each do |notice| %>
-          <p><%= notice %></p>
-        <% end %>
-    </section>
+          <% if flash[:notice] %>
+        <section class="notices">
+            <% flash[:notice].each do |notice| %>
+              <p><%= notice %></p>
+            <% end %>
+        </section>
       <% end %>
 
     <%= yield %>
   </section>
+
+  <footer class="footer group">
+
+    <small class="footer-copy">
+      &copy; 2014 treebnb. All rights reserved.
+    </small>
+
+    <nav class="footer-links">
+      <ul class="group">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Privacy</a></li>
+      </ul>
+    </nav>
+
+  </footer>
+
 </body>
 </html>

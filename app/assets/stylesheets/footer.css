@@ -1,0 +1,27 @@
+
+.footer {
+  margin: auto;
+  width: 950px;
+  background-color: #f7f7f7;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.footer-copy {
+  float: left;
+  padding: 15px 20px;
+  color: #999;
+}
+
+.footer-links {
+  float: right;
+}
+
+.footer-links > ul > li {
+  float: left;
+/*  padding: 15px 20px 15px 0;*/
+}
+
+.footer a {
+  color: #999;
+}

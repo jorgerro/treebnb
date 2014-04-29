@@ -24,6 +24,8 @@ Freebnb::Application.routes.draw do
 
   resources :message_threads, only: :show
 
+  resources :availabilities, only: [:new, :create]
+
   root to: "rooms#index"
 
   # The priority is based upon order of creation: first created -> highest priority.

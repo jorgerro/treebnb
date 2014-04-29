@@ -68,7 +68,7 @@ ul.user-controls {
   position: absolute;
   border: 1px solid #ccc;
   top: 50px;
-  left: -30px;
+  left: -31px;
   background-color: #fff;
   display: none;
 }
@@ -98,7 +98,7 @@ ul.user-controls > li > a {
   background-color: #fff;
   border-bottom: 1px solid #ccc;
   font-size: 12px;
-  padding: 10px 34px 10px 15px;
+  padding: 10px 35px 10px 15px;
   font-weight: bold;
   border-radius: 0;
 }

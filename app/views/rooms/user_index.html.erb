@@ -2,7 +2,7 @@
 
 <% @listings.each do |room| %>
   <a href="<%= room_url(room) %>">
-    <%= "#{ MAKE_NICE[room.home_type] } in #{ MAKE_NICE[room.address_city] }" %>
+    <%= "#{ MAKE_NICE[room.home_type] } in #{room.address_city }" %>
   </a>
   <br><br>
 <% end %>
