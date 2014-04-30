@@ -21,6 +21,9 @@ module ApplicationHelper
     time.strftime "%B %Y"
   end
 
+  def to_ms(date)
+    date.to_time.to_i * 1000
+  end
 
 
 end

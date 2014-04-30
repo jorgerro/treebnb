@@ -31,6 +31,11 @@ class Room < ActiveRecord::Base
 
     has_many :pictures, inverse_of: :room, dependent: :destroy
 
+    def accepted_requests
+      self.room_requests.where(status: "APPROVED")
+    end
+
+
     def full_address
       #"#{ self.address_city }
       self.address_zip_code

@@ -51,6 +51,7 @@ gem 'aws-sdk'
 gem 'geocoder'
 gem 'cocaine'
 gem 'mapbox-rails'
+gem 'jquery-ui-rails'
 
 group :development do
   gem 'better_errors'

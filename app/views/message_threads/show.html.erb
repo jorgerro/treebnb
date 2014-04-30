@@ -1,10 +1,10 @@
 <% if @messages %>
-<h3 class="thread"><%= @thread.user_two.fname %> and <%= @thread.user_one.fname %> </h3>
+<h3 class="thread"><%= @user1.fname %> and <%= @user2.fname %> </h3>
 
   <ul class="thread-messages">
     <% @messages.each do |message| %>
 
-      <li class="message group">
+      <li class="message group" data-user-id="<%= message.sender.id %>">
 
         <img src="<%= message.sender.avatar.url(:thumb) %>" class="avatar-thread">
         <p><%= message.body %></p>
@@ -16,3 +16,23 @@
     <% end %>
   </ul>
 <% end %>
+
+
+<!-- /*<style>
+
+.current-user-messages {
+  margin-left: 50px;
+}
+
+</style>
+
+<script>
+
+$(document).ready(function () {
+
+  $userMessages = $(".message").find(li[data-user-id="<%= current_user.id %>"])
+  $userMessages.addClass("current-user-messages")
+
+})
+
+</script>*/ -->

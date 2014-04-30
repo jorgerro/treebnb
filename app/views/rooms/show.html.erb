@@ -27,7 +27,7 @@ Host: <a href="<%= user_url(@owner) %>">
   Available:<br>
 
   <% @room.availabilities.each do |availability| %>
-      <%= "From #{ format_time(availability.start_date) } to #{ format_time(availability.end_date) }" %>
+      <%= "From #{ format_time(availability.start_date) } to #{ format_time(availability.end_date) }" %><br>
   <% end %>
 
 <% else %>
@@ -36,6 +36,16 @@ Host: <a href="<%= user_url(@owner) %>">
 
 <% end %>
 <br><br>
+
+
+
+
+
+
+
+
+
+
 
 
 
