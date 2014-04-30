@@ -1,0 +1,25 @@
+
+  /* Room Show  */
+
+  header.room-show {
+    display:block;
+    width: 950px;
+  }
+
+  section.room-show-main {
+    width: 620px;
+    float:left;;
+    display: block;
+    border: 2px solid red;
+  }
+
+  figure.room-show-image img {
+    width: 600px;
+    height: auto;
+    margin-right: 20px;
+  }
+
+  section.room-show-sidebar {
+
+  }
+

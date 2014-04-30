@@ -7,15 +7,17 @@
 
   <% if signed_in? %>
     <h3>Send <%= @user.fname %> a Message</h3>
-    <p>
+    <div class="message-form">
       <%= render partial: "messages/form", locals: { recipient_id: @user.id } %>
-    </p>
+    </div>
   <% end %>
 </section>
 
+
+
 <section class="profile-content">
 
-  <h2>Hey, I'm <%= @user.fname.capitalize %>!</h2>
+  <h1>Hey, I'm <%= @user.fname.capitalize %>!</h1>
 
   <div class="profile-info">
     <%= "Member since #{ format_member_since(@user.created_at) }." %>
@@ -27,63 +29,44 @@
 
   <% if signed_in? %>
   <%= render "reviews/form", reviewable_type: "User", reviewable_id: @user.id %>
-  <% end %><br>
+  <% end %>
+
 
 
   <% unless @reviews.empty? %>
 
-    <h3>Reviews</h3><br>
-    <section class="reviews">
+    <section class="reviews group">
+      <h3 class="reviews-title">Reviews</h3>
+
       <% @reviews.each do |review| %>
-        <header class="group">
-          <a href="#">
-            <img src="<%= review.author.avatar.url %>" width="54" height="54" alt="<%= review.author.fname %>"></a>
-        </header>
 
+        <article class="review">
+          <header class="group">
 
-
-          <p><%= review.body %>
-          by <%= review.author.fname.capitalize %>
-          </p>
-
-
-          <section class="review">
+            <div class="review-thumb">
+              <a href="#">
+                <img src="<%= review.author.avatar.url %>" width="54" height="54">
+              </a>
+            </div>
             <div class="review-info">
-              <h3><a href="#"><%=  %></a></h3>
+              <h4><a href="#"><%= "#{review.author.fname} #{review.author.lname}" %></a></h4>
               <time><%= "#{time_ago_in_words(review.created_at)} ago." %></time>
             </div>
 
+          </header>
+
             <div class="review-text">
-              <p><%= review.body %></p>
+              <p>
+                <%= review.body %>
+              </p>
             </div>
-          </section>
+
+        </article>
+
+      <% end %>
 
     </section>
-
-    <% end %>
 
   <% end %>
 
 </section>
-
-
-
-        <article class="post">
-          <header class="group">
-
-            <div class="post-thumb">
-
-            </div>
-
-            <div class="post-info">
-              <h3><a href="#">Jeanne Hebuterne</a></h3>
-              <time>3 hours ago</time>
-            </div>
-
-          </header>
-          <div class="post-text">
-
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-          </div>
-        </article>

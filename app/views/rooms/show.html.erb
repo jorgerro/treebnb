@@ -1,104 +1,107 @@
-<h2><%= "#{ MAKE_NICE[@room.home_type] } in #{ MAKE_NICE[@room.address_city] }" %></h2>
 
-Host: <a href="<%= user_url(@owner) %>">
-        <%= "#{ @owner.fname } #{ @owner.lname }" %>
-      </a>
+<header class="room-show">
+  <h1>
+    <%= "#{ MAKE_NICE[@room.home_type] } in #{MAKE_NICE[@room.address_city] }" %>
+  </h1>
+  <div class="room-location">
+    <%= @room.address_city %>
+  </div>
+</header>
 
-<br><br>
+<section class="room-show-main">
 
-<% unless @room.pictures.empty? %>
-  <% @room.pictures.each do |picture| %>
-    <img src="<%= picture.image.url(:thumb_big) %>">
-  <% end %>
-<% end %><br>
-
-<% if signed_in? %>
-  <% if current_user.id == @room.owner_id %>
-    <a href="<%= edit_room_url(@room) %>">Edit</a>
-  <% end %>
-  <% if current_user.id != @room.owner_id %>
-    | <a href="<%= new_room_room_request_url(@room) %>">Request This Space</a>
-  <% end %>
-<% end %>
-
-<br><br>
-
-<% if !@room.availabilities.empty? %>
-  Available:<br>
-
-  <% @room.availabilities.each do |availability| %>
-      <%= "From #{ format_time(availability.start_date) } to #{ format_time(availability.end_date) }" %><br>
+  <% unless @room.pictures.empty? %>
+    <% @room.pictures.each do |picture| %>
+      <figure class="room-show-image">
+        <img src="<%= picture.image.url(:thumb_big) %>">
+      </figure>
+    <% end %>
   <% end %>
 
-<% else %>
+  <% if signed_in? %>
 
-  This room is not currently available to request.
-
-<% end %>
-<br><br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<% unless @requests.empty? %>
-  Requests to stay at this property: <br><br>
-  <% @requests.each do |request| %>
-
-  <%= "Status: #{ request.status }" %><br>
-  <p>
-    <%= "This reservation starts on #{ format_time(request.start_date) }, ends on #{ format_time(request.end_date) } and is for #{ request.num_guests }." %>
-  </p>
-
-  <%= "Made #{ time_ago_in_words(request.created_at) } ago." %>
-
-    <% if request.status == "PENDING" && current_user && request.room.owner_id == current_user.id %>
-      <form action="<%= approve_room_request_url(request) %>" method="post">
-        <%= auth_token %>
-        <p><input type="submit" value="Approve"></p>
-      </form>
-
-      <form action="<%= deny_room_request_url(request) %>" method="post">
-        <%= auth_token %>
-        <p><input type="submit" value="Deny"></p>
-      </form>
+    <% if current_user.id == @room.owner_id %>
+      <a href="<%= edit_room_url(@room) %>">Edit</a>
     <% end %>
 
-    <hr>
+    <% if current_user.id != @room.owner_id %>
+      <a href="<%= new_room_room_request_url(@room) %>">Request This Space</a>
+    <% end %>
+
   <% end %>
 
-<% else %>
+  <% if !@room.availabilities.empty? %>
+    Available:
 
-  <p>There are currently no requests to stay at this property.</p><br>
-
-<% end %>
-
-<!-- # TODO: should later write some logic so that you can only comment if the user was your host or you stayed at the place -->
-
-<% if signed_in? %>
-<%= render "reviews/form", reviewable_type: "Room", reviewable_id: @room.id %>
-<% end %><br>
-
-<% unless @reviews.empty? %>
-  <h3 class="review">Reviews!</h3><br>
-  <ul class="comments group">
-    <% @reviews.each do |review| %>
-      <li>
-        <p><%= review.body %>
-        by <%= User.find(review.author_id).fname %>
-        </p>
-      </li>
+    <% @room.availabilities.each do |availability| %>
+        <%= "From #{ format_time(availability.start_date) } to #{ format_time(availability.end_date) }" %><br>
     <% end %>
-  </ul>
-<% end %>
+
+  <% else %>
+
+    This room is not currently available to request.
+
+  <% end %>
+</section>
+
+
+
+<section class="room-show-sidebar">
+
+  <% unless @requests.empty? %>
+    Requests to stay at this property: <br><br>
+    <% @requests.each do |request| %>
+
+    <%= "Status: #{ request.status }" %><br>
+    <p>
+      <%= "This reservation starts on #{ format_time(request.start_date) }, ends on #{ format_time(request.end_date) } and is for #{ request.num_guests }." %>
+    </p>
+
+    <%= "Made #{ time_ago_in_words(request.created_at) } ago." %>
+
+      <% if request.status == "PENDING" && current_user && request.room.owner_id == current_user.id %>
+        <form action="<%= approve_room_request_url(request) %>" method="post">
+          <%= auth_token %>
+          <p><input type="submit" value="Approve"></p>
+        </form>
+
+        <form action="<%= deny_room_request_url(request) %>" method="post">
+          <%= auth_token %>
+          <p><input type="submit" value="Deny"></p>
+        </form>
+      <% end %>
+
+      <hr>
+    <% end %>
+
+  <% else %>
+
+    <p>There are currently no requests to stay at this property.</p><br>
+
+  <% end %>
+
+
+  <% if signed_in? %>
+  <%= render "reviews/form", reviewable_type: "Room", reviewable_id: @room.id %>
+  <% end %><br>
+
+  <% unless @reviews.empty? %>
+    <h3 class="review">Reviews!</h3><br>
+    <ul class="comments group">
+      <% @reviews.each do |review| %>
+        <li>
+          <p><%= review.body %>
+          by <%= User.find(review.author_id).fname %>
+          </p>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</section>
+
+
+
+
 
 <!-- <!DOCTYPE html>
 <html>

@@ -32,6 +32,13 @@
 
 <br><br>
 
+Add Some Information About Your Listing's Location <br><br>
+
+  <label for="street_address">Street Address:</label>
+  <input type="text" name="room[street_address]"
+  value="<%= @room.street_address %>" id="street_address">
+
+
   <label>
     City
     <select name="room[address_city]">
@@ -55,24 +62,16 @@
       </option>
     </select>
   </label>
-
-<br><br>
-
-Add Some Information About Your Listing's Location <br><br>
-
-  <label for="street_address">Street Address:</label>
-  <input type="text" name="room[street_address]"
-  value="<%= @room.street_address %>" id="street_address">
-
+<br>
   <label for="address_zip_code">Zip Code</label>
   <input type="number" name="room[address_zip_code]"
   value="<%= @room.address_zip_code %>" id="address_zip_code">
 
 <br><br>
 
-  <label for="address_neighborhood">Neighborhood:</label>
-  <input type="text" name="room[address_neighborhood]"
-  value="<%= @room.address_neighborhood %>" id="address_neighborhood">
+
+  <label for="country">Country</label>
+  <input type="text" name="room[address_country]" value="" id="country">
 
   <label>
     Home Type

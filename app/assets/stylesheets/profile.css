@@ -23,11 +23,16 @@
     margin-right: 20px;
   }
 
+  div.message-form textarea{
+    width: 230px;
+  }
+
   section.profile-content {
-    float:left;
+    float:right;
     width: 660px;
     padding-left: 20px;
     border-left: 1px solid #ccc;
+
   }
 
   article.profile-description {
@@ -35,34 +40,34 @@
   }
 
   .reviews {
+    float:right;
+    width:660px;
   }
 
-  .review {
-    border-top: 1px solid #ccc;
-  /*  margin-top: 20px;*/
-    margin-bottom: 20px;
+  h3.reviews-title {
+    margin-top: 40px;
   }
 
   .review > header {
     margin-top: 20px;
+    display:block;
   }
 
   .review-thumb {
     float: left;
   }
 
-  .review-thumb > a {
-  }
-
-  .review-thumb > a > img {
-    border: 3px solid #00f;
+  .review-thumb img {
+    border: 3px solid #16B2B9;
     margin-right: 20px;
+    border-radius: 5px;
   }
 
-  .post-info {
+  .review-thumb img:hover {
+    border: 3px solid rgba(0,0,0,0.2);
   }
 
-  .review-info h3 {
+  .review-info h4 {
     font-weight: bold;
   }
 
@@ -70,6 +75,11 @@
     color: #999;
   }
 
-  .reviews-text {
+  .review {
+    border-top: 1px solid #ccc;
+    margin-top: 20px;
+  }
+
+  .review-text {
     margin-left: 80px;
   }

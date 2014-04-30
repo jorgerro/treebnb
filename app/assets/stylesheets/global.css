@@ -1,6 +1,6 @@
   /* RESETS */
 
-  body, h1, h2, h3, h4, a, nav, small, footer,
+  body, h1, h2, h3, h4, a, nav, small, footer, figure,
   ul, li, form, p, label, section, article {
     padding: 0;
     margin: 0;
@@ -54,12 +54,18 @@
     color: #16B2B9;
   }
 
+  img {
+/*    display: block;*/
+  }
+
   label {
     display: block;
   }
 
   h1 {
-
+    font-size: 35px;
+    font-weight: bold;
+    margin-bottom: 10px;
   }
 
   h2 {
