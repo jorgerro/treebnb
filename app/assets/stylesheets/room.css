@@ -1,6 +1,47 @@
 
 /* Room Show  */
 
+  /* Main content */
+
+
+  /* carousel */
+
+
+  #carrousel {
+    position: relative;
+    height: 400px;
+    width: 580px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    border-radius: 5px;
+  }
+
+  #carrousel > ul {
+    left: 0px;
+    top: 0;
+    position: absolute;
+    list-style: none;
+  }
+
+  #carrousel > ul > li {
+    float: left;
+  }
+
+  #carrousel-nav {
+    text-align: center;
+  }
+
+  #carrousel-nav > span {
+    cursor: pointer;
+  }
+
+  #carrousel-nav > span:hover {
+    text-decoration: underline;
+  }
+
+
+
+
 
   /* sidebar */
 

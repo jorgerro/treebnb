@@ -9,7 +9,7 @@
 
   <header class="room-show">
     <h1>
-      <%= "#{ MAKE_NICE[@room.home_type] } in #{MAKE_NICE[@room.address_city] }" %>
+      <%= @room.display_title %>
     </h1>
     <div class="room-location">
       <%= @room.address_city %>
@@ -17,21 +17,144 @@
   </header>
 
 
+    <!-- photo carousel -->
+
+
   <% unless @room.pictures.empty? %>
+    <div id="carrousel">
+       <ul class="group">
     <% @room.pictures.each do |picture| %>
+      <li>
       <figure class="room-show-image">
         <img src="<%= picture.image.url(:thumb_big) %>">
       </figure>
+      </li>
     <% end %>
+      </ul>
+    </div>
+
+    <div id="carrousel-nav">
+      <span class="previous">Previous</span> &mdash;
+      <strong class="number">0 / 0</strong> &mdash;
+      <span class="next">Next</span>
+    </div>
+
+  <% else %>
+      <!-- put a default img here just to keep styling -->
   <% end %>
 
-  <% if signed_in? %>
 
-    <% if current_user.id == @room.owner_id %>
+  <% if signed_in? && current_user.id == @room.owner_id %>
       <a href="<%= edit_room_url(@room) %>">Edit Your Listing</a>
-    <% end %>
-
   <% end %>
+
+
+    <!-- <div id="carrousel">
+       <ul>
+         <li>Item One</li>
+         <li>Item Two</li>
+         <li>Item Three</li>
+         <li>Item Four</li>
+         <li>Item Five</li>
+       </ul>
+     </div> -->
+
+  <script>
+
+    var Carrousel = (function(){
+
+      var delay = 5000;
+      var carrousel = $("#carrousel");
+      var itemsHolder = carrousel.find("> ul");
+      var items = itemsHolder.find("> li");
+      var itemWidth = items.first().width();
+      var currentItem = -1;
+      var timerId;
+
+      var nextButton = $("#carrousel-nav > .next");
+      var previousButton = $("#carrousel-nav > .previous");
+      var numberLabel = $("#carrousel-nav > .number");
+
+      var init = function(){
+        itemsHolder.css({"width": (items.length * itemWidth) + "px"});
+        bind();
+        start();
+      };
+
+      var bind = function(){
+        nextButton.on("click", next);
+        previousButton.on("click", previous);
+      }
+
+      var start = function(){
+        loop();
+        timerId = window.setInterval(loop, delay);
+      }
+
+      var stop = function(){
+        if(timerId){
+          window.clearInterval(timerId);
+        }
+      }
+
+      var loop = function(){
+        next();
+      }
+
+      var next = function(){
+        currentItem++;
+
+        if(currentItem == items.length){
+          currentItem = 0;
+        }
+
+        move();
+      };
+
+      var previous = function(){
+        currentItem--;
+
+        if(currentItem <= 0){
+          currentItem = items.length - 1;
+        }
+
+        move();
+      }
+
+      var move = function(){
+        var html = (currentItem + 1) + " / " + items.length;
+        numberLabel.html(html);
+
+        var leftPosition = currentItem * itemWidth * -1;
+        itemsHolder.stop().animate({"left": leftPosition + "px"}, 1000);
+      }
+
+      return {
+        init: init,
+        next: next,
+        previous: previous,
+        start: start,
+        stop: stop
+      }
+    })();
+
+
+    $(document).ready(function(){
+      Carrousel.init();
+    });
+
+  </script>
+
+
+
+
+
+
+
+
+
+
+
 
 
   <!-- Room Information -->
@@ -180,6 +303,18 @@
 
     </div>
 
+</section>
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- will soon scrap this and move make it so that it can only be seen by the room owner
 
@@ -218,116 +353,6 @@
 -->
 
 
-</section>
 
 
 
-
-<!-- <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Tables</title>
-  <style>
-
-  html, body, h1, table, thead, tr, th, tbody, td {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font: inherit;
-    vertical-align: baseline;
-  }
-
-  body {
-    font-family: sans-serif;
-  }
-
-  h1 {
-    text-align: center;
-    margin: 30px;
-    font-size: 60px;
-    font-weight: bold;
-  }
-
-  table {
-    margin: 30px auto;
-    border-collapse: collapse;
-    border: 5px solid #ccc;
-    width: 500px;
-  }
-
-  thead {
-
-  }
-
-  tbody {
-
-  }
-
-  tr {
-
-  }
-
-  th {
-    padding: 10px;
-    background: #eee;
-    border: 5px solid #ccc;
-    text-align: left;
-    font-weight: bold;
-  }
-
-  td {
-    padding: 10px;
-    border: 5px solid #ccc;
-    border-left: 0;
-    border-right: 0;
-  }
-
-  /*
-
-  tr:nth-child(odd) td {
-    background: #ffc;
-  }
-
-  */
-
-  </style>
-</head>
-<body>
-
-  <h1>Amazing Cats</h1>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Color</th>
-        <th>Age</th>
-        <th>Owner</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Snowy</td>
-        <td>6</td>
-        <td>White</td>
-        <td>Jonathan</td>
-      </tr>
-      <tr>
-        <td>Rocky</td>
-        <td>4</td>
-        <td>Brown</td>
-        <td>Stacy</td>
-      </tr>
-      <tr>
-        <td>Sennacy</td>
-        <td>5</td>
-        <td>Brown</td>
-        <td>Christi</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-</body>
-</html> -->

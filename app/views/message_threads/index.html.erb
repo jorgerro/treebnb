@@ -6,6 +6,9 @@
 
     <h3>
       <a href="<%= message_thread_url(thread) %>">
+        <!-- <%# if thread.has_unread_messages? %>
+        <strong>!</strong>
+        <%# end %> -->
         <%= "#{ thread.user_one.fname.capitalize } and #{ thread.user_two.fname.capitalize }" %>
         </a>
     </h3>

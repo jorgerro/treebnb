@@ -4,7 +4,7 @@
 
 
   <a href="<%= room_url(room) %>">
-    <%= "#{ MAKE_NICE[room.home_type] } in #{room.address_city }" %>
+    <%= room.display_title %>
   </a> |
   <% if current_user.id == room.owner_id %>
     <a href="<%= edit_room_url(room) %>">Edit </a>

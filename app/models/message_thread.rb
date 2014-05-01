@@ -34,5 +34,10 @@ class MessageThread < ActiveRecord::Base
     return @thread
   end
 
+  def has_unread_messages?
+    return true if self.messages.where(is_read: false).count > 0
+    false
+  end
+
 
 end

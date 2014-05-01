@@ -6,7 +6,7 @@ class RoomsController < ApplicationController
   def index
     if params[:user_id]
       @user = User.find(params[:user_id])
-      @listings = @user.listings
+      @listings = @user.listings.order("created_at DESC")
       render :user_index
     else
       if current_user
