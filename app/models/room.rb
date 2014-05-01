@@ -31,7 +31,7 @@ class Room < ActiveRecord::Base
 
     has_many :pictures, inverse_of: :room, dependent: :destroy
 
-    def accepted_requests
+    def approved_requests
       self.room_requests.where(status: "APPROVED")
     end
 

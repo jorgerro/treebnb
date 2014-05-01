@@ -2,16 +2,38 @@
 <h2><%= @user.fname %>'s Trips</h2>
 
 <% unless @requests.empty? %>
+    <section class="trips">
 
-  <% @requests.each do |request| %>
+      <% @requests.each do |request| %>
+        <article class="room-request group">
 
-    <%= render partial: "layouts/room_request", locals: { request: request, room: request.room }  %>
+          <h3><%= "#{ MAKE_NICE[request.room.home_type] } in #{ MAKE_NICE[request.room.address_city] }" %></h3>
 
-    <hr>
+          <h4>Status: <strong><%= request.status %></strong></h4>
 
-  <% end %>
+          <p class="request-details">
+            <%= format_time(request.start_date)%><br>
+            to <%= format_time(request.end_date) %><br><br>
+            Number of Guests: <%= request.num_guests %>
+          </p>
+          <div class="trip-links">
+            <a href="<%= user_url(request.host) %>">Visit Your Host's Page</a>
+            <a href="<%= room_url(request.room) %>">See The Space</a>
+          </div>
+
+        </article>
+
+      <% end %>
+
+    </section>
+<% else %>
+
+<h3>You have no current trips.</h3>
 
 <% end %>
+
+
+<!-- could later add a js "send your host a message" button right here -->
 
 
 <!-- should i include the rooms when i get @requests in the controller? -->

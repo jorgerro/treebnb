@@ -1,25 +1,120 @@
 
-  /* Room Show  */
+/* Room Show  */
 
-  header.room-show {
-    display:block;
-    width: 950px;
+
+  /* sidebar */
+
+header.room-show {
+  display:block;
+  width: 950px;
+}
+
+section.room-show-main {
+  width: 599px;
+  float:left;;
+  display: block;
+  border-right: 1px solid #ccc;
+}
+
+section.room-show-main textarea {
+  width: 568px;
+}
+
+figure.room-show-image img {
+  width: 580px;
+  height: auto;
+  margin-right: 20px;
+}
+
+section.room-show-sidebar {
+  padding-left: 20px;
+  float: right;
+  width: 330px;
+}
+
+section.room-show-sidebar > h2 {
+  text-align: right;
+  margin-right: 23px;
+  margin-bottom: 0;
+  margin-top: 14px;
+}
+
+section.room-show-sidebar .datepicker {
+  margin: 10px auto;
+}
+
+div.owner-info img{
+  width: 230px;
+  height: auto;
+  border: 5px solid #16B2B9;
+  border-radius: 5px;
+  margin: 20px 35px;
+}
+
+
+  /* room description/ info */
+
+  section.room-info {
+    width: 580px;
+    margin-bottom: 40px;
   }
 
-  section.room-show-main {
-    width: 620px;
-    float:left;;
-    display: block;
-    border: 2px solid red;
+  section.room-info h3 {
+    margin-top: 20px;
   }
 
-  figure.room-show-image img {
-    width: 600px;
-    height: auto;
-    margin-right: 20px;
+  section.room-info p {
+    float:left;
+    display: inline;
+    width: 330px;
   }
 
-  section.room-show-sidebar {
+  table {
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    width: 250px;
+    font-size: 14px;
+    float: right;
+  }
+
+  thead {
 
   }
+
+  tbody {
+
+  }
+
+  tr {
+    text-align: right;
+  }
+
+  th {
+    padding: 10px;
+    background: #eee;
+    border: 1px solid #ccc;
+    text-align: left;
+    font-weight: bold;
+  }
+
+  td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-left: 0;
+    border-right: 0;
+  }
+
+  /*tr:nth-child(odd) td {
+    background: #ffc;
+  }*/
+
+
+  /* Room Reviews */
+
+.room-reviews {
+  float:right;
+  width:579px;
+  padding-right: 20px;
+}
+
 

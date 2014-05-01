@@ -13,6 +13,12 @@ class MessageThreadsController < ApplicationController
     end
   end
 
+  def index
+    @user = User.find(params[:user_id])
+    @threads = @user.threads
+    render :index
+  end
+
 
 
 

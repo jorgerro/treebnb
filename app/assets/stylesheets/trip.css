@@ -1,0 +1,54 @@
+
+section.trips {
+  margin: 20px auto;
+}
+
+section.trips h3 {
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  float: left;
+  width:450px;
+}
+
+section.trips h4 {
+  text-align: right;
+}
+
+article.room-request {
+  display: block;
+  width: 600px;
+  background-color: #fff;
+  margin: 10px;
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+p.request-details {
+  margin: 10px 0;
+  float: left;
+  width: 300px;
+}
+
+article.room-request .trip-links {
+  font-size: 14px;
+  color: #ccc;
+}
+
+div.trip-links a {
+  display: block;
+  font-weight: normal;
+  font-size: 13px;
+  margin-left: 15px;
+  margin-bottom: 20px;
+  color: #fff;
+  background-color:#16B2B9;
+  padding: 5px 10px;
+  border-radius: 5px;
+  float: right;
+  text-transform: uppercase;
+}
+
+div.trip-links a:hover {
+  background-color:#CA16C2;
+}

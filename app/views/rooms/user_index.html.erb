@@ -1,10 +1,17 @@
 <h2>Your Listings</h2>
 
 <% @listings.each do |room| %>
+
+
   <a href="<%= room_url(room) %>">
     <%= "#{ MAKE_NICE[room.home_type] } in #{room.address_city }" %>
-  </a>
+  </a> |
+  <% if current_user.id == room.owner_id %>
+    <a href="<%= edit_room_url(room) %>">Edit </a>
+  <% end %>
   <br><br>
+
+
 <% end %>
 
 <br><br>

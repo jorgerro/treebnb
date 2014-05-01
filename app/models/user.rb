@@ -53,13 +53,9 @@ class User < ActiveRecord::Base
     foreign_key: :recipient_id,
     primary_key: :id  )
 
-
-
-  # has_many(
-  #   :threads,
-  #   class_name: "MessageThread",
-  #   foreign_key: :author_id,
-  #   primary_key: :id  )
+    def threads
+      MessageThread.where("user_one_id = :id OR user_two_id = :id", id: self.id)
+    end
 
   has_attached_file :avatar, styles: { thumb: "100x100>" },
   default_url: "https://s3.amazonaws.com/freebnb_dev/users/avatars/000/000/default_avatar/default_avatar.jpg"

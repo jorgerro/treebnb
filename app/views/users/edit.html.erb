@@ -6,7 +6,7 @@
 
   <%= auth_token %>
 
-  <label for="avatar-upload">Upload / Change Your Profile Image</label>
+  <label for="avatar-upload"><strong>Upload / Change Your Profile Image</strong></label>
   <% if @user.avatar.exists? %>
     <img src="<%= @user.avatar.url(:thumb) %>"><br>
   <% end %>

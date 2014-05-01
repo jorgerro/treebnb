@@ -5,11 +5,8 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
-
-
-
-
-
+<!-- calendar style -->
+  <link href="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/ui-darkness/jquery-ui.css" rel="stylesheet">
 
 </head>
 
@@ -72,12 +69,19 @@
           <ul class="dropdown group">
 
               <li>
+                <a href="<%= user_message_threads_url(current_user) %>">
+                  My Messages
+                </a>
+              </li>
+
+              <li>
                 <a href="<%= notifications_url %>">
                   See All Notifications
                 </a>
               </li>
 
-            <% current_user.notifications.unread.each do |notification| %>
+
+            <% current_user.notifications.unread.order("created_at DESC").each do |notification| %>
               <li>
                 <a href="<%= notification_url(notification) %>">
                   <%= notification.text %>

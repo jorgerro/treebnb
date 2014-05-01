@@ -35,8 +35,8 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
-    @reviews = @room.reviews
-    @owner = User.find(@room.owner_id)
+    @reviews = @room.reviews.order("created_at DESC")
+    @owner = @room.owner
     @requests = @room.room_requests
     render :show
   end

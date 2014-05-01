@@ -1,6 +1,8 @@
 DESIGN SPECIFICATION # TREEBNB
 +++++++++++++++++++++++++++++++++++
 
+# build a calendar theme
+# http://jqueryui.com/themeroller/
 
 COLORS
 ======

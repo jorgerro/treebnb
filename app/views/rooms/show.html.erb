@@ -1,14 +1,21 @@
 
-<header class="room-show">
-  <h1>
-    <%= "#{ MAKE_NICE[@room.home_type] } in #{MAKE_NICE[@room.address_city] }" %>
-  </h1>
-  <div class="room-location">
-    <%= @room.address_city %>
-  </div>
-</header>
+
+
+<!-- ROOM SHOW MAIN CONTENT -->
+
+    <!-- header and pictures -->
 
 <section class="room-show-main">
+
+  <header class="room-show">
+    <h1>
+      <%= "#{ MAKE_NICE[@room.home_type] } in #{MAKE_NICE[@room.address_city] }" %>
+    </h1>
+    <div class="room-location">
+      <%= @room.address_city %>
+    </div>
+  </header>
+
 
   <% unless @room.pictures.empty? %>
     <% @room.pictures.each do |picture| %>
@@ -21,38 +28,166 @@
   <% if signed_in? %>
 
     <% if current_user.id == @room.owner_id %>
-      <a href="<%= edit_room_url(@room) %>">Edit</a>
-    <% end %>
-
-    <% if current_user.id != @room.owner_id %>
-      <a href="<%= new_room_room_request_url(@room) %>">Request This Space</a>
+      <a href="<%= edit_room_url(@room) %>">Edit Your Listing</a>
     <% end %>
 
   <% end %>
 
-  <% if !@room.availabilities.empty? %>
-    Available:
 
-    <% @room.availabilities.each do |availability| %>
-        <%= "From #{ format_time(availability.start_date) } to #{ format_time(availability.end_date) }" %><br>
-    <% end %>
+  <!-- Room Information -->
 
-  <% else %>
+  <section class="room-info group">
 
-    This room is not currently available to request.
+  <h3>The space</h3>
+  <p><%= @room.description %></p>
+
+  <table id="room-details">
+      <tr>
+          <th>Home Type:</th>
+          <td><%= @room.home_type %></td>
+      </tr>
+      <tr>
+          <th>Room Type:</th>
+          <td><%= @room.room_type %></td>
+      </tr>
+      <tr>
+          <th>Accomodates:</th>
+          <td><%= @room.num_possible_guests %></td>
+      </tr>
+      <tr>
+          <th>Bedrooms:</th>
+          <td><%= @room.num_bedrooms %></td>
+      </tr>
+      <tr>
+          <th>Bathrooms:</th>
+          <td><%= @room.num_bathrooms %></td>
+      </tr>
+      <tr>
+          <th>City</th>
+          <td><%= @room.address_city %></td>
+      </tr>
+      <tr>
+          <th>Country</th>
+          <td><%= @room.address_city %></td>
+      </tr>
+  </table>
+
+  </section>
+
+  <!-- Reviews & New Review Form -->
+
+
+  <% if signed_in? %>
+  <%= render "reviews/form", reviewable_type: "Room", reviewable_id: @room.id %>
+  <% end %>
+
+  <% unless @reviews.empty? %>
+
+    <section class="room-reviews group">
+
+      <h3 class="reviews-title">Reviews</h3>
+
+      <% @reviews.each do |review| %>
+
+        <article class="review">
+          <header class="group">
+
+            <div class="review-thumb">
+              <a href="#">
+                <img src="<%= review.author.avatar.url %>" width="54" height="54">
+              </a>
+            </div>
+            <div class="review-info">
+              <h4><a href="#"><%= "#{review.author.fname} #{review.author.lname}" %></a></h4>
+              <time><%= "#{time_ago_in_words(review.created_at)} ago." %></time>
+            </div>
+
+          </header>
+
+            <div class="review-text">
+              <p>
+                <%= review.body %>
+              </p>
+            </div>
+
+        </article>
+
+      <% end %>
+
+    </section>
 
   <% end %>
 </section>
 
 
 
-<section class="room-show-sidebar">
+
+  <!-- ROOM SHOW SIDEBAR -->
+
+
+<section class="room-show-sidebar group">
+
+  <h2>Availability</h2>
+
+  <%= render "layouts/calendar", room: @room  %>
+
+  <% unless @room.availabilities.empty? %>
+
+  <h3>Make a Request</h3>
+  <br>
+
+  <form action="<%= room_room_requests_url(@room) %>" method="post">
+    <%= auth_token %>
+    <input type="hidden" name="request[guest_id]" value="<%= current_user.id %>">
+    <input type="hidden" name="request[room_id]" value="<%= @room.id %>">
+    <input type="hidden" name="request[status]" value="PENDING">
+
+    <label for="start_date">Start Date</label>
+    <input type="date" name="request[start_date]" value="" id="start_date">
+
+    <label for="end_date">End Date</label>
+    <input type="date" name="request[end_date]" value="" id="end_date">
+
+    <label for="num_guests">Number of Guests</label>
+    <select name="request[num_guests]" id="num_guests">
+      <% (1..10).to_a.each do |num| %>
+        <option value="<%= num %>"><%= num %></option>
+      <% end %>
+    </select>
+  <br><br>
+    <p><input type="submit" value="You make that request!"></p>
+  </form>
+
+  <% else %>
+
+  <h3>This room's owner hasn't made it available yet.</h3>
+
+  <% end %>
+
+
+
+  <!-- Host Info -->
+
+
+  <div class="owner-info group">
+
+        <img src="<%= @owner.avatar.url(:thumb) %>">
+
+
+      <h3><%= @owner.fname.capitalize %></h3>
+
+      <a href="<%= user_url(@owner) %>">More about the host &#10154</a>
+
+    </div>
+
+
+<!-- will soon scrap this and move make it so that it can only be seen by the room owner
 
   <% unless @requests.empty? %>
-    Requests to stay at this property: <br><br>
+    Requests to stay at this property:
     <% @requests.each do |request| %>
 
-    <%= "Status: #{ request.status }" %><br>
+    <%= "Status: #{ request.status }" %>
     <p>
       <%= "This reservation starts on #{ format_time(request.start_date) }, ends on #{ format_time(request.end_date) } and is for #{ request.num_guests }." %>
     </p>
@@ -76,29 +211,14 @@
 
   <% else %>
 
-    <p>There are currently no requests to stay at this property.</p><br>
+    <p>There are currently no requests to stay at this property.</p>
 
   <% end %>
 
+-->
 
-  <% if signed_in? %>
-  <%= render "reviews/form", reviewable_type: "Room", reviewable_id: @room.id %>
-  <% end %><br>
 
-  <% unless @reviews.empty? %>
-    <h3 class="review">Reviews!</h3><br>
-    <ul class="comments group">
-      <% @reviews.each do |review| %>
-        <li>
-          <p><%= review.body %>
-          by <%= User.find(review.author_id).fname %>
-          </p>
-        </li>
-      <% end %>
-    </ul>
-  <% end %>
 </section>
-
 
 
 

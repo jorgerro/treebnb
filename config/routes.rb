@@ -5,6 +5,7 @@ Freebnb::Application.routes.draw do
   resources :users, except: [:index, :destroy] do
     resources :rooms, only: :index
     resources :room_requests, only: [:index]
+    resources :message_threads, only: :index
   end
 
   resources :rooms do

@@ -1,0 +1,19 @@
+<h2>Your Threads</h2>
+
+ <% unless @threads.empty?  %>
+
+    <% @threads.each do |thread| %>
+
+    <h3>
+      <a href="<%= message_thread_url(thread) %>">
+        <%= "#{ thread.user_one.fname.capitalize } and #{ thread.user_two.fname.capitalize }" %>
+        </a>
+    </h3>
+
+    <% end %>
+
+
+
+ <% else %>
+   <h3>You don't have any messages right now.</h3>
+ <% end %>

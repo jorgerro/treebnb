@@ -111,3 +111,13 @@
     content: "";
     display: block;
   }
+
+  /* Calendar */
+
+  .red .ui-state-default {
+    background: red;
+  }
+
+  .blue .ui-state-default {
+    background: blue;
+  }

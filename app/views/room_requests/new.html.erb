@@ -1,5 +1,8 @@
-<h3>Make a Request</h3>
-<br>
+<h2>Make a Request</h2>
+
+  <h3>Availability</h3>
+
+  <%= render "layouts/calendar", room: @room  %><br>
 
 <form action="<%= room_room_requests_url(@room) %>" method="post">
   <%= auth_token %>
@@ -22,103 +25,3 @@
 <br><br>
   <p><input type="submit" value="You make that request!"></p>
 </form>
-
-
-<!-- <script>
-  $(function() {
-    $( "#datepicker" ).datepicker();
-  });
-  </script>
-
-<p>Date: <input type="text" id="datepicker"></p>
- -->
-
-  <style>
-  .red .ui-state-default {
-    background: red;
-  }
-
-  .blue .ui-state-default {
-    background: blue;
-  }
-
-  </style>
-
-  <link href="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/ui-darkness/jquery-ui.css" rel="stylesheet">
-
-  <div id="datepicker" ></div>
-
-  <script >
-    /*
-     * jQuery UI Datepicker: Disable Specific Dates
-     * http://salman-w.blogspot.com/2013/01/jquery-ui-datepicker-examples.html
-     */
-    $(function() {
-
-      $("#datepicker").datepicker({
-        beforeShowDay: function(date) {
-
-          var a = new Array()
-          var b =
-          <% @room.accepted_requests.each do |a| %>
-
-          date < new Date(<%= to_ms(a.start_date) %>) || date > new Date(<%= to_ms(a.end_date) %>) || <% end %> false;
-
-          a.push(b)
-          a.push( b ? "" : "red")
-          return a;
-        }
-
-      });
-
-
-
-      // to filter using availabilities instead
-
-      // $("#datepicker").datepicker({
-      //   beforeShowDay: function(date) {
-      //
-      //     var a = new Array()
-      //     var b =
-      //     <% @room.availabilities.each do |a| %>
-      //
-      //     date >= new Date(<%= to_ms(a.start_date) %>) && date <= new Date(<%= to_ms(a.end_date) %>) || <% end %> false;
-      //
-      //     a.push(b)
-      //     a.push("blue")
-      //     return a;
-      //   }
-      // });
-
-
-
-    });
-  </script>
-
-
-
-
-<!--  try this for selecting date ranges -->
-
-<!-- <div id="datepicker"></div>
-  <p>
-    Dates:
-    <input type="text" id="input1" size="10">
-    <input type="text" id="input2" size="10">
-  </p> -->
-
-
-  <!-- // add this method after beforeShowDate
-  //
-  //         onSelect: function(dateText, inst) {
-  //                   var date1 = $.datepicker.parseDate($.datepicker._defaults.dateFormat, $("#input1").val());
-  //                   var date2 = $.datepicker.parseDate($.datepicker._defaults.dateFormat, $("#input2").val());
-  //                   if (!date1 || date2) {
-  //                     $("#input1").val(dateText);
-  //                     $("#input2").val("");
-  //                     $(this).datepicker("option", "minDate", dateText);
-  //                   } else {
-  //                     $("#input2").val(dateText);
-  //                     $(this).datepicker("option", "minDate", null);
-  //                   }
-  //                 } -->

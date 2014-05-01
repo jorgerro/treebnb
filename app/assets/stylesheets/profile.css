@@ -14,7 +14,6 @@
 /*    margin-top: 20px;*/
   }
 
-
   /* Reviews */
 
   section.profile-sidebar {
@@ -39,7 +38,11 @@
     margin: 20px 0;
   }
 
-  .reviews {
+  .profile-content textarea {
+    width: 648px;
+  }
+
+  .user-reviews {
     float:right;
     width:660px;
   }
