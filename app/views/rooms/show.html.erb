@@ -11,22 +11,19 @@
     <h1>
       <%= @room.display_title %>
     </h1>
-    <div class="room-location">
-      <%= @room.address_city %>
-    </div>
   </header>
 
 
     <!-- photo carousel -->
 
 
-  <% unless @room.pictures.empty? %>
+  <% if !@room.pictures.empty? %>
     <div id="carrousel">
        <ul class="group">
     <% @room.pictures.each do |picture| %>
       <li>
       <figure class="room-show-image">
-        <img src="<%= picture.image.url(:thumb_big) %>">
+        <img src="<%= picture.image.url(:profile) %>">
       </figure>
       </li>
     <% end %>
@@ -40,13 +37,20 @@
     </div>
 
   <% else %>
-      <!-- put a default img here just to keep styling -->
+      <figure class="room-image-default">
+        <img src="<%= Picture.new.image.url(:profile) %>">
+        <figcaption>
+          <%= "#{ @room.address_city }, #{ @room.address_country }" %>
+        </figcaption>
+      </figure>
   <% end %>
 
 
   <% if signed_in? && current_user.id == @room.owner_id %>
       <a href="<%= edit_room_url(@room) %>">Edit Your Listing</a>
   <% end %>
+
+
 
 
     <!-- <div id="carrousel">
@@ -152,11 +156,6 @@
 
 
 
-
-
-
-
-
   <!-- Room Information -->
 
   <section class="room-info group">
@@ -191,7 +190,7 @@
       </tr>
       <tr>
           <th>Country</th>
-          <td><%= @room.address_city %></td>
+          <td><%= @room.address_country %></td>
       </tr>
   </table>
 
@@ -254,36 +253,43 @@
 
   <%= render "layouts/calendar", room: @room  %>
 
-  <% unless @room.availabilities.empty? %>
+  <% if signed_in? %>
+    <% unless @room.availabilities.empty? %>
 
-  <h3>Make a Request</h3>
-  <br>
+    <h3>Make a Request</h3>
+    <br>
 
-  <form action="<%= room_room_requests_url(@room) %>" method="post">
-    <%= auth_token %>
-    <input type="hidden" name="request[guest_id]" value="<%= current_user.id %>">
-    <input type="hidden" name="request[room_id]" value="<%= @room.id %>">
-    <input type="hidden" name="request[status]" value="PENDING">
+    <form action="<%= room_room_requests_url(@room) %>" method="post">
+      <%= auth_token %>
+      <input type="hidden" name="request[guest_id]" value="<%= current_user.id %>">
+      <input type="hidden" name="request[room_id]" value="<%= @room.id %>">
+      <input type="hidden" name="request[status]" value="PENDING">
 
-    <label for="start_date">Start Date</label>
-    <input type="date" name="request[start_date]" value="" id="start_date">
+      <label for="start_date">Start Date</label>
+      <input type="date" name="request[start_date]" value="" id="start_date">
 
-    <label for="end_date">End Date</label>
-    <input type="date" name="request[end_date]" value="" id="end_date">
+      <label for="end_date">End Date</label>
+      <input type="date" name="request[end_date]" value="" id="end_date">
 
-    <label for="num_guests">Number of Guests</label>
-    <select name="request[num_guests]" id="num_guests">
-      <% (1..10).to_a.each do |num| %>
-        <option value="<%= num %>"><%= num %></option>
-      <% end %>
-    </select>
-  <br><br>
-    <p><input type="submit" value="You make that request!"></p>
-  </form>
+      <label for="num_guests">Number of Guests</label>
+      <select name="request[num_guests]" id="num_guests">
+        <% (1..10).to_a.each do |num| %>
+          <option value="<%= num %>"><%= num %></option>
+        <% end %>
+      </select>
+    <br><br>
+      <p><input type="submit" value="You make that request!"></p>
+    </form>
+
+    <% else %>
+
+    <h3>This room's owner hasn't made it available yet.</h3>
+
+    <% end %>
 
   <% else %>
 
-  <h3>This room's owner hasn't made it available yet.</h3>
+    <h3>Please sign in to reqest this space.</h3>
 
   <% end %>
 
@@ -294,7 +300,7 @@
 
   <div class="owner-info group">
 
-        <img src="<%= @owner.avatar.url(:thumb) %>">
+        <img src="<%= @owner.avatar.url(:profile) %>">
 
 
       <h3><%= @owner.fname.capitalize %></h3>

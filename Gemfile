@@ -52,6 +52,7 @@ gem 'geocoder'
 gem 'cocaine'
 gem 'mapbox-rails'
 gem 'jquery-ui-rails'
+gem 'pg_search'
 
 group :development do
   gem 'better_errors'
@@ -63,6 +64,7 @@ group :development, :test do
 end
 
 gem 'rails_12factor', group: :production
+gem 'rest-client'
 
 # group :test do
 #   gem 'guard-spec'

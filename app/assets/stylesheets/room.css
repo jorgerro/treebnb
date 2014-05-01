@@ -67,6 +67,14 @@ figure.room-show-image img {
   margin-right: 20px;
 }
 
+figure.room-image-default img {
+  width: 580px;
+  height: 400px;
+  margin-right: 20px;
+  border-radius: 5px;
+
+}
+
 section.room-show-sidebar {
   padding-left: 20px;
   float: right;

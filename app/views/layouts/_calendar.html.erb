@@ -6,9 +6,9 @@
 
       $(".datepicker").datepicker({
         beforeShowDay: function(date) {
-
           var y = new Array()
 
+          // compare date against approved requests
           <% unless room.approved_requests.empty? %>
               var a =(
             <% room.approved_requests.each do |x| %>
@@ -18,16 +18,14 @@
             var a = true
           <% end %>
 
+          // compare date against availabilities
           <% unless room.availabilities.empty? %>
-            var b =(
-          <% room.availabilities.each do |x| %>
-            date >= new Date(<%= to_ms(x.start_date) %>) && date <= new Date(<%= to_ms(x.end_date) %>) || <% end %>
-            false);
+            var b =(<% room.availabilities.each do |x| %>
+                      (date >= new Date(<%= to_ms(x.start_date) %>) && date <= new Date(<%= to_ms(x.end_date) %>)) ||
+                    <% end %> false);
           <% else %>
             var b = false
           <% end %>
-
-
 
           y.push( (a && b) )
           y.push( (a && b) ? "" : "red")

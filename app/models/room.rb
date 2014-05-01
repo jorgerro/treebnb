@@ -1,12 +1,15 @@
+require 'active_support/inflector'
 
 class Room < ActiveRecord::Base
 
   # include Geocoder::Model::Mongoid
 
   include Reviewable
+  include PgSearch
 
   validates :home_type, :room_type, presence: true
-  validates :num_possible_guests, :address_zip_code, presence: true
+  validates :num_possible_guests,  presence: true
+  # :address_region, :address_country,
   # validates :address_neighborhood, presence: true
   # validates :street_address, :address_zip_code, presence: true
   # can fill out these fields after creating the listing
@@ -37,14 +40,12 @@ class Room < ActiveRecord::Base
 
 
     def full_address
-      #"#{ self.address_city }
-      self.address_zip_code
+      "#{ self.street_address }, #{ self.address_city }, #{ self.address_zip_code } #{ self.address_country }"
     end
 
     def display_title
       self.title ? self.title :
-      "#{ MAKE_NICE[self.home_type] } in #{
-      MAKE_NICE.has_key?(self.address_city) ?  MAKE_NICE[self.address_city] : self.address_city }"
+      "#{ ActiveSupport::Inflector.titleize(self.home_type) } in #{ self.address_city }"
     end
 
 

@@ -10,6 +10,17 @@ EVENTS = {
 
 EVENT_IDS = EVENTS.invert
 
+REGIONS = [
+  "europe",
+  "north_america",
+  "south_america",
+  "hawaii",
+  "east_asia"
+]
+
+
+
+
 MAKE_NICE = {
   "new_york" => "New York",
   "los_angeles" => "Los Angeles",
@@ -20,3 +31,4 @@ MAKE_NICE = {
   "boat" => "Boat",
   "masterpiece" => "Masterpiece"
 }
+

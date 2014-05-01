@@ -10,7 +10,7 @@
 
   <script>
   var map = L.mapbox.map('all-rooms-map', 'jorgerro.i3fn8jnl')
-          .setView([43.3333, 11.3333], 2);
+          .setView([35.532226, -7.910156], 2);
 
   var myLayer = L.mapbox.featureLayer().addTo(map);
 
@@ -62,7 +62,7 @@
   myLayer.setGeoJSON(geoJson);
   myLayer.on('click', function(e) {
       // e.layer.unbindPopup();
-      window.open(e.layer.feature.properties.url);
+      window.location.href = e.layer.feature.properties.url
   });
   </script>
 

@@ -25,13 +25,4 @@ module ApplicationHelper
     date.to_time.to_i * 1000
   end
 
-  def room_title
-    cities = ["new_york", "los_angeles", "kyoto", "seoul"]
-    if self.title
-      return self.title
-    else
-      return "#{ MAKE_NICE[self.home_type]} in #{ self.address_city }"
-    end
-  end
-
 end
