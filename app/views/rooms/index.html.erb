@@ -1,6 +1,9 @@
 <h2></h2>
 
 
+<%= render "pages/search" %>
+
+
 <div id='all-rooms-map'></div>
 <script>
   var map = L.mapbox.map('map', 'examples.map-9ijuk24y')
@@ -57,6 +60,11 @@
 
     ]
   };
+
+  // map.dragging.disable();
+  // map.touchZoom.disable();
+  // map.doubleClickZoom.disable();
+  // map.scrollWheelZoom.disable();
 
   // Pass features and a custom factory function to the map
   myLayer.setGeoJSON(geoJson);

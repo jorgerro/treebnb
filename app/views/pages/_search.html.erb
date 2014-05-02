@@ -1,0 +1,28 @@
+<div class="search-bar">
+  <form action="<%= search_url %>" method="GET">
+    <!-- ########## Notice we don't need the authenticity ######## -->
+    <!-- ########## token because this is a GET request   ######## -->
+
+    <!-- <input type="text" name="query" value="<%= params[:query] %>"> -->
+
+    <select name="query[region]" id="query">
+      <option value="">Choose a Region</option>
+      <option value="north_america">North America</option>
+      <option value="hawaii">Hawaii</option>
+      <option value="europe">Europe</option>
+      <option value="east_asia">East Asia</option>
+      <option value="south_america">South America</option>
+    </select>
+    <label for="start_date">Check in</label>
+    <input type="date" name="query[start_date]" value="Check In" id="start_date">
+
+    <label for="end_date">Check out</label>
+    <input type="date" name="query[end_date]" value="Check Out" id="end_date">
+
+    <input type="submit" value="Search">
+  </form>
+
+  <%#= paginate @results %>
+
+  <%#= render @results.map(&:searchable) %>
+</div>

@@ -48,13 +48,59 @@ article.home-page {
 }
 
 
-
-
 /* Main section */
 
 section.main {
+  position: relative;
   display: block;
   width: 950px;
   margin: 20px auto;
 /*  background-color: #fff;*/
+}
+
+
+/* search bar */
+
+div.search-bar {
+  left: 100px;
+  position: absolute;
+  background: transparent;
+  padding: 20px;
+  z-index: 1;
+}
+
+div.search-bar select {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+div.search-bar input[type="submit"] {
+  background: transparent;
+  padding: 20px;
+
+}
+
+div.search-bar input[type="date"] {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: rgba(0,0,0,0.2);
+  width: 150px;
+  color: #fff;
+  text-align: center;
+}
+
+div.search-bar select {
+  color: #fff;
+  border-radius: 5px;
+  background-color: rgba(0,0,0,0.2);
+  height: 35px;
+  font-size: 14px;
+}
+
+div.search-bar label {
+  display: inline;
+  color: #fff;
+  padding: 10px;
+
 }

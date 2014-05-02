@@ -27,6 +27,8 @@ Freebnb::Application.routes.draw do
 
   resources :availabilities, only: [:new, :create]
 
+  get '/search' => 'pages#search'
+
   root to: "rooms#index"
 
   # The priority is based upon order of creation: first created -> highest priority.

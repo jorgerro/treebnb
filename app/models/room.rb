@@ -1,11 +1,11 @@
 require 'active_support/inflector'
 
 class Room < ActiveRecord::Base
-
-  # include Geocoder::Model::Mongoid
-
   include Reviewable
+
   include PgSearch
+  pg_search_scope :search_by_region, against: :address_region
+
 
   validates :home_type, :room_type, presence: true
   validates :num_possible_guests,  presence: true
