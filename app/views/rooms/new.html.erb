@@ -6,48 +6,50 @@
   <input type="hidden" name="room[owner_id]" value="<%= current_user.id %>">
 
   <label>
-    City
-    <select name="room[address_city]">
-      <option value=""></option>
-      <option value="Los Angeles">Los Angeles</option>
-      <option value="New York">New York</option>
-      <option value="Seoul">Seoul</option>
-      <option value="Kyoto">Kyoto</option>
+    <select name="room[address_region]">
+      <option value="">Choose a Region</option>
+      <option value="north_america">North America</option>
+      <option value="hawaii">Hawaii</option>
+      <option value="europe">Europe</option>
+      <option value="east_asia">East Asia</option>
+      <option value="south_america">South America</option>
     </select>
   </label>
 
-<br><br>
+  <br>
 
-  <label>
-    Home Type
-    <select name="room[home_type]">
-      <option value=""></option>
-      <option value="tree_house">Tree House</option>
-      <option value="cabin">Cabin</option>
-      <option value="boat">Boat</option>
-      <option value="masterpiece">Masterpiece</option>
-    </select>
-  </label>
+  <label for="city">City</label>
+  <input type="text" name="room[address_city]" value="" id="city">
+
 
 <br><br>
 
-  Room Type: <br>
+  <label for="country">Country</label>
+  <input type="text" name="room[address_country]" value="" id="country">
+
+<br><br>
+
+  <label for="home_type">Home Type</label>
+  <input type="text" name="room[home_type]" value="" id="home_type">
+
+
+<br><br>
+
+  Room Type: <br><br>
   <label>
     Entire House / Apt.
     <input type="radio" name="room[room_type]" value="entire_space">
   </label>
-  <br>
   <label>
     Private Room
     <input type="radio" name="room[room_type]" value="private_room">
   </label>
-  <br>
   <label>
     Shared Room
     <input type="radio" name="room[room_type]" value="shared_room">
   </label>
 
-<br><br>
+<br>
 
   <label>
     Number of Guests
@@ -58,6 +60,7 @@
       <% end %>
     </select>
   </label>
+  <br><br>
 
   <p><input type="submit" value="Create Your Listing!"></p>
 </form>

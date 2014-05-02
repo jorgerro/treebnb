@@ -281,33 +281,33 @@ room_attrs = [
 
 ]
 
-# 35.times do |x|
-#
-#   u = User.create!(fname: Faker::Name.first_name, lname: Faker::Name.last_name,
-#   email: Faker::Internet.safe_email, password: "secret", description: lorem)
-#
-#   l = u.listings.create!(room_attrs[x])
-#
-#   l.availabilities.create!(start_date: "2014-05-01", end_date: "2014-05-08")
-#   l.availabilities.create!(start_date: "2014-05-17", end_date: "2014-05-24")
-#
-#   # photo = RestClient.get(image_urls.sample)
-#   # photo = open(image_urls.sample)
-#
-#   # l.pictures.create!(image: photo)
-#
-#   # p = l.pictures.new
-#   # p.picture_from(image_urls.ampe)
-#   # puts p.image
-#   # p.save!
-#
-#   # p = l.pictures.new
-#   # p.picture_from(image_urls.shuffle.last)
-#   # p.save!
-#
-#   # photo = URI.parse(image_urls.shuffle.last)
-#   # l.pictures.create!(image: photo)
-#
-# end
+35.times do |x|
+
+  u = User.create!(fname: Faker::Name.first_name, lname: Faker::Name.last_name,
+  email: Faker::Internet.safe_email, password: "secret", description: lorem)
+
+  l = u.listings.create!(room_attrs[x])
+
+  l.availabilities.create!(start_date: "2014-05-01", end_date: "2014-05-08")
+  l.availabilities.create!(start_date: "2014-05-17", end_date: "2014-05-24")
+
+  # photo = RestClient.get(image_urls.sample)
+  # photo = open(image_urls.sample)
+
+  # l.pictures.create!(image: photo)
+
+  # p = l.pictures.new
+  # p.picture_from(image_urls.ampe)
+  # puts p.image
+  # p.save!
+
+  # p = l.pictures.new
+  # p.picture_from(image_urls.shuffle.last)
+  # p.save!
+
+  # photo = URI.parse(image_urls.shuffle.last)
+  # l.pictures.create!(image: photo)
+
+end
 
 

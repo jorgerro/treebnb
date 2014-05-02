@@ -17,10 +17,10 @@
     <!-- photo carousel -->
 
 
-  <% if !@room.pictures.empty? %>
+  <% if !Picture.all.empty? %>
     <div id="carrousel">
        <ul class="group">
-    <% @room.pictures.each do |picture| %>
+    <% Picture.all.each do |picture| %>
       <li>
       <figure class="room-show-image">
         <img src="<%= picture.image.url(:profile) %>">
@@ -47,7 +47,8 @@
 
 
   <% if signed_in? && current_user.id == @room.owner_id %>
-      <a href="<%= edit_room_url(@room) %>">Edit Your Listing</a>
+      <a href="<%= edit_room_url(@room) %>">Edit Your Listing</a> |
+      <a href="<%= new_room_availability_url(@room) %>">Add Availablility</a>
   <% end %>
 
 
@@ -170,7 +171,7 @@
       </tr>
       <tr>
           <th>Room Type:</th>
-          <td><%= @room.room_type %></td>
+          <td><%= MAKE_NICE[@room.room_type] %></td>
       </tr>
       <tr>
           <th>Accomodates:</th>

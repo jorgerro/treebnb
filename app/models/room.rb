@@ -6,13 +6,8 @@ class Room < ActiveRecord::Base
   include PgSearch
   pg_search_scope :search_by_region, against: :address_region
 
-
   validates :home_type, :room_type, presence: true
-  validates :num_possible_guests,  presence: true
-  # :address_region, :address_country,
-  # validates :address_neighborhood, presence: true
-  # validates :street_address, :address_zip_code, presence: true
-  # can fill out these fields after creating the listing
+  validates :num_possible_guests, :address_region, :address_country, presence: true
 
   geocoded_by :full_address
   after_validation :geocode

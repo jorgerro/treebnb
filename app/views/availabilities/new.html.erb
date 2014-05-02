@@ -2,9 +2,7 @@
 
   <%= auth_token %>
 
-  <label for="room_id">Room ID</label>
-  <input type="number" name="availability[room_id]"
-  value="<%= @availability.room_id %>" id="room_id">
+  <input type="hidden" name="availability[room_id]" value="<%= @room.id %>">
 
   <label for="start_date">Start Date</label>
   <input type="date" name="availability[start_date]"

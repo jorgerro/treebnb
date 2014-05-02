@@ -64,6 +64,7 @@
   section.results-display {
     float: right;
     width: 529px;
+    min-height: 805px;
 /*    border-left: 1px solid #ccc;*/
   }
 
@@ -71,7 +72,7 @@
   div.room-container {
     width: 253px;
     height: 260px;
-    float: right;
+    float: left;
     padding: 0 5px 10px 5px;
     font-size: 14px;
   }
@@ -94,4 +95,9 @@
 
   article.room-info-small {
     padding-top: 10px;
+  }
+
+  h4.paginator {
+    margin-left: 620px;
+    padding-top: 30px;
   }

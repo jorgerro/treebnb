@@ -3,7 +3,11 @@
   <div class="room-container group">
 
     <figure class="room-image-default">
-      <img src="<%= Picture.new.image.url(:profile) %>">
+      <% if !Picture.all.empty? %>
+        <img src="<%= Picture.all.sample.image.url(:profile) %>">
+      <% else %>
+        <img src="<%= Picture.new.image.url(:profile) %>">
+      <% end %>
     </figure>
 
     <figure class="owner-photo">

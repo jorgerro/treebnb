@@ -3,6 +3,7 @@ class AvailabilitiesController < ApplicationController
 
   def new
     @availability = Availability.new
+    @room = Room.find(params[:room_id])
     render :new
   end
 

@@ -38,30 +38,48 @@ Add Some Information About Your Listing's Location <br><br>
   <input type="text" name="room[street_address]"
   value="<%= @room.street_address %>" id="street_address">
 
+  <br><br>
+
+    <label for="country">Country</label>
+    <input type="text" name="room[address_country]" value="<%= @room.address_country %>" id="country">
+
+  <br><br>
+
+  <label for="city">City</label>
+  <input type="text" name="room[address_city]" value="<%= @room.address_city %>" id="city">
+
+
+<br><br>
 
   <label>
-    City
-    <select name="room[address_city]">
-      <option value=""></option>
-      <!-- <%#= CITIES.each do |city| %> -->
-      <option value="Los Angeles"
-        <%= "selected" if @room.address_city == "los_angeles" %> >
-        Los Angeles
+    <select name="room[address_region]">
+      <option value="">Choose a Region</option>
+
+      <option value="north_america"
+        <%= "selected" if @room.address_region == "north_america" %> >
+        North America
       </option>
-      <option value="New York"
-        <%= "selected" if @room.address_city == "new_york" %> >
-        New York
+      <option value="hawaii"
+        <%= "selected" if @room.address_region == "hawaii" %> >
+        Hawaii
       </option>
-      <option value="Seoul"
-        <%= "selected" if @room.address_city == "seoul" %> >
-        Seoul
+      <option value="europe"
+        <%= "selected" if @room.address_region == "europe" %> >
+        Europe
       </option>
-      <option value="Kyoto"
-        <%= "selected" if @room.address_city == "kyoto" %> >
-        Kyoto
+      <option value="east_asia"
+        <%= "selected" if @room.address_region == "east_asia" %> >
+        East Asia
+      </option>
+      <option value="south_america"
+        <%= "selected" if @room.address_region == "south_america" %> >
+        South America
       </option>
     </select>
+
   </label>
+
+
 <br>
   <label for="address_zip_code">Zip Code</label>
   <input type="number" name="room[address_zip_code]"
@@ -71,30 +89,12 @@ Add Some Information About Your Listing's Location <br><br>
 
 
   <label for="country">Country</label>
-  <input type="text" name="room[address_country]" value="" id="country">
+  <input type="text" name="room[address_country]" value="<%= @room.address_country %>" id="country">
 
-  <label>
-    Home Type
-    <select name="room[home_type]">
-      <option value=""></option>
-      <option value="tree_house"
-        <%= "selected" if @room.home_type == "tree_house" %> >
-        Tree House
-      </option>
-      <option value="cabin"
-        <%= "selected" if @room.home_type == "cabin" %> >
-        Cabin
-      </option>
-      <option value="boat"
-        <%= "selected" if @room.home_type == "boat" %> >
-        Boat
-      </option>
-      <option value="masterpiece"
-        <%= "selected" if @room.home_type == "masterpiece" %> >
-        Masterpiece
-      </option>
-    </select>
-  </label>
+<br><br>
+
+  <label for="home_type">Home Type</label>
+  <input type="text" name="room[home_type]" value="<%= @room.home_type %>" id="home_type">
 
 <br><br>
 

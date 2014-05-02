@@ -14,7 +14,7 @@
         type: 'FeatureCollection',
         features: [
 
-        <% @final_results.each do |room| %>
+        <% @rooms.each do |room| %>
 
         {
             type: 'Feature',
@@ -31,7 +31,7 @@
                 type: 'Point',
                 coordinates: [<%=  room.longitude  %>, <%=  room.latitude  %>]
             }
-        }  <%= room == @final_results.last ? "" : "," %>
+        }  <%= room == @rooms.last ? "" : "," %>
 
         <% end %>
       ]
@@ -70,7 +70,9 @@
 
 
 
+
     myLayer.on('ready', function () {
+      if ( map._zoom < 15 ) { map.setZoom(15) }
     })
     // myLayer.on('click', function(e) {
     //     e.layer.unbindPopup();
@@ -90,20 +92,12 @@
 
       <%= render @rooms %>
 
-    <!-- <%# @final_results.each do |room| %>
-
-      <h4>
-        <a href="<%#= rooms_url(room) %>">
-          <%#= room.display_title %>
-        </a>
-      </h4>
-
-    <%# end %> -->
-    <%#= paginate @rooms %>
   <% else %>
     <h3>There are no results for your search.</h3>
   <% end %>
 
-
 </section>
+
+    <h4 class="paginator"><%= paginate @rooms %></h4>
+
 

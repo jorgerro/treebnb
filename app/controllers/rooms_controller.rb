@@ -24,6 +24,7 @@ class RoomsController < ApplicationController
   end
 
   def create
+
     @room = Room.new(room_params)
     if @room.save
       redirect_to edit_room_url(@room)
@@ -67,9 +68,9 @@ class RoomsController < ApplicationController
   private
     def room_params
       params.require(:room).permit(:owner_id, :home_type, :room_type,
-      :num_possible_guests, :address_city, :address_neighborhood,
+      :num_possible_guests, :address_city, :address_region,
       :street_address, :address_zip_code, :title, :description,
-      :num_bedrooms, :num_bathrooms, :price_per_night )
+      :num_bedrooms, :num_bathrooms, :price_per_night, :address_country )
     end
 
 end

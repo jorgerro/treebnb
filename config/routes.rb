@@ -10,6 +10,7 @@ Freebnb::Application.routes.draw do
 
   resources :rooms do
     resources :room_requests, only: [:new, :create]
+    resources :availabilities, only: [:new]
   end
 
   resources :room_requests, only: [:show, :destroy, :update] do
@@ -25,7 +26,8 @@ Freebnb::Application.routes.draw do
 
   resources :message_threads, only: :show
 
-  resources :availabilities, only: [:new, :create]
+  resources :availabilities, only: [:create]
+
 
   get '/search' => 'pages#search'
 
