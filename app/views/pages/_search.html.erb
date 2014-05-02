@@ -1,4 +1,4 @@
-<div class="search-bar">
+
   <form action="<%= search_url %>" method="GET">
     <!-- ########## Notice we don't need the authenticity ######## -->
     <!-- ########## token because this is a GET request   ######## -->
@@ -25,4 +25,3 @@
   <%#= paginate @results %>
 
   <%#= render @results.map(&:searchable) %>
-</div>

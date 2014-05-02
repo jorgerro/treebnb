@@ -61,27 +61,31 @@ section.main {
 
 /* search bar */
 
-div.search-bar {
-  left: 100px;
+
+div.main-search-bar {
+  left: 75px;
+  top: 170px;
   position: absolute;
-  background: transparent;
-  padding: 20px;
+  background-color: rgba(0,0,0,0.3);
+  border-radius: 5px;
+  padding: 40px 20px 20px 20px;
   z-index: 1;
 }
 
-div.search-bar select {
+div.main-search-bar select {
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 5px;
 }
 
-div.search-bar input[type="submit"] {
-  background: transparent;
-  padding: 20px;
-
+div.main-search-bar input[type="submit"] {
+/*  background: transparent;*/
+  padding: 9px 10px;
+  background-color: #CA16C2;
+  margin-left: 15px;
 }
 
-div.search-bar input[type="date"] {
+div.main-search-bar input[type="date"] {
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: rgba(0,0,0,0.2);
@@ -90,7 +94,7 @@ div.search-bar input[type="date"] {
   text-align: center;
 }
 
-div.search-bar select {
+div.main-search-bar select {
   color: #fff;
   border-radius: 5px;
   background-color: rgba(0,0,0,0.2);
@@ -98,7 +102,7 @@ div.search-bar select {
   font-size: 14px;
 }
 
-div.search-bar label {
+div.main-search-bar label {
   display: inline;
   color: #fff;
   padding: 10px;

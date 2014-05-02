@@ -1,15 +1,12 @@
 <h2></h2>
 
-
-<%= render "pages/search" %>
+  <h1>Find a place to stay.</h1>
+<div class="main-search-bar">
+  <%= render "pages/search" %>
+</div>
 
 
 <div id='all-rooms-map'></div>
-<script>
-  var map = L.mapbox.map('map', 'examples.map-9ijuk24y')
-      .setView([34.1009953, -117.8194197], 2);
-</script>
-
 
   <script>
   var map = L.mapbox.map('all-rooms-map', 'jorgerro.i3fn8jnl')
@@ -39,27 +36,20 @@
               type: 'Point',
               coordinates: [<%=  room.longitude  %>, <%=  room.latitude  %>]
           }
-      },
+      }  <%= room == @listings.last ? "" : "," %>
 
       <% end %>
 
-      {
-          type: 'Feature',
-          properties: {
-              title: 'Baltimore, MD',
-              'marker-color': '#CA16C2',
-              'marker-size': 'medium',
-              url: 'http://en.wikipedia.org/wiki/Baltimore'
-          },
-          geometry: {
-              type: 'Point',
-              coordinates: [-76.60767, 39.28755]
-          }
-      }
-
-
     ]
   };
+
+  myLayer.on('mouseover', function(e) {
+      e.layer.openPopup();
+  });
+
+  myLayer.on('mouseout', function(e) {
+      e.layer.closePopup();
+  });
 
   // map.dragging.disable();
   // map.touchZoom.disable();

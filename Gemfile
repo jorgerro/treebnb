@@ -53,6 +53,7 @@ gem 'cocaine'
 gem 'mapbox-rails'
 gem 'jquery-ui-rails'
 gem 'pg_search'
+gem 'kaminari'
 
 group :development do
   gem 'better_errors'

@@ -1,0 +1,20 @@
+
+<a href="<%= room_url(room) %>" data-room-id="<%= room.id %>">
+  <div class="room-container group">
+
+    <figure class="room-image-default">
+      <img src="<%= Picture.new.image.url(:profile) %>">
+    </figure>
+
+    <figure class="owner-photo">
+      <img src="<%= room.owner.avatar.url(:thumb) %>">
+    </figure>
+
+    <article class="room-info-small">
+      <%= MAKE_NICE[room.room_type] %><br>
+      <%= "#{ room.display_title }" %>
+    </article>
+
+
+  </div>
+</a>

@@ -1,19 +1,109 @@
-<h3>Results</h3>
+
+<!-- <section class="search-results"> -->
 
 
-<% unless @final_results.empty? %>
-  <% @final_results.each do |room| %>
+<div class="results-search-bar">
+  <%= render "pages/search" %>
+</div>
 
-    <h4>
-      <a href="<%= room_url(room) %>">
-        <%= room.display_title %>
-      </a>
-    </h4>
 
+  <div id='search-rooms-map'></div>
+
+  <script>
+    var geoJson = {
+        type: 'FeatureCollection',
+        features: [
+
+        <% @final_results.each do |room| %>
+
+        {
+            type: 'Feature',
+            properties: {
+                title: '<%=  "#{ room.display_title }"  %>',
+                'marker-color': '#f00',
+                'marker-size': 'medium',
+                'marker-color': '#CA16C2',
+                'marker-symbol': '',
+                "marker-id": '<%= room.id %>',
+                url: '<%= room_url(room) %>'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [<%=  room.longitude  %>, <%=  room.latitude  %>]
+            }
+        }  <%= room == @final_results.last ? "" : "," %>
+
+        <% end %>
+      ]
+    };
+
+    // map.dragging.disable();
+    // map.touchZoom.disable();
+    // map.doubleClickZoom.disable();
+    // map.scrollWheelZoom.disable();
+
+    var map = L.mapbox.map('search-rooms-map', 'jorgerro.i3fn8jnl')
+    var myLayer = L.mapbox.featureLayer().addTo(map);
+    myLayer.setGeoJSON(geoJson);
+    map.fitBounds(myLayer.getBounds());
+
+    myLayer.on('mouseover', function(e) {
+        e.layer.openPopup();
+    });
+
+    myLayer.on('mouseout', function(e) {
+        e.layer.closePopup();
+    });
+
+
+    // map.myLayer.eachLayer(
+    //   function(marker){
+    //     var listingID = marker.feature.properties["marker-id"];
+    //     $("a[data-room-id=" + listingID + "]").hover(function(){
+    //       console.log("hovering!")
+    //       map.panTo(marker.getLatLng());
+    //       marker.openPopup()
+    //     })
+    //   }
+    // )
+
+
+
+
+    myLayer.on('ready', function () {
+    })
+    // myLayer.on('click', function(e) {
+    //     e.layer.unbindPopup();
+    //     window.location.href = e.layer.feature.properties.url
+    // });
+    </script>
+
+<!-- </section> -->
+
+
+
+
+
+<section class="results-display">
+
+  <% unless @rooms.empty? %>
+
+      <%= render @rooms %>
+
+    <!-- <%# @final_results.each do |room| %>
+
+      <h4>
+        <a href="<%#= rooms_url(room) %>">
+          <%#= room.display_title %>
+        </a>
+      </h4>
+
+    <%# end %> -->
+    <%#= paginate @rooms %>
+  <% else %>
+    <h3>There are no results for your search.</h3>
   <% end %>
 
-<% else %>
 
-  <h3>There are no results for your search.</h3>
+</section>
 
-<% end %>
