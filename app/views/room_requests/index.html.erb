@@ -1,5 +1,27 @@
+<script>
 
-<h2><%= @user.fname %>'s Trips</h2>
+  $(document).ready(function () {
+
+  //   var $statusTag = $(".status-tag")
+  //
+  //   $(".cancel-request-link").on("click", function (event) {
+  //     var id = $(event.target).attr("data-request-id")
+  //     console.log($statusTag)
+  //     $.ajax({
+  //       url: "/room_requests/" + id + "/cancel",
+  //       type: "get",
+  //       success: function () {
+  //         // alert("it worked!");
+  //         $("h3[data-request-id=" + id + "]").replaceWith("Status: <strong>CANCELLED</strong>");
+  //       }
+  //     })
+  //   })
+  // })
+
+
+</script>
+
+<h2>Your Trips</h2>
 
 <% unless @requests.empty? %>
     <section class="trips">
@@ -7,11 +29,12 @@
       <% @requests.each do |request| %>
         <article class="room-request group">
 
-          <h3><%= "#{ MAKE_NICE[request.room.home_type] } in #{ MAKE_NICE[request.room.address_city] }" %></h3>
+          <h3><%= request.room.display_title %></h3>
 
-          <h4>Status: <strong><%= request.status %></strong></h4>
+          <h4 class="status-tag" data-request-id="<%= request.id %>">Status: <strong><%= request.status %></strong></h4>
 
           <p class="request-details">
+            Dates: <br>
             <%= format_time(request.start_date)%><br>
             to <%= format_time(request.end_date) %><br><br>
             Number of Guests: <%= request.num_guests %>
@@ -19,6 +42,18 @@
           <div class="trip-links">
             <a href="<%= user_url(request.host) %>">Visit Your Host's Page</a>
             <a href="<%= room_url(request.room) %>">See The Space</a>
+            <% if request.status == "PENDING" || request.status == "APPROVED"  %>
+              <form action="<%= cancel_room_request_url(request) %>" method="post">
+                <%= auth_token %>
+
+                <p><input type="submit" value="Cancel"></p>
+              </form>
+
+
+
+
+              <!-- <a href="<%= cancel_room_request_url(request) %>">Cancel</a> -->
+            <% end %>
           </div>
 
         </article>

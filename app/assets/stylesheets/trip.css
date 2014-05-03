@@ -5,9 +5,9 @@ section.trips {
 
 section.trips h3 {
   padding-bottom: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
   float: left;
-  width:450px;
+  width:440px;
 }
 
 section.trips h4 {
@@ -27,7 +27,7 @@ article.room-request {
 p.request-details {
   margin: 10px 0;
   float: left;
-  width: 300px;
+  width: 400px;
 }
 
 article.room-request .trip-links {
@@ -40,13 +40,29 @@ div.trip-links a {
   font-weight: normal;
   font-size: 13px;
   margin-left: 15px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   color: #fff;
   background-color:#16B2B9;
   padding: 5px 10px;
   border-radius: 5px;
   float: right;
   text-transform: uppercase;
+
+}
+
+div.trip-links input[type="submit"] {
+  display: block;
+  font-weight: normal;
+  font-size: 13px;
+  margin-left: 15px;
+  margin-bottom: 10px;
+  color: #fff;
+  background-color:#16B2B9;
+  padding: 5px 10px;
+  border-radius: 5px;
+  float: right;
+  text-transform: uppercase;
+
 }
 
 div.trip-links a:hover {

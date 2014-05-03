@@ -3,8 +3,9 @@ class RoomRequest < ActiveRecord::Base
 
   STATUS_STATES = [
     "APPROVED",
-    "DENIED",
-    "PENDING"
+    "PENDING",
+    "CANCELLED",
+    "DENIED"
   ]
 
   validates :num_guests, :start_date, :end_date, presence: true
@@ -50,6 +51,11 @@ class RoomRequest < ActiveRecord::Base
     self.save!
     self.notifications.unread.create!({
       event_id: EVENT_IDS[:request_denied], user_id: self.guest_id })
+  end
+
+  def cancel!
+    self.status = "CANCELLED"
+    self.save!
   end
 
   def approve!

@@ -45,6 +45,12 @@ class RoomRequestsController < ApplicationController
     redirect_to @request.room
   end
 
+  def cancel
+    @request = RoomRequest.find(params[:id])
+    @request.cancel!
+    redirect_to user_room_requests_url(@request.guest)
+  end
+
   private
   def request_params
     params.require(:request).permit(:start_date, :end_date, :status, :room_id,

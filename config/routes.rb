@@ -14,8 +14,9 @@ Freebnb::Application.routes.draw do
   end
 
   resources :room_requests, only: [:show, :destroy, :update] do
-    post "approve", :on => :member
-    post "deny", :on => :member
+    post "approve", on: :member
+    post "deny", on: :member
+    post "cancel", on: :member
   end
 
   resources :notifications, only: [:index, :show]

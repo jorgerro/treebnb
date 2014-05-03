@@ -4,10 +4,10 @@
 
 
   <a href="<%= room_url(room) %>">
-    See Room
+    <%= room.display_title %>
   </a>
   <% if current_user.id == room.owner_id %>
-    <a href="<%= edit_room_url(room) %>">| Edit</a>
+    <a href="#">| Manage Your Listing</a>
   <% end %>
   <br><br>
 
