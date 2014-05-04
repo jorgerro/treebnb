@@ -30,7 +30,12 @@ class RoomRequestsController < ApplicationController
     end
     @user = User.find(params[:user_id])
     @requests = @user.requests_to_stay.where("status != 'CANCELLED'")
-    render :index
+
+    if request.xhr?
+      render json: @requests
+    else
+      render :index
+    end
   end
 
   def approve

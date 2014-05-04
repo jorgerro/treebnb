@@ -54,6 +54,7 @@ gem 'mapbox-rails'
 gem 'jquery-ui-rails'
 gem 'pg_search'
 gem 'kaminari'
+gem 'backbone-on-rails'
 
 group :development do
   gem 'better_errors'

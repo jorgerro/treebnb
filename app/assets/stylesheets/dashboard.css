@@ -1,0 +1,20 @@
+
+#dashboard-side-nav {
+  width: 179px;
+  float: left;
+}
+
+#dashboard-side-nav a {
+  text-align: right;
+  display: block;
+  border-right: 1px solid #ccc;
+  padding-right: 20px;
+  padding-bottom: 10px;
+}
+
+#content {
+  float: right;
+  width: 750px;
+  min-height: 600px;
+  border: 1px solid red;
+}

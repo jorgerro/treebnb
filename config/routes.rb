@@ -6,6 +6,7 @@ Freebnb::Application.routes.draw do
     resources :rooms, only: :index
     resources :room_requests, only: [:index]
     resources :message_threads, only: :index
+    get  "/dashboard" => "dashboard#root"
   end
 
   resources :rooms do

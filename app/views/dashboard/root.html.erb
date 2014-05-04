@@ -1,0 +1,38 @@
+
+<script>
+  // bootstrap that good good
+
+  var currentUserId = <%= @current_user.id %>
+
+
+</script>
+
+
+
+
+
+<script>
+
+  $(document).ready(function(){
+    Dashboard.initialize();
+  });
+
+</script>
+
+
+  <h2>Welcome to your dashboard, <%= @user.fname %>!</h2>
+
+<section id="dashboard-side-nav" class="group">
+
+  <a href="#/">Dashboard</a>
+  <a href="#/inbox">Inbox</a>
+  <a href="#/trips">Trips</a>
+  <a href="#/listings">Listings</a>
+  <a href="#/profile">Profile</a>
+
+</section>
+
+<div id="content" class="group">hi</div>
+
+
+
