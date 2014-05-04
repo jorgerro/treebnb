@@ -19,7 +19,7 @@ class Notification < ActiveRecord::Base
     if Rails.env.development?
       { host: "localhost:3000" }
     else
-      { host: "freebnb.herokuapp.com" }
+      { host: "treebnb.herokuapp.com" }
     end
   end
 
