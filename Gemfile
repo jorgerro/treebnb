@@ -55,6 +55,8 @@ gem 'jquery-ui-rails'
 gem 'pg_search'
 gem 'kaminari'
 gem 'backbone-on-rails'
+# gem 'ruby-ejs'
+gem 'ejs'
 
 group :development do
   gem 'better_errors'

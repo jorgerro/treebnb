@@ -201,6 +201,7 @@ DEPENDENCIES
   binding_of_caller
   cocaine
   coffee-rails (~> 4.0.0)
+  ejs
   factory_girl_rails
   faker
   figaro

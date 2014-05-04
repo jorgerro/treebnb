@@ -10,12 +10,22 @@ Dashboard.Routers.DashboardRouter = Backbone.Router.extend({
   },
 
   start: function () {
-    console.log(this.$rootEl)
+    var homeView = new Dashboard.Views.HomeView();
+    this.swapView(homeView);
   },
 
   trips: function () {
-
-    alert('in the trips')
+    // fetch trips
+    var that = this
+    var trips = new Dashboard.Collections.Trips();
+    trips.fetch({
+      success: function () {
+        var tripsIndexView = new Dashboard.Views.TripsIndex({
+          collection: trips
+        });
+        that.swapView(tripsIndexView);
+      }
+    })
 
 
 

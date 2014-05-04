@@ -6,11 +6,11 @@ window.Dashboard = {
 
   initialize: function() {
 
-    this.userId = currentUserId
-    var options = {
+    Dashboard.userId = currentUserId
+
+    new Dashboard.Routers.DashboardRouter({
       $rootEl: $("#content")
-    }
-    new Dashboard.Routers.DashboardRouter(options);
+    });
 
     Backbone.history.start();
   }

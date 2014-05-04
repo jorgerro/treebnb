@@ -3,15 +3,7 @@
   // bootstrap that good good
 
   var currentUserId = <%= @current_user.id %>
-
-
-</script>
-
-
-
-
-
-<script>
+  var fname = "<%= current_user.fname %>"
 
   $(document).ready(function(){
     Dashboard.initialize();
@@ -32,7 +24,7 @@
 
 </section>
 
-<div id="content" class="group">hi</div>
+<div id="content" class="group"></div>
 
 
 

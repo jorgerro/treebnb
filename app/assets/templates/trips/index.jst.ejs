@@ -1,42 +1,30 @@
 <h2>Your Trips</h2>
 
-<% if !trips { %>
+<% if (trips) { %>
+
     <section class="trips">
 
       <% trips.each(function(trip) { %>
 
         <article class="room-request group">
 
-          //<h3><%= request.room.display_title %></h3>
+          <h3><%= trip.escape("display_title")%></h3>
 
-          <h4 class="status-tag" data-request-id="<%= trip.id %>">Status: <strong><%= trip.status %></strong></h4>
+          <h4 class="status-tag">Status: <strong><%= trip.escape("status") %></strong></h4>
 
           <p class="request-details">
             Dates: <br>
-            <%= trip.start_date%><br>
-            to <%= request.end_date %><br><br>
-            Number of Guests: <%= request.num_guests %>
+            <%= trip.escape("start_date") %><br>
+            to <%= trip.escape("end_date") %><br><br>
+            Number of Guests: <%= trip.escape("num_guests") %>
           </p>
-          <div class="trip-links">
-            <a href="<%= //user_url(request.host) %>">Visit Your Host's' Page</a>
-            <a href="<%= //room_url(request.room) %>">See The Space</a>
-
-            <% if request.status == "PENDING" || request.status == "APPROVED" { %>
-
-              <form action="<%= //cancel_room_request_url(request) %>" method="post">
-                <%= auth_token %>
-
-                <p><input type="submit" value="Cancel"></p>
-              </form>
-
-            <% } %>
-          </div>
 
         </article>
 
       <% }) %>
 
     </section>
+
 <% } else { %>
 
 <h3>You have no current trips.</h3>
