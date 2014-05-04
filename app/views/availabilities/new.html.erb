@@ -1,3 +1,8 @@
+<h1>Add Availability</h1>
+
+<%= render "layouts/calendar", room: @room  %>
+<br>
+
 <form action="<%= availabilities_url %>" method="post">
 
   <%= auth_token %>

@@ -15,7 +15,7 @@ Black text: #333
 Gray lines: #ccc
 Dark Gray text: #5a5a5a
 Yellow List Button: #fde44c
-Light Yellow: #fde44c
+Light Yellow: #feeb79
 
 
 TEXT

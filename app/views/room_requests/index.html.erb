@@ -42,17 +42,15 @@
           <div class="trip-links">
             <a href="<%= user_url(request.host) %>">Visit Your Host's Page</a>
             <a href="<%= room_url(request.room) %>">See The Space</a>
+
             <% if request.status == "PENDING" || request.status == "APPROVED"  %>
+
               <form action="<%= cancel_room_request_url(request) %>" method="post">
                 <%= auth_token %>
 
                 <p><input type="submit" value="Cancel"></p>
               </form>
 
-
-
-
-              <!-- <a href="<%= cancel_room_request_url(request) %>">Cancel</a> -->
             <% end %>
           </div>
 

@@ -10,6 +10,7 @@ Freebnb::Application.routes.draw do
 
   resources :rooms do
     resources :room_requests, only: [:new, :create]
+    get "manage", on: :member
     resources :availabilities, only: [:new]
   end
 

@@ -29,20 +29,20 @@ class RoomRequestsController < ApplicationController
       return
     end
     @user = User.find(params[:user_id])
-    @requests = @user.requests_to_stay
+    @requests = @user.requests_to_stay.where("status != 'CANCELLED'")
     render :index
   end
 
   def approve
     @request = RoomRequest.find(params[:id])
     @request.approve!
-    redirect_to @request.room
+    redirect_to manage_room_url(@request.room)
   end
 
   def deny
     @request = RoomRequest.find(params[:id])
     @request.deny!
-    redirect_to @request.room
+    redirect_to manage_room_url(@request.room)
   end
 
   def cancel

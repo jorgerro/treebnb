@@ -71,7 +71,7 @@ class Notification < ActiveRecord::Base
     when :new_room_request
       @request = self.notifiable
       @room = @request.room
-      @url = "#{ room_url(@room) }"
+      @url = "#{ manage_room_url(@room) }"
     when :request_approved
       @request = self.notifiable
       @user = @request.guest

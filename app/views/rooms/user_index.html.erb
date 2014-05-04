@@ -7,7 +7,7 @@
     <%= room.display_title %>
   </a>
   <% if current_user.id == room.owner_id %>
-    <a href="#">| Manage Your Listing</a>
+    <a href="<%= manage_room_url(room) %>">| Manage This Listing</a>
   <% end %>
   <br><br>
 

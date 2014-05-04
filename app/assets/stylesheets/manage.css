@@ -1,0 +1,61 @@
+
+
+
+div.manage-buttons a {
+  color: #333;
+  display: block;
+  background-color: #fde44c;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-align: center;
+  margin-right: 20px;
+}
+
+div.manage-buttons a:hover {
+  background-color: #feeb79;
+}
+
+h3.scary a:hover {
+  background-color: #f00;
+  color: #fff;
+}
+
+#req-to-stay {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+article.request {
+  background-color: #fff;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  margin-right: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+p.status {
+  text-align: right;
+}
+
+article.request form {
+  display: inline-block;
+  margin-left: 4px;
+}
+
+article.request input[type="submit"] {
+  font-size: 14px;
+  padding: 5px 10px;
+}
+
+input[value="Deny"] {
+  background-color: #CA16C2;
+}
+
+article.request time {
+  font-size: 14px;
+}
+
+article.request a {
+  text-decoration: underline;
+}

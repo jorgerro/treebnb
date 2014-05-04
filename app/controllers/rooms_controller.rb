@@ -24,8 +24,8 @@ class RoomsController < ApplicationController
   end
 
   def create
-
     @room = Room.new(room_params)
+
     if @room.save
       redirect_to edit_room_url(@room)
     else
@@ -38,7 +38,6 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
     @reviews = @room.reviews.order("created_at DESC")
     @owner = @room.owner
-    @requests = @room.room_requests
     render :show
   end
 
@@ -62,6 +61,19 @@ class RoomsController < ApplicationController
       flash.now[:errors] = @room.errors.full_messages
       render :edit
     end
+  end
+
+  def manage
+    @room = Room.find(params[:id])
+    @requests = @room.room_requests.where("status != 'CANCELLED' AND status != 'DENIED'" )
+    @owner = @room.owner
+    render :manage
+  end
+
+  def destroy
+    @room = Room.find(params[:id])
+    @room.destroy
+    redirect_to user_rooms_url(@room.owner)
   end
 
 
