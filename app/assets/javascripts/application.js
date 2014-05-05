@@ -16,6 +16,7 @@
 //= require jquery.ui.all
 //= require underscore
 //= require backbone
+//= require serializeJSON
 //= require dashboard
 //= require_tree ../templates
 //= require_tree ./models

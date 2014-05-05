@@ -37,8 +37,13 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:notice] = ["Your profile has been updated"]
-      redirect_to @user
+      if request.xhr?
+        puts "**********************FUN****************************"
+        render json: @user
+      else
+        flash[:notice] = ["Your profile has been updated"]
+        redirect_to @user
+      end
     else
       flash.now[:errors] = @user.errors.full_messages
       render :edit
