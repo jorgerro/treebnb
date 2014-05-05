@@ -32,9 +32,9 @@
   <label for="gender">Gender</label>
   <select name="user[gender]" id="gender">
     <option value=""></option>
-    <option value="F" >Female</option>
-    <option value="M" >Male</option>
-    <option value="O" >Other</option>
+    <option value="F" <%= user.get("gender") == "F" ? "selected" : "" %> >Female</option>
+    <option value="M" <%= user.get("gender") == "M" ? "selected" : "" %> >Male</option>
+    <option value="O" <%= user.get("gender") == "O" ? "selected" : "" %> >Other</option>
   </select>
 
 <br><br>
