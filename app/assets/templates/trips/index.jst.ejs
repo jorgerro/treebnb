@@ -8,7 +8,7 @@
 
         <article class="room-request group">
 
-          <h3><%= trip.escape("display_title")%></h3>
+          <h3><%= trip.escape("room_title")%></h3>
 
           <h4 class="status-tag">Status: <strong><%= trip.escape("status") %></strong></h4>
 
@@ -18,6 +18,14 @@
             to <%= trip.escape("end_date") %><br><br>
             Number of Guests: <%= trip.escape("num_guests") %>
           </p>
+          <div class="trip-links">
+            <a href="<%= trip.escape("host_url") %>">Visit Your Host's' Page</a>
+            <a href="<%= trip.escape("room_url") %>">See The Space</a>
+
+            <% if (trip.get("status") == "PENDING" || trip.get("status") == "APPROVED") { %>
+              i can has cancel button
+            <% } %>
+          </div>
 
         </article>
 

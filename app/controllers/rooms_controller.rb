@@ -7,7 +7,11 @@ class RoomsController < ApplicationController
     if params[:user_id]
       @user = User.find(params[:user_id])
       @listings = @user.listings.order("created_at DESC")
-      render :user_index
+      if request.xhr?
+        render "rooms/listings"
+      else
+        render :user_index
+      end
     else
       if current_user
         @listings = Room.where("owner_id != ?", current_user.id)

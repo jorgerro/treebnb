@@ -1,0 +1,15 @@
+<h2>Your Listings</h2>
+
+<% listings.each( function (room) { %>
+
+  <%= room.escape("room_title") %><br>
+
+  <a href=<%= room.escape("room_url") %> >
+    View Listing
+  </a> |
+    <a href=<%= room.escape("manage_room_url") %> >Manage Listing</a>
+  <br><br>
+
+<% }); %>
+
+<br><br>

@@ -30,9 +30,9 @@ class RoomRequestsController < ApplicationController
     end
     @user = User.find(params[:user_id])
     @requests = @user.requests_to_stay.where("status != 'CANCELLED'")
-
+    @trips = @requests
     if request.xhr?
-      render json: @requests
+      render "room_requests/trips"
     else
       render :index
     end

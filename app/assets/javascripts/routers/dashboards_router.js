@@ -2,7 +2,9 @@ Dashboard.Routers.DashboardRouter = Backbone.Router.extend({
 
   routes: {
     "": "start",
-    "trips": "trips"
+    "trips": "trips",
+    "profile": "profile",
+    "listings": "listings"
   },
 
   initialize: function (options) {
@@ -25,10 +27,34 @@ Dashboard.Routers.DashboardRouter = Backbone.Router.extend({
         });
         that.swapView(tripsIndexView);
       }
-    })
+    });
+  },
 
+  profile: function () {
+    var that = this;
+    var user = new Dashboard.Models.User({ id: Dashboard.userId });
+    user.fetch({
+      success: function () {
+        var userEditView = new Dashboard.Views.UserEdit({
+          model: user
+        });
+        that.swapView(userEditView);
+      }
+    });
+  },
 
-
+  listings: function () {
+    var that = this;
+    var listings = new Dashboard.Collections.UserListings();
+    listings.fetch({
+      success: function () {
+        var userListingsView = new Dashboard.Views.UserListings({
+          collection: listings
+        });
+        console.log(listings)
+        that.swapView(userListingsView);
+      }
+    });
   },
 
   swapView: function (view) {

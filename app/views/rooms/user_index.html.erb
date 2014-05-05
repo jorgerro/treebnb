@@ -2,12 +2,12 @@
 
 <% @listings.each do |room| %>
 
-
+    <%= room.display_title %><br>
   <a href="<%= room_url(room) %>">
-    <%= room.display_title %>
+    View Listing
   </a>
-  <% if current_user.id == room.owner_id %>
-    <a href="<%= manage_room_url(room) %>">| Manage This Listing</a>
+  <% if current_user.id == room.owner_id %> |
+    <a href="<%= manage_room_url(room) %>">Manage Listing</a>
   <% end %>
   <br><br>
 

@@ -21,12 +21,15 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @reviews = @user.reviews.order("created_at DESC")
-    render :show
+
+    if request.xhr?
+      render json: @user
+    else
+      render :show
+    end
   end
 
   def edit
-    # form should include additional fields that were
-    # not included at signup as well as the original ones
     @user = User.find(params[:id])
     render :edit
   end

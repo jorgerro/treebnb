@@ -1,0 +1,9 @@
+
+from user edit
+  <% if @user.avatar.exists? %>
+    <img src="<%= @user.escape(avatar.url(:thumb) %>"><br>
+  <% end %>
+
+  <%= if ( <%= user.escape("gender") %> == "F" ) { return "selected" } %>
+  <%= if ( <%= user.escape("gender") %> == "M" ) { return "selected" } %>
+  <%= if ( <%= user.escape("gender") %> == "O" ) { return "selected" } %>

@@ -1,0 +1,1 @@
+json.partial!("room_requests/room_request", room_request: @room_request)
