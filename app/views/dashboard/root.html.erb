@@ -1,9 +1,14 @@
+<script>
+  var threads = <%= @threads.to_json(include: :messages).html_safe %>
+</script>
+
 
 <script>
   // bootstrap that good good
 
   var currentUserId = <%= @current_user.id %>
   var fname = "<%= current_user.fname %>"
+  var Dashboard.parsedThreads = JSON.parse(threads);
 
   $(document).ready(function(){
     Dashboard.initialize();

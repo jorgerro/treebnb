@@ -5,6 +5,8 @@ class DashboardController < ApplicationController
 
   def root
     @user = User.find(params[:user_id])
+    @threads = @user.threads
+    render :root
   end
 
 end
