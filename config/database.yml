@@ -18,7 +18,7 @@ development:
   adapter: postgresql
   encoding: unicode
   database: freebnb_development
-  username: appacademy
+  username: jorgerro
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -45,10 +45,10 @@ test:
   adapter: postgresql
   encoding: unicode
   database: freebnb_test
-  username: appacademy
+  username: jorgerro
 
 production:
   adapter: postgresql
   encoding: unicode
   database: freebnb_production
-  username: appacademy
+  username: jorgerro
