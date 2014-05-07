@@ -17,3 +17,30 @@
   width: 750px;
   min-height: 800px;
 }
+
+table.inbox {
+  float: left;
+  width: 748px;
+}
+
+th.message-column-header {
+  width: 450px;
+}
+
+tr.message {
+  background-color: #fff;
+}
+
+tr.message:hover {
+  background-color: #f7f7f7;
+  cursor: pointer;
+}
+
+
+td.message-text {
+  text-align: left;
+  max-width: 440px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

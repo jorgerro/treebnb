@@ -1,35 +1,64 @@
 /* Messages and message threads */
 
+div.thread-new-message textarea {
+  width: 375px;
+  border-radius: 5px;
+}
+
 ul.thread-messages {
-  margin: 50px;
   display:block;
-  width: 600px;
+  width: 750px;
 }
 
 li.message {
-  background-color: #71D7DC;
   display:block;
-  padding: 10px;
-  border-radius: 10px;
-  margin: 15px;
+  margin: 15px 0;
+  margin-left: 250px;
 }
 
-li.message p {
-  padding: 5px;
+li.me {
+  margin-left: 0;
+  max-width: 500px
+}
+
+li.message p.message-text {
+  border-radius: 10px;
+  background-color: #71D7DC;
+  padding: 15px 15px;
+
 }
 
 img.avatar-thread {
   height: 40px;
   width:auto;
   border-radius: 10px;
+  float:right;
+  padding: 5px;
+}
+
+.me img.avatar-thread {
+  height: 40px;
+  width:auto;
+  border-radius: 10px;
   float:left;
   padding: 5px;
+  border: none;
 }
 
 time.time-ago {
   font-size: 12px;
+  float: right;
+  margin: 5px;
+}
+
+li.me time {
+  float: left;
 }
 
 h3.thread {
   padding: 15px;
 }
+/*
+img.thread-faces {
+  margin-right: 200px;
+}*/

@@ -5,10 +5,10 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
 
     if @message.save
-      redirect_to @message.recipient
+      redirect_to :back
     else
       flash[:errors] = @message.errors.full_messages
-      redirect_to @message.recipient
+      redirect_to :back
     end
   end
 

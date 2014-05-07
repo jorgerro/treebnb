@@ -6,6 +6,8 @@ class NotificationsController < ApplicationController
   def index
     @notifications = Notification.where(user_id: current_user.id)
                                  .order("is_read")
+                                 .page(params[:page]).per(10)
+
     render :index
   end
 

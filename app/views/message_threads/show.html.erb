@@ -1,18 +1,44 @@
+<script>
+
+  $(document).ready(function () {
+
+    $('li[data-user-id="<%= current_user.id %>"]').addClass("me");
+
+  });
+
+</script>
+
+
+<h3 class="thread">You and <%= @other_user.fname %> <%= @other_user.lname %></h3>
+  <span>
+  <img src="<%= current_user.avatar.url(:thumb) %>" class="avatar-thread">
+  <img src="<%= @other_user.avatar.url(:thumb) %>" class="avatar-thread">
+</span>
+
+<div class="thread-new-message">
+  <%= render partial: "messages/form", locals: { recipient_id: @other_user.id } %>
+</div>
+
+
 <% if @messages %>
-<h3 class="thread"><%= @user1.fname %> and <%= @user2.fname %> </h3>
 
   <ul class="thread-messages">
     <% @messages.each do |message| %>
-
       <li class="message group" data-user-id="<%= message.sender.id %>">
 
-        <img src="<%= message.sender.avatar.url(:thumb) %>" class="avatar-thread">
-        <p><%= message.body %></p>
-        <time class="time-ago"><%= "#{ time_ago_in_words(message.created_at) } ago." %></time>
-        <br><br>
+        <p class="message-text"><%= message.body %></p>
+
+        <!-- <div class="message-details"> -->
+          <img src="<%= message.sender.avatar.url(:thumb) %>" class="avatar-thread">
+          <time class="time-ago">
+            <%= "#{ time_ago_in_words(message.created_at) } ago." %><br>
+            <%= message.sender.fname %> <%= message.sender.lname %>
+          </time>
+        <!-- </div> -->
+
+
 
       </li>
-
     <% end %>
   </ul>
 <% end %>

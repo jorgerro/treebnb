@@ -1,28 +1,35 @@
 <h2>Inbox!</h2>
 
+  <table class="inbox">
 
-  <table>
     <thead>
       <tr>
-        <th>Message</th>
+        <th class="message-column-header">Message</th>
         <th>From</th>
         <th>When</th>
       </tr>
     </thead>
+
     <tbody>
 
       <% threads.each( function (thread) {  %>
           <% thread.messages().each(function (message) {  %>
 
 
-      <tr>
-        <td><%= message.get("body") %></td>
-        <td><%= message.sender().get("fname") %></td>
-        <td><time class="time-ago"><%= message.get("created_at") %></time></td>
-      </tr>
+            <tr class="message">
+              <td class="message-text">
+                <a href="<%= "/message_threads/" + message.get("thread_id") %>">
+                  <%= message.get("body") %>
+                </a>
+              </td>
+              <td><%= message.sender().escape("fname") %> <%= message.sender().escape("lname") %></td>
+              <td><time class="time-ago"><%= moment(message.get("created_at"), "YYYYMMDD").fromNow() %></time></td>
+            </tr>
+
           <% }); %>
       <% }); %>
 
     </tbody>
 
   </table>
+
