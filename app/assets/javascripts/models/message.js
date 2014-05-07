@@ -1,27 +1,25 @@
 Dashboard.Models.Message = Backbone.Model.extend({
 
   initialize: function () {
+    this.sender();
   },
 
-  parse: function (response) {
-    if (response["sender"]) {
-      this.sender = new Dashboard.Models.User(response["sender"], { parse: true });
-      delete response["sender"];
+  parse: function (resp) {
+    if (resp.sender) {
+      this.sender().set(resp.sender, { parse: true });
+      delete resp.sender;
     }
-    return response;
+    return resp;
   },
 
-  // sender: function () {
-  //   if (!this.get("sender")) {
-  //     var sender = new Dashboard.Models.User({}, {
-  //       message: this
-  //     });
-  //     this.set({
-  //       sender: sender
-  //     });
-  //   }
-  //   return this.get('sender');
-  // }
+  sender: function () {
+    if (!this._sender) {
+      this._sender = new Dashboard.Models.User({}, {
+        message: this
+      });
+    }
+    return this._sender;
+  }
 
 
 });

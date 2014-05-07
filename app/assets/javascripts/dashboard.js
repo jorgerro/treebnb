@@ -7,7 +7,8 @@ window.Dashboard = {
   initialize: function(allthreads) {
 
     Dashboard.userId = currentUserId
-    Dashboard.threads = JSON.parse($("#bootstrapped-threads").html())
+    parsedThreads = JSON.parse($("#bootstrapped-threads").html())
+    Dashboard.threads = new Dashboard.Collections.Threads(parsedThreads, { parse: true });
 
     new Dashboard.Routers.DashboardRouter({
       $rootEl: $("#content")

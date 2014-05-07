@@ -1,17 +1,28 @@
-<h2>Your Threads</h2>
-
-<% threads.each( function (thread) {  %>
-
-  <div class="thread"><%= thread.get("id") %></div>
-
-  <ul class="thread-messages">
-    <% thread.messages.each(function (message) {  %>
-      <li class="message group">
-        <%= message.get("body") %>
-        <time class="time-ago"><%= message.get("created_at") %></time>
-      </li>
-    <% }); %>
-  </ul>
-<% }); %>
+<h2>Inbox!</h2>
 
 
+  <table>
+    <thead>
+      <tr>
+        <th>Message</th>
+        <th>From</th>
+        <th>When</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <% threads.each( function (thread) {  %>
+          <% thread.messages().each(function (message) {  %>
+
+
+      <tr>
+        <td><%= message.get("body") %></td>
+        <td><%= message.sender().get("fname") %></td>
+        <td><time class="time-ago"><%= message.get("created_at") %></time></td>
+      </tr>
+          <% }); %>
+      <% }); %>
+
+    </tbody>
+
+  </table>

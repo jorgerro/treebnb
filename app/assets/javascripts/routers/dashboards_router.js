@@ -58,12 +58,11 @@ Dashboard.Routers.DashboardRouter = Backbone.Router.extend({
   },
 
   inbox: function () {
-    var threads = new Dashboard.Collections.Threads(Dashboard.threads, { parse: true });
     // console.log(threads)
     // console.log(threads.get(1).messages());
 
     var threadsView = new Dashboard.Views.Threads({
-      collection: threads
+      collection: Dashboard.threads
     })
     this.swapView(threadsView);
   },

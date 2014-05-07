@@ -1,7 +1,6 @@
-# json.user do
-  json.(@user, :id, :fname, :lname, :email, :description, :gender, :phone_number, :birthdate)
-# end
-  # json.avatar_url user.avatar.url(:thumb)
+json.(@user, :id, :fname, :lname, :email, :description, :gender, :phone_number, :birthdate)
+json.avatar_url @user.avatar.url(:thumb)
+
 
 
 

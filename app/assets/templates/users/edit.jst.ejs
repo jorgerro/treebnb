@@ -14,13 +14,13 @@
   name="user[fname]" value="<%= user.escape("fname") %>" id="first_name">
 
   <label for="last_name">Last Name</label>
-  <input type="text" name="user[lname]" value=<%= user.escape("lname") %> id="last_name">
+  <input type="text" name="user[lname]" value="<%= user.escape("lname") %>" id="last_name">
 
   <label for="email">Email</label>
-  <input type="text" name="user[email]" value=<%= user.escape("email") %> id="email">
+  <input type="text" name="user[email]" value="<%= user.escape("email") %>" id="email">
 
   <label for="birthdate">Birthdate</label>
-  <input type="date" name="user[birthdate]" value=<%= user.escape("birthdate") %> id="birthdate">
+  <input type="date" name="user[birthdate]" value="<%= user.escape("birthdate") %>" id="birthdate">
 
   <label for="user_description" >Describe Yourself</label>
   <textarea name="user[description]" id="user_description"><%= user.escape("description") %></textarea>
