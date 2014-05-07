@@ -4,7 +4,8 @@ Dashboard.Routers.DashboardRouter = Backbone.Router.extend({
     "": "start",
     "trips": "trips",
     "profile": "profile",
-    "listings": "listings"
+    "listings": "listings",
+    "inbox": "inbox"
   },
 
   initialize: function (options) {
@@ -51,10 +52,20 @@ Dashboard.Routers.DashboardRouter = Backbone.Router.extend({
         var userListingsView = new Dashboard.Views.UserListings({
           collection: listings
         });
-        console.log(listings)
         that.swapView(userListingsView);
       }
     });
+  },
+
+  inbox: function () {
+    var threads = new Dashboard.Collections.Threads(Dashboard.threads, { parse: true });
+    // console.log(threads)
+    // console.log(threads.get(1).messages());
+
+    var threadsView = new Dashboard.Views.Threads({
+      collection: threads
+    })
+    this.swapView(threadsView);
   },
 
   swapView: function (view) {

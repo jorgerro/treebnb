@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     @reviews = @user.reviews.order("created_at DESC")
 
     if request.xhr?
-      render json: @user
+      render "users/user"
     else
       render :show
     end

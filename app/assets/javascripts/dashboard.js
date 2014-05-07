@@ -4,9 +4,10 @@ window.Dashboard = {
   Views: {},
   Routers: {},
 
-  initialize: function() {
+  initialize: function(allthreads) {
 
     Dashboard.userId = currentUserId
+    Dashboard.threads = JSON.parse($("#bootstrapped-threads").html())
 
     new Dashboard.Routers.DashboardRouter({
       $rootEl: $("#content")
