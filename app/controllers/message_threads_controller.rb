@@ -6,8 +6,10 @@ class MessageThreadsController < ApplicationController
   def show
     @thread = MessageThread.find(params[:id])
     if current_user.id == @thread.user_one_id || current_user.id == @thread.user_two_id
+      @threads = current_user.threads
+
       @messages = @thread.messages.order('created_at DESC')
-      @other_user = (@thread.user_one_id == current_user.id) ? @thread.user_two : @thread.user_one
+      @other_user = @thread.other_user(current_user)
       render :show
     end
   end
@@ -22,8 +24,5 @@ class MessageThreadsController < ApplicationController
       render :index
     end
   end
-
-
-
 
 end

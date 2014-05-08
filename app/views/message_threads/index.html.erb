@@ -15,12 +15,14 @@
 
 <h2>Your Threads</h2>
 
-<table class="notifications">
+<table class="threads">
 
   <thead>
     <tr>
       <th></th>
-      <th>Thread</th>
+      <th colspan="2">Thread</th>
+      <th>Latest Message</th>
+      <th>When</th>
     </tr>
   </thead>
 
@@ -33,11 +35,26 @@
       <tr class="thread" thread-url="<%= message_thread_url(thread) %>" >
         <td class="status-symbol">
           <%= thread.has_unread_messages? ?
-          " " : '<i class="fa fa-star"></i>'.html_safe %>
+          '<i class="fa fa-star"></i>'.html_safe : "" %>
         </td>
 
         <td class="thread-name">
-        <%= "#{ thread.user_one.fname.capitalize } and #{ thread.user_two.fname.capitalize }" %>
+          <!-- <div class="thread-name-img"> -->
+            <img src="<%= thread.other_user(current_user).avatar.url(:thumb) %>">
+          <!-- </div> -->
+        </td>
+
+        <td class="thread-name">
+          <%= thread.other_user(current_user).fname.capitalize %>
+          <%= thread.other_user(current_user).lname.capitalize %>
+        </td>
+
+        <td class="latest-message-text">
+          <%= thread.latest_message(current_user).body %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(thread.latest_message(current_user).created_at) %> ago
         </td>
 
     <% end %>

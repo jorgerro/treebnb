@@ -1,10 +1,57 @@
-/* Messages and message threads */
+
+/* Threads index */
+
+table.threads {
+  width: 948px;
+}
+
+tr.thread {
+  background-color: #fff;
+
+}
+
+tr.thread:hover {
+  background-color: #f7f7f7;
+  cursor: pointer;
+}
+
+td.thread-name {
+  text-align: left;
+  margin-left: 10px;
+}
+
+td img {
+  width: auto;
+  height: 40px;
+  border-radius: 5px;
+}
+
+td.latest-message-text {
+  text-align: left;
+  max-width: 440px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* Messages View */
+
+
+section.threads-sidebar {
+  float:left;
+  width: 240px;
+  border-right: 1px solid #ccc;
+  border: 1px solid red;
+}
+
 
 div.thread-new-message {
   background-color: #71D7DC;
   border-radius: 5px;
   width: 400px;
   padding: 15px;
+  margin-left: 0;
 }
 
 div.thread-new-message textarea {
@@ -14,14 +61,15 @@ div.thread-new-message textarea {
 }
 
 div.thread-new-message input[type="submit"] {
-  background-color: #fff;
-  color: #5a5a5a;
-  font-weight: bold;
+  background-color: #16B2B9;
+  color: #fff;
 }
 
 ul.thread-messages {
   display:block;
-  width: 750px;
+  width: 700px;
+  float: right;
+  border: 1px solid red;
 }
 
 li.message {
@@ -71,7 +119,3 @@ li.me time {
 h3.thread {
   padding: 15px;
 }
-/*
-img.thread-faces {
-  margin-right: 200px;
-}*/

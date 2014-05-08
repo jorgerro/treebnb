@@ -39,5 +39,15 @@ class MessageThread < ActiveRecord::Base
     false
   end
 
+  def other_user(current_user)
+    (self.user_one_id == current_user.id) ? self.user_two : self.user_one
+  end
+
+  def latest_message(current_user)
+    @other_user = self.other_user(current_user)
+    self.messages.where("messages.sender_id = ?", @other_user.id).order("messages.created_at DESC").first
+  end
+
+
 
 end
