@@ -1,3 +1,18 @@
+<script>
+
+   $(document).ready(function () {
+
+     $('h4[data-status="APPROVED"]').addClass('green');
+     $('h4[data-status="DENIED"]').addClass('red');
+     $('h4[data-status="CANCELLED"]').addClass('red');
+
+   });
+
+</script>
+
+
+
+
 <h2>Your Trips</h2>
 
 <% if (trips) { %>
@@ -10,7 +25,7 @@
 
           <h3><%= trip.escape("room_title")%></h3>
 
-          <h4 class="status-tag">Status: <strong><%= trip.escape("status") %></strong></h4>
+          <h4 class="status-tag" data-status="<%= trip.get("status") %>"><strong><%= trip.escape("status") %></strong></h4>
 
           <p class="request-details">
             Dates: <br>
@@ -23,7 +38,9 @@
             <a href="<%= trip.escape("room_url") %>">See The Space</a>
 
             <% if (trip.get("status") == "PENDING" || trip.get("status") == "APPROVED") { %>
-              i can has cancel button
+              <form action="<%= "/room_requests/" + trip.get("id") + "/cancel" %>" method="post">
+                <p><input type="submit" value="Cancel"></p>
+              </form>
             <% } %>
           </div>
 

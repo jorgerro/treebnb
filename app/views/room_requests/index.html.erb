@@ -1,3 +1,16 @@
+<script>
+
+  $(document).ready(function () {
+
+    $('h4[data-status="APPROVED"]').addClass('green');
+    $('h4[data-status="DENIED"]').addClass('red');
+    $('h4[data-status="CANCELLED"]').addClass('red');
+
+  });
+
+</script>
+
+
 <h2>Your Trips</h2>
 
 <% unless @requests.empty? %>
@@ -8,7 +21,7 @@
 
           <h3><%= request.room.display_title %></h3>
 
-          <h4 class="status-tag" data-request-id="<%= request.id %>">Status: <strong><%= request.status %></strong></h4>
+          <h4 class="status-tag" data-status="<%= request.status %>"><strong><%= request.status %></strong></h4>
 
           <p class="request-details">
             Dates: <br>

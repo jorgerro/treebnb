@@ -29,7 +29,7 @@ class RoomRequestsController < ApplicationController
       return
     end
     @user = User.find(params[:user_id])
-    @requests = @user.requests_to_stay.where("status != 'CANCELLED'")
+    @requests = @user.requests_to_stay#.where("status != 'CANCELLED'")
     @trips = @requests
     if request.xhr?
       render "room_requests/trips"
@@ -53,7 +53,7 @@ class RoomRequestsController < ApplicationController
   def cancel
     @request = RoomRequest.find(params[:id])
     @request.cancel!
-    redirect_to user_room_requests_url(@request.guest)
+    redirect_to :back
   end
 
   private

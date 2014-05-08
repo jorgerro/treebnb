@@ -1,4 +1,19 @@
-<h2>Inbox!</h2>
+<script>
+
+   $(document).ready(function () {
+
+     $('tr.message').on('click', function (event) {
+       console.log(event.currentTarget)
+       $tr = $(event.currentTarget)
+       window.location.href = $tr.attr("data-thread-url")
+     });
+
+   });
+
+</script>
+
+
+<h2>Inbox</h2>
 
   <table class="inbox">
 
@@ -16,11 +31,9 @@
           <% thread.messages().each(function (message) {  %>
 
 
-            <tr class="message">
+            <tr class="message" data-thread-url="<%= "/message_threads/" + message.get("thread_id") %>" >
               <td class="message-text">
-                <a href="<%= "/message_threads/" + message.get("thread_id") %>">
                   <%= message.get("body") %>
-                </a>
               </td>
               <td><%= message.sender().escape("fname") %> <%= message.sender().escape("lname") %></td>
               <td><time class="time-ago"><%= moment(message.get("created_at"), "YYYYMMDD").fromNow() %></time></td>

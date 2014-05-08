@@ -55,6 +55,7 @@ section.main {
   display: block;
   width: 950px;
   margin: 20px auto;
+  min-height: 800px;
 /*  background-color: #fff;*/
 }
 
