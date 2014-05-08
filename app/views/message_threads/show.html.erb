@@ -2,6 +2,14 @@
 
   $(document).ready(function () {
     $('li[data-user-id="<%= current_user.id %>"]').addClass("me");
+
+    $('li.thread').on('click', function (event) {
+      console.log(event.currentTarget)
+      $li = $(event.currentTarget)
+      window.location.href = $li.attr("thread-url")
+    });
+
+
   });
 
 </script>
@@ -12,37 +20,38 @@
 <section class="threads-sidebar">
 
 
-    <h3>Threads</h3>
 
 
     <ul class="threads-side-list">
+    <h3>Threads</h3>
 
      <% @threads.each do |thread| %>
 
-       <tr class="thread" thread-url="<%= message_thread_url(thread) %>" >
-         <td class="status-symbol">
+         <li class="thread group" thread-url="<%= message_thread_url(thread) %>">
+
            <%= thread.has_unread_messages? ?
            '<i class="fa fa-star"></i>'.html_safe : "" %>
-         </td>
 
-         <td class="thread-name">
-           <!-- <div class="thread-name-img"> -->
-             <img src="<%= thread.other_user(current_user).avatar.url(:thumb) %>">
-           <!-- </div> -->
-         </td>
+           <img src="<%= thread.other_user(current_user).avatar.url(:thumb) %>">
 
-         <td class="thread-name">
-           <%= thread.other_user(current_user).fname.capitalize %>
-           <%= thread.other_user(current_user).lname.capitalize %>
-         </td>
+           <div class="message-details-small group">
+             <p>
+               <strong>
+                 <%= thread.other_user(current_user).fname.capitalize %>
+                 <%= thread.other_user(current_user).lname.capitalize %>
+               </strong>
+             </p>
+             <time>
+               <%= format_last_message(thread.latest_message(current_user).created_at) %>
+             </time>
+           </div>
 
-         <td class="latest-message-text">
-           <%= thread.latest_message(current_user).body %>
-         </td>
+           <p class="latest-message-text-short">
+             <%= thread.latest_message(current_user).body %>
+           </p>
 
-         <td>
-           <%= time_ago_in_words(thread.latest_message(current_user).created_at) %> ago
-         </td>
+
+         </li>
 
      <% end %>
 

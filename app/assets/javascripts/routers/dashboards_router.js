@@ -61,10 +61,16 @@ Dashboard.Routers.DashboardRouter = Backbone.Router.extend({
     // console.log(threads)
     // console.log(threads.get(1).messages());
 
-    var threadsView = new Dashboard.Views.Threads({
-      collection: Dashboard.threads
+    // var threadsView = new Dashboard.Views.Threads({
+    //   collection: Dashboard.threads
+    // })
+    // this.swapView(threadsView);
+
+    var messagesView = new Dashboard.Views.Messages({
+      collection: Dashboard.messages
     })
-    this.swapView(threadsView);
+    this.swapView(messagesView);
+
   },
 
   swapView: function (view) {
@@ -75,9 +81,3 @@ Dashboard.Routers.DashboardRouter = Backbone.Router.extend({
 
 });
 
-
-// <a href="/">Dashboard</a>
-// <a href="/inbox">Inbox</a>
-// <a href="/trips">Trips</a>
-// <a href="/listings">Listings</a>
-// <a href="/profile">Profile</a>

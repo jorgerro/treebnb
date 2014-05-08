@@ -1,16 +1,14 @@
 <script type="application/json" id="bootstrapped-threads">
-  <%= @threads.to_json(include: { messages: { include: :sender }}).html_safe %>
+
+  <%= @messages.to_json(include: :sender).html_safe %>
 </script>
+  <%#= @threads.to_json(include: { messages: { include: :sender }}).html_safe %>
   <%#= @threads.to_json(include: :messages).html_safe %>
 
 
-
-
-
-
+  <!-- // bootstrap that good good -->
 
 <script>
-  // bootstrap that good good
 
   var currentUserId = <%= @current_user.id %>
 

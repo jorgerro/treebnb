@@ -35,21 +35,92 @@ td.latest-message-text {
 }
 
 
-/* Messages View */
+/* Threads Side Bar */
 
 
 section.threads-sidebar {
   float:left;
-  width: 240px;
+  width: 250px;
   border-right: 1px solid #ccc;
-  border: 1px solid red;
+  background-color: #fff;
+  border: 1px solid #ccc;
 }
 
+ul.threads-side-list h3 {
+  margin: 10px;
+}
+
+li.thread {
+  background-color: #fff;
+  display: block;
+  padding: 5px;
+  border-top: 1px solid #ccc;
+}
+
+li.thread:hover {
+  background-color: #f7f7f7;
+  cursor: pointer;
+}
+
+li.thread i {
+  float: left;
+  margin-left: 5px;
+  margin-right: 10px;
+  margin-top: 13px;
+}
+
+li.thread img {
+  height: 40px;
+  width: auto;
+  float: left;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+div.message-details-small {
+  float: left;
+  width: 165px;
+}
+
+div.message-details-small strong {
+  float: left;
+  font-size: 14px;
+}
+
+div.message-details-small time {
+  float: right;
+  padding-top: 3px;
+  font-size: 12px;
+}
+
+p.latest-message-text-short {
+  margin-top: 5px;
+  float: left;
+  display: block;
+  text-align: left;
+  max-width: 165px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+
+ /* Messages Main View */
+
+ ul.thread-messages {
+   display:block;
+   width: 690px;
+   float: right;
+   max-height: 800px;
+   overflow: scroll;
+ /*  border: 1px solid red;*/
+ }
 
 div.thread-new-message {
   background-color: #71D7DC;
   border-radius: 5px;
-  width: 400px;
+  width: 445px;
   padding: 15px;
   margin-left: 0;
 }
@@ -65,22 +136,15 @@ div.thread-new-message input[type="submit"] {
   color: #fff;
 }
 
-ul.thread-messages {
-  display:block;
-  width: 700px;
-  float: right;
-  border: 1px solid red;
-}
-
 li.message {
   display:block;
   margin: 15px 0;
-  margin-left: 250px;
+  margin-left: 200px;
 }
 
 li.me {
   margin-left: 0;
-  max-width: 500px
+  max-width: 475px
 }
 
 li.message p.message-text {

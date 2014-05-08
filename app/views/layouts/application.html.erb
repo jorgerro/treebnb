@@ -25,6 +25,12 @@
           <ul class="user-controls">
 
             <li>
+              <a href="<%= user_dashboard_url(current_user) %>">
+                Dashboard
+              </a>
+            </li>
+
+            <li>
               <a href="<%= user_room_requests_url(current_user) %>">
                 My Trips
               </a>
@@ -106,7 +112,8 @@
         </li>
         /
         <li>
-          <a href="<%= new_session_url %>">
+          <!-- <a href="<%#= new_session_url %>"> -->
+          <a href="#" class="open-modal">
             sign in
           </a>
         </li>
@@ -118,6 +125,51 @@
 
 
 <body>
+
+
+<script>
+
+  window.openModal = function(event){
+    $("#modal").addClass("is-active");
+  }
+
+  window.closeModal = function(event){
+    $("#modal").removeClass("is-active");
+  }
+
+  $(document).ready(function(){
+    $("body").on("click", ".open-modal", window.openModal);
+    $("body").on("click", ".close-modal", window.closeModal);
+  });
+
+</script>
+
+
+  <section id="modal" class="modal">
+    <article class="modal-content">
+
+
+        <span class="modal-x close-modal">&times;</span>
+        <h2>Sign In</h2><br>
+
+        <form action="<%= session_url %>" method="post">
+
+          <%= auth_token %>
+
+          <label for="email">Email</label>
+          <input type="text" name="user[email]" value="" id="email">
+
+          <label for="password">Password</label>
+          <input type="password" name="user[password]" value="" id="password">
+        <br><br>
+          <p><input type="submit" value="Sign In"></p>
+        </form>
+
+    </article>
+
+    <div class="modal-screen close-modal"></div>
+  </section>
+
 
   <section class="main group">
 

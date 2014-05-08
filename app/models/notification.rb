@@ -28,6 +28,25 @@ class Notification < ActiveRecord::Base
     EVENTS[self.event_id]
   end
 
+  def icon
+    @icon = ""
+    case self.event_name
+    when :new_user_review
+      @icon = '<i class="fa fa-comment-o"></i>'
+    when :new_room_review
+      @icon = '<i class="fa fa-comment-o"></i>'
+    when :new_room_request
+      @icon = '<i class="fa fa-home"></i>'
+    when :request_approved
+      @icon = '<i class="fa fa-check-square-o"></i>'
+    when :request_denied
+      @icon = '<i class="fa fa-ban"></i>'
+    when :new_message
+      @icon = '<i class="fa fa-envelope-o"></i>'
+    end
+    return @icon
+  end
+
   def text
     message =
     case self.event_name

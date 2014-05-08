@@ -44,8 +44,9 @@ class MessageThread < ActiveRecord::Base
   end
 
   def latest_message(current_user)
-    @other_user = self.other_user(current_user)
-    self.messages.where("messages.sender_id = ?", @other_user.id).order("messages.created_at DESC").first
+    # @other_user = self.other_user(current_user)
+    # self.messages.where("messages.sender_id = ?", @other_user.id).order("messages.created_at DESC").first
+    self.messages.order("messages.created_at DESC").first
   end
 
 

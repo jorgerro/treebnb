@@ -5,8 +5,8 @@ class DashboardController < ApplicationController
 
   def root
     @user = User.find(params[:user_id])
-    # @threads = @user.threads.includes(:messages).all
-    @threads = @user.threads.includes(messages: :sender).all
+    @threads = @user.threads.includes(messages: :sender).where("messages.sender_id != :id", id: current_user.id).all
+    @messages = current_user.received_messages.unread.includes(:sender).all
     render :root
   end
 

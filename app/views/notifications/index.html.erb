@@ -19,8 +19,7 @@
 
   <thead>
     <tr>
-      <th></th>
-      <th>Notification</th>
+      <th colspan="3">Notification</th>
       <th>When</th>
     </tr>
   </thead>
@@ -35,6 +34,10 @@
             <td class="status-symbol">
               <%= notification.is_read == true ?
               " " : '<i class="fa fa-star"></i>'.html_safe %>
+            </td>
+
+            <td>
+              <%= notification.icon.html_safe %>
             </td>
 
             <td class="notification-text"><%= notification.text %></td>

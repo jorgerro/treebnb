@@ -1,9 +1,12 @@
 
 class Message < ActiveRecord::Base
 
-  before_validation :ensure_not_read, :assign_thread_id
+  before_validation :ensure_thread_id
   validates :sender_id, :recipient_id, :body, presence: true
-  after_save :new_message_notification
+  before_create :ensure_not_read
+  after_create :new_message_notification
+
+  scope :unread, -> { where( is_read: false ) }
 
   belongs_to(
     :sender,
@@ -38,9 +41,11 @@ class Message < ActiveRecord::Base
       self.thread_id = @thread.id
     end
 
-    def assign_thread_id
-      @thread = MessageThread.find_or_create_by_user_ids(self.sender_id, self.recipient_id)
-      self.thread_id = @thread.id
+    def ensure_thread_id
+      unless self.thread_id
+        @thread = MessageThread.find_or_create_by_user_ids(self.sender_id, self.recipient_id)
+        self.thread_id = @thread.id
+      end
     end
 
 end

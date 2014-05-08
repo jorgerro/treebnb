@@ -3,7 +3,6 @@
    $(document).ready(function () {
 
      $('tr.thread').on('click', function (event) {
-       console.log(event.currentTarget)
        $tr = $(event.currentTarget)
        window.location.href = $tr.attr("thread-url")
      });
@@ -19,8 +18,7 @@
 
   <thead>
     <tr>
-      <th></th>
-      <th colspan="2">Thread</th>
+      <th colspan="3">Thread</th>
       <th>Latest Message</th>
       <th>When</th>
     </tr>
@@ -50,11 +48,15 @@
         </td>
 
         <td class="latest-message-text">
-          <%= thread.latest_message(current_user).body %>
+          <% if thread.latest_message(current_user) %>
+            <%= thread.latest_message(current_user).body %>
+          <% end %>
         </td>
 
         <td>
-          <%= time_ago_in_words(thread.latest_message(current_user).created_at) %> ago
+          <% if thread.latest_message(current_user) %>
+            <%= time_ago_in_words(thread.latest_message(current_user).created_at) %> ago
+          <% end %>
         </td>
 
     <% end %>
