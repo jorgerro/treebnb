@@ -1,0 +1,33 @@
+
+table.notifications {
+  width: 800px;
+  float: left;
+}
+
+tr.notification {
+  background-color: #fff;
+}
+
+tr.notification:hover {
+  background-color: #f7f7f7;
+  cursor: pointer;
+}
+
+td.status-symbol {
+  text-align: center;
+}
+
+td.notification-text {
+  text-align: left;
+}
+
+td.notification-time {
+  text-align: left;
+}
+
+div.notification-page {
+  float: left;
+  padding-top: 10px;
+  padding-left: 50px;
+  width: 400px;
+}

@@ -1,22 +1,52 @@
+<script>
+
+   $(document).ready(function () {
+
+     $('tr.notification').on('click', function (event) {
+       console.log(event.currentTarget)
+       $tr = $(event.currentTarget)
+       window.location.href = $tr.attr("notification-url")
+     });
+
+   });
+
+</script>
+
 
 <h2>All Notifications:</h2>
-<hr>
-<br>
-<ul id="notifications-index">
-  <% if @notifications %>
+
+<table class="notifications">
+
+  <thead>
+    <tr>
+      <th></th>
+      <th>Notification</th>
+      <th>When</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <% if @notifications %>
       <% @notifications.each do |notification| %>
 
-      <li class="notification">
-          <a href="<%= notification_url(notification) %>">
-            <%= notification.is_read == true ?
-            "&Oslash".html_safe : "O".html_safe %>
-            <%= notification.text %>
-          </a>
-      </li>
+        <tr class="notification" notification-url="<%= notification_url(notification) %>" >
+
+            <td class="status-symbol">
+              <%= notification.is_read == true ?
+              " " : '<i class="fa fa-star"></i>'.html_safe %>
+            </td>
+
+            <td class="notification-text"><%= notification.text %></td>
+
+            <td class="notification-time"><%= time_ago_in_words(notification.created_at) %> ago</td>
+
+      <% end %>
     <% end %>
-  <% end %>
-</ul>
+
+  </tbody>
+
+</table>
 
 <br>
-<h4 class="note-page"><%= paginate @notifications %></h4>
-
+<div class="notification-page"><%= paginate @notifications %></div>

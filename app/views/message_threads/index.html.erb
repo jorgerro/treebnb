@@ -1,17 +1,44 @@
+<script>
+
+   $(document).ready(function () {
+
+     $('tr.thread').on('click', function (event) {
+       console.log(event.currentTarget)
+       $tr = $(event.currentTarget)
+       window.location.href = $tr.attr("thread-url")
+     });
+
+   });
+
+</script>
+
+
 <h2>Your Threads</h2>
+
+<table class="notifications">
+
+  <thead>
+    <tr>
+      <th></th>
+      <th>Thread</th>
+    </tr>
+  </thead>
+
+  <tbody>
 
  <% unless @threads.empty?  %>
 
     <% @threads.each do |thread| %>
 
-    <h3>
-      <a href="<%= message_thread_url(thread) %>">
-        <!-- <%# if thread.has_unread_messages? %>
-        <strong>!</strong>
-        <%# end %> -->
+      <tr class="thread" thread-url="<%= message_thread_url(thread) %>" >
+        <td class="status-symbol">
+          <%= thread.has_unread_messages? ?
+          " " : '<i class="fa fa-star"></i>'.html_safe %>
+        </td>
+
+        <td class="thread-name">
         <%= "#{ thread.user_one.fname.capitalize } and #{ thread.user_two.fname.capitalize }" %>
-        </a>
-    </h3>
+        </td>
 
     <% end %>
 
@@ -20,3 +47,9 @@
  <% else %>
    <h3>You don't have any messages right now.</h3>
  <% end %>
+
+  </tbody>
+</table>
+
+
+     <!-- Could add something about the latest message (text and time?) <td class="notification-time"><%#= time_ago_in_words(notification.created_at) %> ago</td> -->

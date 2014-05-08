@@ -10,10 +10,10 @@
 
 
 <h3 class="thread">You and <%= @other_user.fname %> <%= @other_user.lname %></h3>
-  <span>
-  <img src="<%= current_user.avatar.url(:thumb) %>" class="avatar-thread">
-  <img src="<%= @other_user.avatar.url(:thumb) %>" class="avatar-thread">
-</span>
+  <!-- <span>
+  <img src="<%#= current_user.avatar.url(:thumb) %>" class="avatar-thread">
+  <img src="<%#= @other_user.avatar.url(:thumb) %>" class="avatar-thread">
+</span> -->
 
 <div class="thread-new-message">
   <%= render partial: "messages/form", locals: { recipient_id: @other_user.id } %>
@@ -42,23 +42,3 @@
     <% end %>
   </ul>
 <% end %>
-
-
-<!-- /*<style>
-
-.current-user-messages {
-  margin-left: 50px;
-}
-
-</style>
-
-<script>
-
-$(document).ready(function () {
-
-  $userMessages = $(".message").find(li[data-user-id="<%= current_user.id %>"])
-  $userMessages.addClass("current-user-messages")
-
-})
-
-</script>*/ -->

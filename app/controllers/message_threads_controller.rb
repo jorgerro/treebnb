@@ -15,6 +15,7 @@ class MessageThreadsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
     @threads = @user.threads
+
     if request.xhr?
       render json: @threads
     else
