@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
       MessageThread.where("user_one_id = :id OR user_two_id = :id", id: self.id)
     end
 
-  has_attached_file :avatar, styles: { thumb: "100x100!", profile: "230x230!" },
+  has_attached_file :avatar, styles: { thumb: "100x100#", profile: "230x230#" },
   default_url: "https://s3.amazonaws.com/freebnb_dev/users/avatars/000/000/default_avatar/default_avatar.jpg"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 

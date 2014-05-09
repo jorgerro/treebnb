@@ -32,7 +32,7 @@ class Notification < ActiveRecord::Base
     @icon = ""
     case self.event_name
     when :new_user_review
-      @icon = '<i class="fa fa-comment-o"></i>'
+      @icon = '<i class="fa fa-comments-o"></i>'
     when :new_room_review
       @icon = '<i class="fa fa-comment-o"></i>'
     when :new_room_request
@@ -56,19 +56,19 @@ class Notification < ActiveRecord::Base
       when :new_room_review
         @review = self.notifiable
         @room = @review.reviewable
-        "#{ @review.author.fname } #{ @review.author.lname } reviewed #{ MAKE_NICE[@room.home_type] } in #{ MAKE_NICE[@room.address_city] }"
+        "#{ @review.author.fname } #{ @review.author.lname } reviewed #{ @room.display_title }"
       when :new_room_request
         @request = self.notifiable
         @room = @request.room
-        "#{ @request.guest.fname } #{ @request.guest.lname } has requested your listing: #{ @room.home_type } in #{ @room.address_city }"
+        "#{ @request.guest.fname } #{ @request.guest.lname } has requested your listing: #{ @room.display_title }"
       when :request_approved
         @request = self.notifiable
         @room = @request.room
-        "Your request to stay at #{ @room.home_type } in #{ @room.address_city } has been accepted."
+        "Your request to stay at #{ @room.display_title } has been accepted."
       when :request_denied
         @request = self.notifiable
         @room = @request.room
-        "Your request to stay at #{ @room.home_type } in #{ @room.address_city } has been denied."
+        "Your request to stay at #{ @room.display_title } has been denied."
       when :new_message
         @message = self.notifiable
         @sender = @message.sender

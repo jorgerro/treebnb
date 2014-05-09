@@ -25,23 +25,22 @@ class Room < ActiveRecord::Base
     primary_key: :id,
     dependent: :destroy  )
 
-    has_many :availabilities, inverse_of: :room, dependent: :destroy
+  has_many :availabilities, inverse_of: :room, dependent: :destroy
 
-    has_many :pictures, inverse_of: :room, dependent: :destroy
+  has_many :pictures, inverse_of: :room, dependent: :destroy
 
-    def approved_requests
-      self.room_requests.where(status: "APPROVED")
-    end
+  def approved_requests
+    self.room_requests.where(status: "APPROVED")
+  end
 
+  def full_address
+    "#{ self.street_address }, #{ self.address_city }, #{ self.address_zip_code } #{ self.address_country }"
+  end
 
-    def full_address
-      "#{ self.street_address }, #{ self.address_city }, #{ self.address_zip_code } #{ self.address_country }"
-    end
-
-    def display_title
-      (self.title? && !self.title.empty?) ? self.title :
-      "#{ ActiveSupport::Inflector.titleize(self.home_type) } in #{ self.address_city }"
-    end
+  def display_title
+    (self.title? && !self.title.empty?) ? self.title :
+    "#{ ActiveSupport::Inflector.titleize(self.home_type) } in #{ self.address_city }"
+  end
 
 
 end
