@@ -30,6 +30,24 @@ section.notices p {
 
 /* Home page */
 
+div.front-page-img {
+  position:relative;
+  bottom:0;
+  width:100%;
+  height: 500px;
+  z-index:0;
+  margin-bottom: 20px;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+div.front-page-img img {
+  display: block;
+  height: auto;
+  width: 950px;
+}
+
+
 section.home-page-articles {
 /*  width: 950px;*/
   margin: auto;
@@ -64,10 +82,10 @@ section.main {
 
 
 div.main-search-bar {
-  left: 75px;
-  top: 170px;
+  left: 90px;
+  top: 230px;
   position: absolute;
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0,0,0,0.5);
   border-radius: 5px;
   padding: 40px 20px 20px 20px;
   z-index: 1;
