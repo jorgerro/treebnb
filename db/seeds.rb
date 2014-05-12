@@ -12,23 +12,6 @@ require "open-uri"
 # num_bathrooms: Faker::Number.number(1), num_bedrooms: Faker::Number.number(1),
 # price_per_night: Faker::Number.number(2), address_city: Faker::Address.city)
 
-image_urls = [
-  "http://www.boredpanda.com/blog/wp-content/plugins/copyrightWrapper/watermark.php?display=true&image=http://bp.uuuploads.com/amazing-treehouses/amazing-treehouses-10.jpg",
-  "http://www.boredpanda.com/blog/wp-content/plugins/copyrightWrapper/watermark.php?display=true&image=http://bp3.uuuploads.com/amazing-treehouses/amazing-treehouses-16.jpg",
-  "http://www.boredpanda.com/blog/wp-content/plugins/copyrightWrapper/watermark.php?display=true&image=http://bp.uuuploads.com/amazing-treehouses/amazing-treehouses-7.jpg",
-  "http://www.boredpanda.com/blog/wp-content/plugins/copyrightWrapper/watermark.php?display=true&image=http://bp3.uuuploads.com/amazing-treehouses/amazing-treehouses-6.jpg",
-  "http://www.boredpanda.com/blog/wp-content/plugins/copyrightWrapper/watermark.php?display=true&image=http://bp2.uuuploads.com/amazing-treehouses/amazing-treehouses-5.jpg",
-  "http://www.boredpanda.com/blog/wp-content/plugins/copyrightWrapper/watermark.php?display=true&image=http://bp.uuuploads.com/amazing-treehouses/amazing-treehouses-3.jpg",
-  "http://www.boredpanda.com/blog/wp-content/plugins/copyrightWrapper/watermark.php?display=true&image=http://bp3.uuuploads.com/amazing-treehouses/amazing-treehouses-13.jpg",
-  "https://s3.amazonaws.com/freebnb_dev/resized_treehouses/amazing-treehouses-17.jpg",
-  "https://s3.amazonaws.com/freebnb_dev/resized_treehouses/amazing-treehouses-2.jpg",
-  "https://s3.amazonaws.com/freebnb_dev/resized_treehouses/amazing-treehouses-4.jpg",
-  "http://follyfancier.files.wordpress.com/2012/03/fujimori-treehouse.jpg",
-  "http://inspir3d.net/wp-content/uploads/2011/11/tree10.jpg",
-  "http://www.treehotel.se/_files/_filhanterare/Bildspel_i_sidan/Stora/Cabin//182_cabin_exterior_7a.jpg"
-]
-
-
 room_types = ["shared_room", "private_room", "entire_space"]
 
 home_types = ["tree yurt", "tree camp", "tree home", "tree chalet", "tree cottage", "tree hut", "tree lodge", "tree hovel", "tree house"]
@@ -194,8 +177,8 @@ room_attrs = [
 
   l = u.listings.create!(room_attrs[x])
 
-  l.availabilities.create!(start_date: "2014-05-01", end_date: "2014-05-08")
-  l.availabilities.create!(start_date: "2014-05-17", end_date: "2014-05-24")
+  l.availabilities.create!(start_date: "2014-05-01", end_date: "2014-05-15")
+  l.availabilities.create!(start_date: "2014-05-17", end_date: "2014-06-30")
 
   l.pictures.create!(image: File.open(Rails.root.join("seed_images", "treehouse#{x}-a.jpg")))
   if Rails.root.join("seed_images", "treehouse#{x}-b.jpg").exist?
