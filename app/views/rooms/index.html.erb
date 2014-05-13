@@ -1,8 +1,9 @@
-<h2></h2>
 
+<div id="front-page-tagline">
   <h1>Find a place to stay. In a tree.</h1>
-<div class="main-search-bar">
-  <%= render "pages/search" %>
+  <div class="main-search-bar">
+    <%= render "pages/search" %>
+  </div>
 </div>
 
 
@@ -65,14 +66,26 @@
   </script> -->
 
 <div class="front-page-img">
-  <img src="http://e.excessreport.com/wp-content/uploads/2012/07/mirror_cube_exterior_22.jpg">
+  <img src="https://s3.amazonaws.com/freebnb_dev/front_page/front-page-mirror-house.jpg">
 </div>
 
 
-
+<h2 class="featured">Featured Tree Houses</h2>
+<div class="featured-subtitle">
+  Not sure where to start? Check out these featured spaces!
+</div>
 
 <section class="home-page-articles group">
   <article class="home-page group">
+
+    <a href="<%= room_url(@feature_one) %>">
+      <img src="<%= @feature_one.pictures.first.image(:profile) %>">
+      <div class="featured-room-title">
+        <%= @feature_one.display_title %>
+      </div>
+    </a>
+
+
     <h3 class="text-special">Travel</h3>
     <p>
       From apartments and rooms to treehouses and boats: stay in unique spaces in 192 countries.
@@ -80,6 +93,15 @@
   </article>
 
   <article class="home-page group">
+
+    <a href="<%= room_url(@feature_two) %>">
+      <img src="<%= @feature_two.pictures.first.image(:profile) %>">
+      <div class="featured-room-title" id="feature-title-two">
+        <%= @feature_two.display_title %>
+      </div>
+    </a>
+
+
     <h3 class="text-special">Host</h3>
     <p>
       Renting out your unused space could pay your bills or fund your next vacation.
@@ -87,6 +109,15 @@
   </article>
 
   <article class="home-page group">
+
+    <a href="<%= room_url(@feature_three) %>">
+      <img src="<%= @feature_three.pictures.first.image(:profile) %>">
+      <div class="featured-room-title" id="feature-title-three">
+        <%= @feature_three.display_title %>
+      </div>
+    </a>
+
+
     <h3 class="text-special">Travel and Safety</h3>
     <p>
       From Verified ID to our worldwide customer support team, we've got your back.

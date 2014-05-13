@@ -183,7 +183,9 @@
 
 
   <% if signed_in? %>
-  <%= render "reviews/form", reviewable_type: "Room", reviewable_id: @room.id %>
+    <%= render "reviews/form", reviewable_type: "Room", reviewable_id: @room.id %>
+  <% else %>
+    <h3>Sign in to write a review</h3>
   <% end %>
 
   <% unless @reviews.empty? %>
@@ -198,7 +200,7 @@
           <header class="group">
 
             <div class="review-thumb">
-              <a href="#">
+              <a href="<%= user_url(review.author) %>">
                 <img src="<%= review.author.avatar.url %>" width="54" height="54">
               </a>
             </div>

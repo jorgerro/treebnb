@@ -18,6 +18,10 @@ class RoomsController < ApplicationController
       else
         @listings = Room.all
       end
+      @feature_one = Room.find(1)
+      @feature_two = Room.find(2)
+      @feature_three = Room.find(3)
+
       render :index
     end
   end

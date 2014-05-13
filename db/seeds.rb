@@ -205,8 +205,11 @@ l.pictures.create!(image: File.open(Rails.root.join("seed_images", "treehouse35-
 Message.create!(sender_id: 1, recipient_id: 2, body: "Welcome to treebnb! Thanks for visiting! Feel free to poke around the
 site a bit. I'd recommend exploring the links in the nav bar up top and check out the all Backbone.js Dashboard feature. Enjoy! :)", is_read: false)
 
-Review.create!(author_id: 1, body: lorem, reviewable_type: "Room", reviewable_id: 2)
+Review.create!(author_id: 1, body: "Demo was such a great host! Very considerate and friendly, we were even introduced to some new friends at a
+big party towards the end of our stay. Good times!", reviewable_type: "User", reviewable_id: 2)
+Review.create!(author_id: 2, body: lorem, reviewable_type: "User", reviewable_id: 1)
 
+Review.create!(author_id: 1, body: lorem, reviewable_type: "Room", reviewable_id: 2)
 Review.create!(author_id: 1, body: "Had a fanstastic stay at Bright Tree Village. I thought it would be a bit too cozy at first,
 but it turned out to be a blast! Will definitely be back.", reviewable_type: "Room", reviewable_id: 2)
 

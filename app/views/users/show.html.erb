@@ -10,6 +10,8 @@
     <div class="message-form">
       <%= render partial: "messages/form", locals: { recipient_id: @user.id } %>
     </div>
+  <% else %>
+    <h3>Sign in to send <%= @user.fname %> a message.</h3>
   <% end %>
 </section>
 
@@ -28,7 +30,7 @@
   </article>
 
   <% if signed_in? %>
-  <%= render "reviews/form", reviewable_type: "User", reviewable_id: @user.id %>
+    <%= render "reviews/form", reviewable_type: "User", reviewable_id: @user.id %>
   <% end %>
 
 
@@ -44,12 +46,12 @@
           <header class="group">
 
             <div class="review-thumb">
-              <a href="#">
+              <a href="<%= user_url(review.author) %>">
                 <img src="<%= review.author.avatar.url %>" width="54" height="54">
               </a>
             </div>
             <div class="review-info">
-              <h4><a href="#"><%= "#{review.author.fname} #{review.author.lname}" %></a></h4>
+              <h4><a href="<%= user_url(review.author) %>"><%= "#{review.author.fname} #{review.author.lname}" %></a></h4>
               <time><%= "#{time_ago_in_words(review.created_at)} ago." %></time>
             </div>
 
@@ -66,6 +68,10 @@
       <% end %>
 
     </section>
+
+  <% else %>
+    <br>
+    <h3>There are currently no reviews for this user.</h3>
 
   <% end %>
 
