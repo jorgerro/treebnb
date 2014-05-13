@@ -17,12 +17,14 @@ class RoomRequest < ActiveRecord::Base
     :guest,
     class_name: "User",
     foreign_key: :guest_id,
+    inverse_of: :requests_to_stay,
     primary_key: :id  )
 
   belongs_to(
     :room,
     class_name: "Room",
     foreign_key: :room_id,
+    inverse_of: :room_requests,
     primary_key: :id  )
 
   has_many :notifications, as: :notifiable, dependent: :destroy

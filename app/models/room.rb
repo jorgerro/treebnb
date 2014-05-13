@@ -16,6 +16,7 @@ class Room < ActiveRecord::Base
     :owner,
     class_name: "User",
     foreign_key: :owner_id,
+    inverse_of: :listings,
     primary_key: :id  )
 
   has_many(
@@ -23,6 +24,7 @@ class Room < ActiveRecord::Base
     class_name: "RoomRequest",
     foreign_key: :room_id,
     primary_key: :id,
+    inverse_of: :room,
     dependent: :destroy  )
 
   has_many :availabilities, inverse_of: :room, dependent: :destroy

@@ -112,7 +112,7 @@
         </li>
         /
         <li>
-          <!-- <a href="<%#= new_session_url %>"> -->
+          <a href="<%= new_session_url %>">
           <a href="#" class="open-modal">
             sign in
           </a>
@@ -130,6 +130,7 @@
 <script>
 
   window.openModal = function(event){
+    event.preventDefault();
     $("#modal").addClass("is-active");
   }
 
@@ -140,6 +141,19 @@
   $(document).ready(function(){
     $("body").on("click", ".open-modal", window.openModal);
     $("body").on("click", ".close-modal", window.closeModal);
+
+    $('#demo-login').click(function (event) {
+      event.preventDefault();
+      var $tar = $(event.currentTarget);
+      var $form = $tar.parent();
+
+      var $email = $form.find('#email')
+      $email.val("demo@example.com")
+
+      var $pw = $form.find('#password')
+      $pw.val("secret")
+
+    });
   });
 
 </script>
@@ -162,7 +176,8 @@
           <label for="password">Password</label>
           <input type="password" name="user[password]" value="" id="password">
         <br><br>
-          <p><input type="submit" value="Sign In"></p>
+          <input type="submit" value="Sign In">
+          <button id="demo-login">Demo</button>
         </form>
 
     </article>

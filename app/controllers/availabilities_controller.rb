@@ -13,7 +13,7 @@ class AvailabilitiesController < ApplicationController
     if @availability.save
       redirect_to @availability.room
     else
-      flash.now[:errors] = @availability.errors.full_messsages
+      flash.now[:errors] = @availability.errors.full_messages
       render :new
     end
   end

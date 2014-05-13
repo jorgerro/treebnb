@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
     class_name: "Room",
     foreign_key: :owner_id,
     primary_key: :id,
+    inverse_of: :owner,
     dependent: :destroy  )
 
   has_many(
@@ -24,6 +25,7 @@ class User < ActiveRecord::Base
     class_name: "RoomRequest",
     foreign_key: :guest_id,
     primary_key: :id,
+    inverse_of: :guest,
     dependent: :destroy  )
 
   has_many(
@@ -31,9 +33,10 @@ class User < ActiveRecord::Base
     class_name: "Review",
     foreign_key: :author_id,
     primary_key: :id,
+    inverse_of: :author,
     dependent: :destroy  )
 
-  has_many :room_requests, through: :listings, source: :room_requests
+  has_many :room_requests, through: :listings, source: :room_requests, dependent: :destroy
 
   has_many(
     :notifications,
@@ -45,13 +48,17 @@ class User < ActiveRecord::Base
     :sent_messages,
     class_name: "Message",
     foreign_key: :sender_id,
-    primary_key: :id  )
+    primary_key: :id,
+    inverse_of: :sender,
+    dependent: :destroy  )
 
   has_many(
     :received_messages,
     class_name: "Message",
     foreign_key: :recipient_id,
-    primary_key: :id  )
+    primary_key: :id,
+    inverse_of: :recipient,
+    dependent: :destroy  )
 
     def threads
       MessageThread.where("user_one_id = :id OR user_two_id = :id", id: self.id)

@@ -1,7 +1,8 @@
   /* RESETS */
 
   body, h1, h2, h3, h4, a, nav, small, footer, figure,
-  ul, li, form, p, label, section, article {
+  ul, li, form, p, label, section, article
+   {
     padding: 0;
     margin: 0;
     border: 0;
@@ -13,6 +14,7 @@
   input[type="text"],
   input[type="password"],
   input[type="submit"],
+  input[type="email"],
   input[type="date"],
   select,
   button,

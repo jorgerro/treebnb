@@ -115,16 +115,16 @@
     <!-- photo carousel -->
 
 
-  <% if !Picture.all.empty? %>
+  <% unless @room.pictures.empty? %>
     <div id="carrousel">
-       <ul class="group">
-    <% Picture.all.each do |picture| %>
-      <li>
-      <figure class="room-show-image">
-        <img src="<%= picture.image.url(:profile) %>">
-      </figure>
-      </li>
-    <% end %>
+       <ul>    <!-- <ul class="group"> -->
+        <% @room.pictures.each do |picture| %>
+          <li>
+            <figure class="room-show-image">
+              <img src="<%= picture.image.url(:profile) %>">
+            </figure>
+          </li>
+        <% end %>
       </ul>
     </div>
 

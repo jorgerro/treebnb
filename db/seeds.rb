@@ -165,11 +165,12 @@ room_attrs = [
 
 ]
 
-35.times do |x|
+1.times do |x|
 
   if x == 0
     u = User.create!(fname: "Jorge", lname: "Rodriguez",
-      email: "jorge@example.com", password: "secret", description: "A pretty chill dude.")
+      email: "jorge@example.com", password: "secret", description: "A pretty chill dude.",
+      avatar: File.open(Rails.root.join("seed_images", "jorge.jpg")))
   else
     u = User.create!(fname: Faker::Name.first_name, lname: Faker::Name.last_name,
     email: Faker::Internet.safe_email, password: "secret", description: lorem)
@@ -188,22 +189,32 @@ room_attrs = [
 end
 
 
-# u = User.create!(fname: "Jorge", lname: "Rodriguez",
-#   email: "jorge@example.com", password: "secret", description: "A pretty chill dude.")
-#
-# l = u.listings.create!(basic_attrs(room_types, home_types, lorem).merge({ address_region: "north_america",
-#    address_city: "Los Angeles",  address_country: "United States" }))
-#
-# l.availabilities.create!(start_date: "2014-05-01", end_date: "2014-05-08")
-# l.availabilities.create!(start_date: "2014-05-17", end_date: "2014-05-24")
-#
-#
-# l.pictures.create!(image: File.open(Rails.root.join("seed_images", "treehouse17-a.jpg")))
-# if Rails.root.join("seed_images", "treehouse17-b.jpg").exist?
-#   l.pictures.create!(image: File.open(Rails.root.join("seed_images", "treehouse17-b.jpg")))
-# end
+u = User.create!(fname: "Demo", lname: "User",
+  email: "demo@example.com", password: "secret", description: "Excited to be part of the treebnb community!",
+  avatar: File.open(Rails.root.join("seed_images", "ewok.jpg")))
 
-# l.pictures.create!(image: File.open(Rails.root.join("seed_images", "treehouse0-b.jpg")))
+l = u.listings.create!(basic_attrs(room_types, home_types, lorem).merge({ title: "Bright Tree Village", address_region: "hawaii",
+   address_city: "Mauna Loa",  address_country: "United States" }))
 
+p l.availabilities.create!(start_date: "2014-05-01", end_date: "2014-05-15")
+p l.availabilities.create!(start_date: "2014-05-17", end_date: "2014-06-30")
 
-  # File.open(Rails.root.join("seed_images", "treehouse17.jpg"))
+l.pictures.create!(image: File.open(Rails.root.join("seed_images", "treehouse35-a.jpg")))
+l.pictures.create!(image: File.open(Rails.root.join("seed_images", "treehouse35-b.jpg")))
+
+Message.create!(sender_id: 1, recipient_id: 2, body: "Welcome to treebnb! Thanks for visiting! Feel free to poke around the
+site a bit. I'd recommend exploring the links in the nav bar up top and check out the all Backbone.js Dashboard feature. Enjoy! :)", is_read: false)
+
+Review.create!(author_id: 1, body: lorem, reviewable_type: "Room", reviewable_id: 2)
+
+Review.create!(author_id: 1, body: "Had a fanstastic stay at Bright Tree Village. I thought it would be a bit too cozy at first,
+but it turned out to be a blast! Will definitely be back.", reviewable_type: "Room", reviewable_id: 2)
+
+RoomRequest.create!(guest_id: 2, room_id: 1, start_date: "2014-06-02", end_date: "2014-06-08", num_guests: 2, status: "DENIED")
+RoomRequest.create!(guest_id: 2, room_id: 1, start_date: "2014-05-20", end_date: "2014-05-27", num_guests: 2, status: "CANCELLED")
+RoomRequest.create!(guest_id: 2, room_id: 1, start_date: "2014-05-10", end_date: "2014-05-12", num_guests: 2, status: "PENDING")
+RoomRequest.create!(guest_id: 2, room_id: 1, start_date: "2014-05-03", end_date: "2014-05-08", num_guests: 2, status: "APPROVED")
+
+RoomRequest.create!(guest_id: 1, room_id: 2, start_date: "2014-05-03", end_date: "2014-05-08", num_guests: 2, status: "PENDING")
+RoomRequest.create!(guest_id: 1, room_id: 2, start_date: "2014-05-20", end_date: "2014-05-27", num_guests: 2, status: "PENDING")
+RoomRequest.create!(guest_id: 1, room_id: 2, start_date: "2014-06-02", end_date: "2014-06-05", num_guests: 2, status: "PENDING")

@@ -203,7 +203,7 @@
               </a>
             </div>
             <div class="review-info">
-              <h4><a href="#"><%= "#{review.author.fname} #{review.author.lname}" %></a></h4>
+              <h4><a href="<%= user_url(review.author) %>"><%= "#{review.author.fname} #{review.author.lname}" %></a></h4>
               <time><%= "#{time_ago_in_words(review.created_at)} ago." %></time>
             </div>
 
