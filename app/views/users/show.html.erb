@@ -11,7 +11,7 @@
       <%= render partial: "messages/form", locals: { recipient_id: @user.id } %>
     </div>
   <% else %>
-    <h3>Sign in to send <%= @user.fname %> a message.</h3>
+    <p class="sign-in-prompt"><a class="open-modal" href="<%= new_session_url %>">Sign in</a> to send <%= @user.fname %> a message or write a review.<p>
   <% end %>
 </section>
 

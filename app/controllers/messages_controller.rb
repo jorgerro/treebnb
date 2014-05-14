@@ -5,6 +5,7 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
 
     if @message.save
+      flash[:notice] = ["Your message to #{ @message.recipient.fname } has been sent."]
       redirect_to :back
     else
       flash[:errors] = @message.errors.full_messages

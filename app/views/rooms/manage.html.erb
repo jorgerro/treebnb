@@ -80,6 +80,28 @@
 
   $(document).ready(function(){
     Carrousel.init();
+
+
+    $('#delete-room-link').click(function (event) {
+      if (confirm("Are you sure you want to delete this listing?")) {
+        event.preventDefault();
+        alert("ajax")
+        // $.ajax({
+        //   url: "<%= room_url(@room) %>",
+        //   type: "delete",
+        //   success: function () {
+        //     window.location.href = <%= user_rooms_url(current_user) %>
+        //     alert("deleted")
+        //   }
+        });
+      } else {
+        event.preventDefault();
+        alert("not deleted!")
+      };
+    })
+
+
+
   });
 
 </script>
@@ -103,10 +125,9 @@
 <div class="manage-buttons">
 
   <% if signed_in? && current_user.id == @room.owner_id %>
-      <h3><a href="<%= new_room_availability_url(@room) %>">Add Availablility</a></h3>
-      <h3><a href="<%= edit_room_url(@room) %>">Edit Listing</a></h3>
-      <h3><a href="<%= room_url(@room) %>">View Listing</a></h3>
-      <h3 class="scary"><a href="<%= room_url(@room) %>">Remove Listing</a></h3>
+      <a href="<%= room_url(@room) %>"><i class="fa fa-home"></i> View</a>
+      <a href="<%= edit_room_url(@room) %>"><i class="fa fa-pencil-square-o"></i> Edit</a>
+      <a href="<%= new_room_availability_url(@room) %>"><i class="fa fa-calendar"></i> Add Availability</a>
   <% end %>
 
 </div>
@@ -148,7 +169,7 @@
 
   <!-- Room Information -->
 
-  <section class="room-info group">
+<section class="room-info group">
 
   <h3>The space</h3>
   <p><%= @room.description %></p>
@@ -186,6 +207,8 @@
 
   </section>
 
+  <h3 class="scary"><a href="<%= room_url(@room) %>" id="delete-room-link"><i class="fa fa-exclamation-triangle"></i> Remove Listing</a>
+
 </section>
 
 
@@ -199,16 +222,15 @@
   <%= render "layouts/calendar", room: @room  %>
 
     <% if @room.availabilities.empty? %>
-
       <h3>You haven't made this space available yet.</h3>
-
-    <% else %>
-
     <% end %>
 
 
+<a href="<%= new_room_availability_url(@room) %>"><i class="fa fa-calendar"></i> Add Availability</a>
+
+
   <% unless @requests.empty? %>
-    <h2 id="req-to-stay">Requests to stay here:</h2>
+    <h2 id="req-to-stay">Current Requests:</h2>
 
     <section class="manage-requests">
 

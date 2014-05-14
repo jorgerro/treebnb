@@ -20,7 +20,7 @@
         <li id="controls">
           <a href="<%= user_url(current_user) %>">
             <img src="<%= current_user.avatar.url(:thumb) %>" id="user-nav-img">
-            <%= current_user.fname %>
+            <%= current_user.fname %> <i class="fa fa-caret-down"></i>
           </a>
           <ul class="user-controls">
 
@@ -112,8 +112,7 @@
         </li>
         /
         <li>
-          <a href="<%= new_session_url %>">
-          <a href="#" class="open-modal">
+          <a class="open-modal" href="<%= new_session_url %>">
             sign in
           </a>
         </li>

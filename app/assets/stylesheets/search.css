@@ -91,6 +91,7 @@
     height: 40px;
     width: auto;
     border-radius: 5px;
+    margin-right: 5px;
   }
 
   article.room-info-small {
@@ -100,4 +101,8 @@
   h4.paginator {
     margin-left: 620px;
     padding-top: 30px;
+  }
+
+  a[data-room-id="1"] {
+    color: #fff;
   }

@@ -8,29 +8,45 @@
   <label>
     <select name="room[address_region]">
       <option value="">Choose a Region</option>
-      <option value="north_america">North America</option>
-      <option value="hawaii">Hawaii</option>
-      <option value="europe">Europe</option>
-      <option value="east_asia">East Asia</option>
-      <option value="south_america">South America</option>
+
+      <option value="north_america"
+        <%= "selected" if @room.address_region == "north_america" %> >
+        North America
+      </option>
+      <option value="hawaii"
+        <%= "selected" if @room.address_region == "hawaii" %> >
+        Hawaii
+      </option>
+      <option value="europe"
+        <%= "selected" if @room.address_region == "europe" %> >
+        Europe
+      </option>
+      <option value="east_asia"
+        <%= "selected" if @room.address_region == "east_asia" %> >
+        East Asia
+      </option>
+      <option value="south_america"
+        <%= "selected" if @room.address_region == "south_america" %> >
+        South America
+      </option>
     </select>
+
   </label>
 
   <br>
 
-  <label for="city">City</label>
-  <input type="text" name="room[address_city]" value="" id="city">
-
+  <label for="country">Country</label>
+  <input type="text" name="room[address_country]" value="<%= @room.address_country %>" id="country">
 
 <br><br>
 
-  <label for="country">Country</label>
-  <input type="text" name="room[address_country]" value="" id="country">
+  <label for="city">City</label>
+  <input type="text" name="room[address_city]" value="<%= @room.address_city %>" id="city">
 
 <br><br>
 
   <label for="home_type">Home Type</label>
-  <input type="text" name="room[home_type]" value="" id="home_type">
+  <input type="text" name="room[home_type]" value="<%= @room.home_type %>" id="home_type">
 
 
 <br><br>
@@ -38,15 +54,18 @@
   Room Type: <br><br>
   <label>
     Entire House / Apt.
-    <input type="radio" name="room[room_type]" value="entire_space">
+    <input type="radio" name="room[room_type]"
+    <%= "checked" if @room.room_type == "entire_space" %> value="entire_space">
   </label>
   <label>
     Private Room
-    <input type="radio" name="room[room_type]" value="private_room">
+    <input type="radio" name="room[room_type]"
+    <%= "checked" if @room.room_type == "private_room" %> value="private_room">
   </label>
   <label>
     Shared Room
-    <input type="radio" name="room[room_type]" value="shared_room">
+    <input type="radio" name="room[room_type]"
+    <%= "checked" if @room.room_type == "shared_room" %> value="shared_room">
   </label>
 
 <br>
@@ -56,7 +75,10 @@
     <select name="room[num_possible_guests]">
       <option value=""></option>
       <% (1..10).to_a.each do |num|  %>
-        <option value="<%= num %>"><%= num %></option>
+        <option value="<%= num %>"
+          <%= "selected" if @room.num_possible_guests == num %> >
+          <%= num %>
+        </option>
       <% end %>
     </select>
   </label>

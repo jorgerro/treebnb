@@ -1,23 +1,31 @@
 
 
-
 div.manage-buttons a {
   color: #333;
-  display: block;
+  display: inline-block;
   background-color: #fde44c;
   padding: 10px 15px;
   border-radius: 5px;
   text-align: center;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
 div.manage-buttons a:hover {
   background-color: #feeb79;
 }
 
+h3.scary a {
+  color: #fff;
+  display: inline-block;
+  background-color: #f00;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-align: center;
+}
+
 h3.scary a:hover {
   background-color: #f00;
-  color: #fff;
+  color: #333;
 }
 
 #req-to-stay {

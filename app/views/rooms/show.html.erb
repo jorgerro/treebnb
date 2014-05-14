@@ -123,6 +123,7 @@
   <% else %>
       <figure class="room-image-default">
         <img src="<%= Picture.new.image.url(:profile) %>">
+        <!-- <i id="default-room-icon" class="fa fa-home fa-5x fa-fw"></i> -->
         <figcaption>
           <%= "#{ @room.address_city }, #{ @room.address_country }" %>
         </figcaption>
@@ -140,6 +141,10 @@
      </div> -->
 
   <!-- Room Information -->
+
+  <% if signed_in? && current_user.id == @room.owner.id %>
+    <a class="manage-link" href="<%= manage_room_url(@room) %>">Manage</a> your listing.
+  <% end %>
 
   <section class="room-info group">
 
@@ -185,7 +190,7 @@
   <% if signed_in? %>
     <%= render "reviews/form", reviewable_type: "Room", reviewable_id: @room.id %>
   <% else %>
-    <h3>Sign in to write a review</h3>
+    <p class="sign-in-prompt"><a class="open-modal" href="<%= new_session_url %>">Sign in</a> to write a review.<p>
   <% end %>
 
   <% unless @reviews.empty? %>
@@ -276,9 +281,7 @@
     <% end %>
 
   <% else %>
-
-    <h3>Please sign in to reqest this space.</h3>
-
+    <p class="sign-in-prompt">Please <a class="open-modal" href="<%= new_session_url %>">sign in</a> to request this space.<p>
   <% end %>
 
 

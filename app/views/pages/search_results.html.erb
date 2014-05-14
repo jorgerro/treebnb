@@ -43,18 +43,54 @@
     // map.scrollWheelZoom.disable();
 
     var map = L.mapbox.map('search-rooms-map', 'jorgerro.i3fn8jnl')
-    var myLayer = L.mapbox.featureLayer().addTo(map);
-    myLayer.setGeoJSON(geoJson);
-    map.fitBounds(myLayer.getBounds());
+    map.featureLayer.setGeoJSON(geoJson);
 
-    myLayer.on('mouseover', function(e) {
-        e.layer.openPopup();
-    });
+    var resetZoom = function () {
+  		if ( map._zoom < 2 ) { map.setZoom(2) }
+  	};
 
-    myLayer.on('mouseout', function(e) {
-        e.layer.closePopup();
-    });
+  	// function to format map
+  	var formatMap = function(callback) {
+      // alert("in map format")
+      // map.scrollWheelZoom.disable();
+  		map.invalidateSize();
+  		map.fitBounds(map.featureLayer.getBounds());
+  	  map.featureLayer.eachLayer(
+  	    function(marker){
+            console.log("hey there")
+  	      var listingID = marker.feature.properties["marker-id"];
+          // debugger
+  	      $('a[data-room-id=' + '"' + listingID + '"' + ']').hover(function () {
+            alert("great!")
+  	        map.panTo(marker.getLatLng());
+  	        marker.openPopup();
+  	      });
+  	    }
+  	  )
+      callback();
+  	};
 
+
+
+    // var myLayer = L.mapbox.featureLayer().addTo(map);
+    // map.fitBounds(myLayer.getBounds());
+
+    // myLayer.on('mouseover', function(e) {
+    //     e.layer.openPopup();
+    // });
+    //
+    // myLayer.on('mouseout', function(e) {
+    //     e.layer.closePopup();
+    // });
+
+
+    formatMap(resetZoom);
+
+
+
+
+    // myLayer.on('ready', function () {
+    // });
 
     // map.myLayer.eachLayer(
     //   function(marker){
@@ -67,18 +103,7 @@
     //   }
     // )
 
-
-
-
-
-    myLayer.on('ready', function () {
-      if ( map._zoom < 15 ) { map.setZoom(15) }
-    })
-    // myLayer.on('click', function(e) {
-    //     e.layer.unbindPopup();
-    //     window.location.href = e.layer.feature.properties.url
-    // });
-    </script>
+</script>
 
 <!-- </section> -->
 

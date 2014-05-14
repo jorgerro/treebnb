@@ -72,7 +72,13 @@ figure.room-image-default img {
   height: 400px;
   margin-right: 20px;
   border-radius: 5px;
+}
 
+#default-room-icon {
+  width: 580px;
+  height: 400px;
+  margin-right: 20px;
+  border-radius: 5px;
 }
 
 section.room-show-sidebar {
@@ -101,7 +107,11 @@ div.owner-info img{
 }
 
 
-  /* room description/ info */
+  /* room description & info */
+
+  a.manage-link {
+    text-decoration: underline;
+  }
 
   section.room-info {
     width: 580px;
@@ -115,7 +125,7 @@ div.owner-info img{
   section.room-info p {
     float:left;
     display: inline;
-    width: 330px;
+    width: 325px;
   }
 
   table {
@@ -153,12 +163,13 @@ div.owner-info img{
     border-right: 0;
   }
 
-  /*tr:nth-child(odd) td {
-    background: #ffc;
-  }*/
-
 
   /* Room Reviews */
+
+
+p.sign-in-prompt a {
+  text-decoration: underline;
+}
 
 .room-reviews {
   float:right;

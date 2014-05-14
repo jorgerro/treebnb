@@ -37,31 +37,3 @@
   </script>
 
 
-
-
-    <!-- $(function() {
-
-      $(".datepicker").datepicker({
-        beforeShowDay: function(date) {
-
-          var y = new Array()
-
-          var a =(
-          <%# room.approved_requests.each do |x| %>
-          date <= new Date(<%#= to_ms(x.start_date) %>) || date >= new Date(<%#= to_ms(x.end_date) %>) ||
-          <%# end %> false);
-
-          var b =(
-          <%# room.availabilities.each do |x| %>
-          date >= new Date(<%#= to_ms(x.start_date) %>) && date <= new Date(<%#= to_ms(x.end_date) %>) || <%# end %>
-          false);
-          console.log(date, "a", a)
-          console.log(date, "b", b)
-          // console.log( a && b )
-          y.push( (a && b) )
-          y.push( (a && b) ? "" : "red")
-          return y;
-        }
-
-      });
-    }); -->
