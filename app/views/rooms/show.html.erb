@@ -1,86 +1,98 @@
 <script>
 
-  var Carrousel = (function(){
-
-    var delay = 5000;
-    var carrousel = $("#carrousel");
-    var itemsHolder = carrousel.find("> ul");
-    var items = itemsHolder.find("> li");
-    var itemWidth = items.first().width();
-    var currentItem = -1;
-    var timerId;
-
-    var nextButton = $("#carrousel-nav > .next");
-    var previousButton = $("#carrousel-nav > .previous");
-    var numberLabel = $("#carrousel-nav > .number");
-
-    var init = function(){
-      itemsHolder.css({"width": (items.length * itemWidth) + "px"});
-      bind();
-      start();
-    };
-
-    var bind = function(){
-      nextButton.on("click", next);
-      previousButton.on("click", previous);
-    }
-
-    var start = function(){
-      loop();
-      timerId = window.setInterval(loop, delay);
-    }
-
-    var stop = function(){
-      if(timerId){
-        window.clearInterval(timerId);
-      }
-    }
-
-    var loop = function(){
-      next();
-    }
-
-    var next = function(){
-      currentItem++;
-
-      if(currentItem == items.length){
-        currentItem = 0;
-      }
-
-      move();
-    };
-
-    var previous = function(){
-      currentItem--;
-
-      if(currentItem <= 0){
-        currentItem = items.length - 1;
-      }
-
-      move();
-    }
-
-    var move = function(){
-      var html = (currentItem + 1) + " / " + items.length;
-      numberLabel.html(html);
-
-      var leftPosition = currentItem * itemWidth * -1;
-      itemsHolder.stop().animate({"left": leftPosition + "px"}, 1000);
-    }
-
-    return {
-      init: init,
-      next: next,
-      previous: previous,
-      start: start,
-      stop: stop
-    }
-  })();
-
-
   $(document).ready(function(){
+
+    var Carrousel = (function(){
+
+      var delay;
+      var carrousel;
+      var itemsHolder;
+      var items;
+      var itemWidth;
+      var currentItem;
+      var timerId;
+
+      var nextButton;
+      var previousButton;
+      var numberLabel;
+
+      var init = function(){
+        console.log("init")
+        delay = 10000;
+        carrousel = $("#carrousel");
+        itemsHolder = carrousel.find("> ul");
+        items = itemsHolder.find("> li");
+        itemWidth = items.first().width();
+        currentItem = -1;
+        nextButton = $("#carrousel-nav > .next");
+        previousButton = $("#carrousel-nav > .previous");
+        numberLabel = $("#carrousel-nav > .number");
+        itemsHolder.css({"width": (items.length * itemWidth) + "px"});
+        bind();
+        start();
+      };
+
+      var bind = function(){
+        nextButton.on("click", next);
+        previousButton.on("click", previous);
+      }
+
+      var start = function(){
+        loop();
+        timerId = window.setInterval(loop, delay);
+      }
+
+      var stop = function(){
+        if(timerId){
+          window.clearInterval(timerId);
+        }
+      }
+
+      var loop = function(){
+        next();
+      }
+
+      var next = function(){
+        currentItem++;
+
+        if(currentItem == items.length){
+          currentItem = 0;
+        }
+
+        move();
+      };
+
+      var previous = function(){
+        // console.log("going back");
+        // console.log(currentItem)
+        currentItem--;
+        // console.log(currentItem)
+
+        if(currentItem <= 0){
+          currentItem = items.length - 1;
+        }
+
+        move();
+      }
+
+      var move = function(){
+        // console.log("move")
+        var html = (currentItem + 1) + " / " + items.length;
+        numberLabel.html(html);
+
+        var leftPosition = currentItem * itemWidth * -1;
+        itemsHolder.stop().animate({"left": leftPosition + "px"}, 1000);
+      }
+
+      return {
+        init: init,
+        next: next,
+        previous: previous,
+        start: start,
+        stop: stop
+      }
+    })();
     Carrousel.init();
-    console.log("fun stuff")
 
   });
 
@@ -132,15 +144,6 @@
       </figure>
   <% end %>
 
-    <!-- <div id="carrousel">
-       <ul>
-         <li>Item One</li>
-         <li>Item Two</li>
-         <li>Item Three</li>
-         <li>Item Four</li>
-         <li>Item Five</li>
-       </ul>
-     </div> -->
 
   <!-- Room Information -->
 
@@ -293,7 +296,7 @@
 
   <div class="owner-info group">
 
-        <img src="<%= @owner.avatar.url(:profile) %>">
+      <img src="<%= @owner.avatar.url(:profile) %>">
 
 
       <h3><%= @owner.fname.capitalize %></h3>

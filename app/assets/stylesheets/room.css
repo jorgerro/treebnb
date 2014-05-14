@@ -25,6 +25,8 @@
 
   #carrousel > ul > li {
     float: left;
+    height: 400px;
+    width: 580px;
   }
 
   #carrousel-nav {

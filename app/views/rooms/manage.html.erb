@@ -1,85 +1,94 @@
 <script>
 
-  var Carrousel = (function(){
+  $(document).ready(function(){
 
-    var delay = 5000;
-    var carrousel = $("#carrousel");
-    var itemsHolder = carrousel.find("> ul");
-    var items = itemsHolder.find("> li");
-    var itemWidth = items.first().width();
-    var currentItem = -1;
-    var timerId;
+    var Carrousel = (function(){
 
-    var nextButton = $("#carrousel-nav > .next");
-    var previousButton = $("#carrousel-nav > .previous");
-    var numberLabel = $("#carrousel-nav > .number");
+      var delay;
+      var carrousel;
+      var itemsHolder;
+      var items;
+      var itemWidth;
+      var currentItem;
+      var timerId;
 
-    var init = function(){
-      itemsHolder.css({"width": (items.length * itemWidth) + "px"});
-      bind();
-      start();
-    };
+      var nextButton;
+      var previousButton;
+      var numberLabel;
 
-    var bind = function(){
-      nextButton.on("click", next);
-      previousButton.on("click", previous);
-    }
+      var init = function(){
+        delay = 10000;
+        carrousel = $("#carrousel");
+        itemsHolder = carrousel.find("> ul");
+        items = itemsHolder.find("> li");
+        itemWidth = items.first().width();
+        currentItem = -1;
+        nextButton = $("#carrousel-nav > .next");
+        previousButton = $("#carrousel-nav > .previous");
+        numberLabel = $("#carrousel-nav > .number");
+        itemsHolder.css({"width": (items.length * itemWidth) + "px"});
+        bind();
+        start();
+      };
 
-    var start = function(){
-      loop();
-      timerId = window.setInterval(loop, delay);
-    }
-
-    var stop = function(){
-      if(timerId){
-        window.clearInterval(timerId);
-      }
-    }
-
-    var loop = function(){
-      next();
-    }
-
-    var next = function(){
-      currentItem++;
-
-      if(currentItem == items.length){
-        currentItem = 0;
+      var bind = function(){
+        nextButton.on("click", next);
+        previousButton.on("click", previous);
       }
 
-      move();
-    };
-
-    var previous = function(){
-      currentItem--;
-
-      if(currentItem <= 0){
-        currentItem = items.length - 1;
+      var start = function(){
+        loop();
+        timerId = window.setInterval(loop, delay);
       }
 
-      move();
-    }
+      var stop = function(){
+        if(timerId){
+          window.clearInterval(timerId);
+        }
+      }
 
-    var move = function(){
-      var html = (currentItem + 1) + " / " + items.length;
-      numberLabel.html(html);
+      var loop = function(){
+        next();
+      }
 
-      var leftPosition = currentItem * itemWidth * -1;
-      itemsHolder.stop().animate({"left": leftPosition + "px"}, 1000);
-    }
+      var next = function(){
+        currentItem++;
 
-    return {
-      init: init,
-      next: next,
-      previous: previous,
-      start: start,
-      stop: stop
-    }
-  })(this);
+        if(currentItem == items.length){
+          currentItem = 0;
+        }
 
+        move();
+      };
 
-  $(document).ready(function () {
+      var previous = function(){
+        currentItem--;
+
+        if(currentItem <= 0){
+          currentItem = items.length - 1;
+        }
+
+        move();
+      }
+
+      var move = function(){
+        var html = (currentItem + 1) + " / " + items.length;
+        numberLabel.html(html);
+
+        var leftPosition = currentItem * itemWidth * -1;
+        itemsHolder.stop().animate({"left": leftPosition + "px"}, 1000);
+      }
+
+      return {
+        init: init,
+        next: next,
+        previous: previous,
+        start: start,
+        stop: stop
+      }
+    })();
     Carrousel.init();
+
 
     $('#delete-room-link').click(function (event) {
       if (confirm("Are you sure you want to delete this listing?")) {
@@ -96,8 +105,6 @@
         event.preventDefault();
       };
     })
-
-
 
   });
 
