@@ -81,7 +81,7 @@ class RoomsController < ApplicationController
   def destroy
     @room = Room.find(params[:id])
     @room.destroy
-    redirect_to user_rooms_url(@room.owner)
+    head :ok
   end
 
 

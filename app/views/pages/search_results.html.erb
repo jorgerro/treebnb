@@ -9,7 +9,10 @@
 
   <div id='search-rooms-map'></div>
 
-  <script>
+<script>
+  $(document).ready(function () {
+
+
     var geoJson = {
         type: 'FeatureCollection',
         features: [
@@ -46,25 +49,22 @@
     map.featureLayer.setGeoJSON(geoJson);
 
     var resetZoom = function () {
-  		if ( map._zoom < 2 ) { map.setZoom(2) }
+  		if ( map._zoom < 3 ) { map.setZoom(3) }
   	};
 
   	// function to format map
   	var formatMap = function(callback) {
-      // alert("in map format")
-      // map.scrollWheelZoom.disable();
-  		map.invalidateSize();
+      map.scrollWheelZoom.disable();
+      // map.invalidateSize();
   		map.fitBounds(map.featureLayer.getBounds());
   	  map.featureLayer.eachLayer(
   	    function(marker){
-            console.log("hey there")
   	      var listingID = marker.feature.properties["marker-id"];
-          // debugger
-  	      $('a[data-room-id=' + '"' + listingID + '"' + ']').hover(function () {
-            alert("great!")
-  	        map.panTo(marker.getLatLng());
-  	        marker.openPopup();
-  	      });
+  	      $listingLink = $('a[data-room-id=' + '"' + listingID + '"' + ']')
+          $listingLink.hover(function () {
+            map.panTo(marker.getLatLng());
+            marker.openPopup();
+          });
   	    }
   	  )
       callback();
@@ -74,7 +74,6 @@
 
     // var myLayer = L.mapbox.featureLayer().addTo(map);
     // map.fitBounds(myLayer.getBounds());
-
     // myLayer.on('mouseover', function(e) {
     //     e.layer.openPopup();
     // });
@@ -92,16 +91,7 @@
     // myLayer.on('ready', function () {
     // });
 
-    // map.myLayer.eachLayer(
-    //   function(marker){
-    //     var listingID = marker.feature.properties["marker-id"];
-    //     $("a[data-room-id=" + listingID + "]").hover(function(){
-    //       console.log("hovering!")
-    //       map.panTo(marker.getLatLng());
-    //       marker.openPopup()
-    //     })
-    //   }
-    // )
+  });
 
 </script>
 

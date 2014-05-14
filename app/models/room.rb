@@ -41,7 +41,7 @@ class Room < ActiveRecord::Base
 
   def display_title
     (self.title? && !self.title.empty?) ? self.title :
-    "#{ ActiveSupport::Inflector.titleize(self.home_type) } in #{ self.address_city }"
+    "#{ ActiveSupport::Inflector.titleize(self.home_type) } in #{ ActiveSupport::Inflector.titleize(self.address_city) }"
   end
 
 

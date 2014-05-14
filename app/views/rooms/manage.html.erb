@@ -75,28 +75,25 @@
       start: start,
       stop: stop
     }
-  })();
+  })(this);
 
 
-  $(document).ready(function(){
+  $(document).ready(function () {
     Carrousel.init();
-
 
     $('#delete-room-link').click(function (event) {
       if (confirm("Are you sure you want to delete this listing?")) {
         event.preventDefault();
-        alert("ajax")
-        // $.ajax({
-        //   url: "<%= room_url(@room) %>",
-        //   type: "delete",
-        //   success: function () {
-        //     window.location.href = <%= user_rooms_url(current_user) %>
-        //     alert("deleted")
-        //   }
+        $.ajax({
+          url: "<%= room_url(@room) %>",
+          type: "delete",
+          success: function () {
+            window.location.href = "<%= user_rooms_url(current_user) %>"
+            alert("Your listing has been successfully deleted.")
+          }
         });
       } else {
         event.preventDefault();
-        alert("not deleted!")
       };
     })
 
@@ -282,7 +279,7 @@
 
 
     <% else %>
-
+      <br><br>
       <h3>There are currently no requests to stay at this property.</h3>
 
     <% end %>
