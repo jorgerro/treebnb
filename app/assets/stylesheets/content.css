@@ -73,14 +73,11 @@ article.home-page {
 
 article.home-page a {
   position: relative;
+  display: block;
 }
 
 article.home-page:hover a {
-/*  color:  #16B2B9;*/
-/*  box-shadow: 0 0 5px 5px rgba(0,0,0,0.3);*/
-/*  text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 1em black;*/
-/*  background-color: rgba(0,0,0,0.3);*/
-  border: 1px solid #f7f7f7;
+  box-shadow: 0 0 5px 5px rgba(0,0,0,0.3);
 }
 
 article.home-page img {
@@ -94,17 +91,18 @@ div.featured-room-title {
   color: #fff;
   position: absolute;
   width: 300px;
-  top: -135px;
-  left: 50px;
+  top: 90px;
+  left: 30px;
   text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.3em black;
+  z-index: 1;
 }
 
 #feature-title-two {
-  left: 90px;
+  left: 55px;
 }
 
 #feature-title-three {
-  left: 80px;
+  left: 55px;
 }
 
 

@@ -68,7 +68,7 @@ ul.user-controls {
   position: absolute;
   border: 1px solid #ccc;
   top: 50px;
-  left: -31px;
+  left: -17px;
   background-color: #fff;
   display: none;
 }
@@ -121,7 +121,7 @@ ul.dropdown {
   position: absolute;
   border: 1px solid #ccc;
   top: 50px;
-  left: 68px;
+  left: 82px;
   background-color: #fff;
   width: 200px;
   display: none;

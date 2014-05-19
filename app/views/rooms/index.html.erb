@@ -7,64 +7,6 @@
 </div>
 
 
-<!-- <div id='all-rooms-map'></div>
-
-  <script>
-  var map = L.mapbox.map('all-rooms-map', 'jorgerro.i3fn8jnl')
-          .setView([35.532226, -7.910156], 2);
-
-  var myLayer = L.mapbox.featureLayer().addTo(map);
-
-  // The GeoJSON representing the two point features
-
-  var geoJson = {
-      type: 'FeatureCollection',
-      features: [
-
-      <% @listings.each do |room| %>
-
-      {
-          type: 'Feature',
-          properties: {
-              title: '<%=  "#{ room.display_title }"  %>',
-              'marker-color': '#f00',
-              'marker-size': 'medium',
-              'marker-color': '#CA16C2',
-              'marker-symbol': '',
-              url: '<%= room_url(room) %>'
-          },
-          geometry: {
-              type: 'Point',
-              coordinates: [<%=  room.longitude  %>, <%=  room.latitude  %>]
-          }
-      }  <%= room == @listings.last ? "" : "," %>
-
-      <% end %>
-
-    ]
-  };
-
-  myLayer.on('mouseover', function(e) {
-      e.layer.openPopup();
-  });
-
-  myLayer.on('mouseout', function(e) {
-      e.layer.closePopup();
-  });
-
-  // map.dragging.disable();
-  // map.touchZoom.disable();
-  // map.doubleClickZoom.disable();
-  // map.scrollWheelZoom.disable();
-
-  // Pass features and a custom factory function to the map
-  myLayer.setGeoJSON(geoJson);
-  myLayer.on('click', function(e) {
-      // e.layer.unbindPopup();
-      window.location.href = e.layer.feature.properties.url
-  });
-  </script> -->
-
 <div class="front-page-img">
   <img src="https://s3.amazonaws.com/freebnb_dev/front_page/front-page-mirror-house.jpg">
 </div>
@@ -88,7 +30,7 @@
 
     <h3 class="text-special">Travel</h3>
     <p>
-      From apartments and rooms to treehouses and boats: stay in unique spaces in 192 countries.
+      From apartments and rooms to tree houses and tree villages: stay in unique spaces all over the world.
     </p>
   </article>
 
@@ -104,7 +46,7 @@
 
     <h3 class="text-special">Host</h3>
     <p>
-      Renting out your unused space could pay your bills or fund your next vacation.
+      Having a tree house is great, and it's even better when you get to share it. Join the community today!
     </p>
   </article>
 
