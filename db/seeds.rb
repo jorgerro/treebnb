@@ -221,6 +221,6 @@ RoomRequest.create!(guest_id: 36, room_id: 1, start_date: "2014-05-20", end_date
 RoomRequest.create!(guest_id: 36, room_id: 1, start_date: "2014-05-10", end_date: "2014-05-12", num_guests: 2, status: "PENDING")
 RoomRequest.create!(guest_id: 36, room_id: 1, start_date: "2014-05-03", end_date: "2014-05-08", num_guests: 2, status: "APPROVED")
 
-RoomRequest.create!(guest_id: 1, room_id: 36, start_date: "2014-05-03", end_date: "2014-05-08", num_guests: 2, status: "PENDING")
+# RoomRequest.create!(guest_id: 1, room_id: 36, start_date: "2014-05-03", end_date: "2014-05-08", num_guests: 2, status: "PENDING")
 RoomRequest.create!(guest_id: 1, room_id: 36, start_date: "2014-05-20", end_date: "2014-05-27", num_guests: 2, status: "PENDING")
 RoomRequest.create!(guest_id: 1, room_id: 36, start_date: "2014-06-02", end_date: "2014-06-05", num_guests: 2, status: "PENDING")
