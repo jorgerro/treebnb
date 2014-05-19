@@ -18,9 +18,9 @@ class RoomsController < ApplicationController
       else
         @listings = Room.all
       end
-      @feature_one = Room.find(1) # 9
-      @feature_two = Room.find(2) # 19
-      @feature_three = Room.find(3) # 5
+      @feature_one = Room.find(9) # 9
+      @feature_two = Room.find(19) # 19
+      @feature_three = Room.find(5) # 5
 
       render :index
     end
