@@ -165,36 +165,33 @@ room_attrs = [
 
 ]
 
-# 1.times do |x|
-#
-#   if x == 0
-#     u = User.create!(fname: "Jorge", lname: "Rodriguez",
-#       email: "jorge@example.com", password: "secret", description: "A pretty chill dude.",
-#       avatar: File.open(Rails.root.join("seed_images", "jorge.jpg")))
-#   else
-#     u = User.create!(fname: Faker::Name.first_name, lname: Faker::Name.last_name,
-#     email: Faker::Internet.safe_email, password: "secret", description: lorem)
-#   end
-#
-#   l = u.listings.create!(room_attrs[x])
-#
-#   l.availabilities.create!(start_date: "2014-05-01", end_date: "2014-05-15")
-#   l.availabilities.create!(start_date: "2014-05-17", end_date: "2014-06-30")
-#
-#   l.pictures.create!(image: File.open(Rails.root.join("seed_images", "treehouse#{x}-a.jpg")))
-#   if Rails.root.join("seed_images", "treehouse#{x}-b.jpg").exist?
-#     l.pictures.create!(image: File.open(Rails.root.join("seed_images", "treehouse#{x}-b.jpg")))
-#   end
-#
-# end
+35.times do |x|
+
+  if x == 0
+    u = User.create!(fname: "Jorge", lname: "Rodriguez",
+      email: "jorge@example.com", password: "secret", description: "A pretty chill dude.",
+      avatar: File.open(Rails.root.join("seed_images", "jorge.jpg")))
+  else
+    u = User.create!(fname: Faker::Name.first_name, lname: Faker::Name.last_name,
+    email: Faker::Internet.safe_email, password: "secret", description: lorem)
+  end
+
+  l = u.listings.create!(room_attrs[x])
+
+  l.availabilities.create!(start_date: "2014-05-01", end_date: "2014-05-15")
+  l.availabilities.create!(start_date: "2014-05-17", end_date: "2014-06-30")
+
+  l.pictures.create!(image: File.open(Rails.root.join("seed_images", "treehouse#{x}-a.jpg")))
+  if Rails.root.join("seed_images", "treehouse#{x}-b.jpg").exist?
+    l.pictures.create!(image: File.open(Rails.root.join("seed_images", "treehouse#{x}-b.jpg")))
+  end
+
+end
 
 
-# u = User.create!(fname: "Demo", lname: "User",
-#   email: "demo@example.com", password: "secret", description: "Excited to be part of the treebnb community!",
-#   avatar: File.open(Rails.root.join("seed_images", "ewok.jpg")))
-
-  u = User.find(36)
-  u.update( avatar: File.open(Rails.root.join("seed_images", "ewok.jpg")) )
+u = User.create!(fname: "Demo", lname: "User",
+  email: "demo@example.com", password: "secret", description: "Excited to be part of the treebnb community!",
+  avatar: File.open(Rails.root.join("seed_images", "ewok.jpg")))
 
 l = u.listings.create!(basic_attrs(room_types, home_types, lorem).merge({ title: "Bright Tree Village", address_region: "hawaii",
    address_city: "Mauna Loa",  address_country: "United States" }))
@@ -221,6 +218,6 @@ RoomRequest.create!(guest_id: 36, room_id: 1, start_date: "2014-05-20", end_date
 RoomRequest.create!(guest_id: 36, room_id: 1, start_date: "2014-05-10", end_date: "2014-05-12", num_guests: 2, status: "PENDING")
 RoomRequest.create!(guest_id: 36, room_id: 1, start_date: "2014-05-03", end_date: "2014-05-08", num_guests: 2, status: "APPROVED")
 
-# RoomRequest.create!(guest_id: 1, room_id: 36, start_date: "2014-05-03", end_date: "2014-05-08", num_guests: 2, status: "PENDING")
-RoomRequest.create!(guest_id: 1, room_id: 36, start_date: "2014-05-20", end_date: "2014-05-27", num_guests: 2, status: "PENDING")
+RoomRequest.create!(guest_id: 1, room_id: 36, start_date: "2014-05-19", end_date: "2014-05-23", num_guests: 2, status: "PENDING")
+RoomRequest.create!(guest_id: 1, room_id: 36, start_date: "2014-05-25", end_date: "2014-05-30", num_guests: 2, status: "PENDING")
 RoomRequest.create!(guest_id: 1, room_id: 36, start_date: "2014-06-02", end_date: "2014-06-05", num_guests: 2, status: "PENDING")
