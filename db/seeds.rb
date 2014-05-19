@@ -189,9 +189,12 @@ room_attrs = [
 # end
 
 
-u = User.create!(fname: "Demo", lname: "User",
-  email: "demo@example.com", password: "secret", description: "Excited to be part of the treebnb community!",
-  avatar: File.open(Rails.root.join("seed_images", "ewok.jpg")))
+# u = User.create!(fname: "Demo", lname: "User",
+#   email: "demo@example.com", password: "secret", description: "Excited to be part of the treebnb community!",
+#   avatar: File.open(Rails.root.join("seed_images", "ewok.jpg")))
+
+  u = User.find(36)
+  u.update( avatar: File.open(Rails.root.join("seed_images", "ewok.jpg")) )
 
 l = u.listings.create!(basic_attrs(room_types, home_types, lorem).merge({ title: "Bright Tree Village", address_region: "hawaii",
    address_city: "Mauna Loa",  address_country: "United States" }))
