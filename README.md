@@ -26,7 +26,7 @@ Various technologies were utilized to make treebnb work.
 * Dynamic jQuery UI Datepicker calendar that responds to room availability changes in the database
 * Dashboard feature uses Backbone.js put all the user's main concerns on one page 
   * Overwrites parse method in Backbone message model
-  * Uses custom JSON using Jbuilder
+  * Builds custom JSON using Jbuilder
 * Polymorphic Notification model that creates notifications for new reviews, messages, and changes in the status of pending requests
 * Pagination using Kaminari
 * Designed to work with or without JavaScript enabled
