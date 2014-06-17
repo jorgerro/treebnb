@@ -1,6 +1,6 @@
 # treebnb
 
-[treebnb](www.treebnb.me) is an [airbnb](www.airbnb.com) clone that exclusively features tree houses. It was built by [Jorge Rodriguez](www.jorgerafaelrodriguez.com) using Ruby on Rails along with Backbone.js and other jQuery and Javascript features. All pages were hand-styled.
+[treebnb](http://www.treebnb.me) is an [airbnb](http://www.airbnb.com) clone that exclusively features tree houses. It was built by [Jorge Rodriguez](http://www.jorgerafaelrodriguez.com) using Ruby on Rails along with Backbone.js and other jQuery and Javascript features. All pages were hand-styled.
 
 ## Features
 
