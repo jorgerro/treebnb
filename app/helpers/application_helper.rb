@@ -26,7 +26,10 @@ module ApplicationHelper
   end
 
   def to_ms(date)
-    date.to_time.to_i * 1000
+    # date.to_time.to_i * 1000
+    p date
+    p "********************************************************"
+    date.strftime('%Q')
   end
 
 end

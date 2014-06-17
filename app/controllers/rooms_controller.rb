@@ -1,7 +1,7 @@
 
 class RoomsController < ApplicationController
 
-  before_action :require_signed_in!, only: [:new, :create]
+  before_action :require_signed_in!, only: [:new, :create, :manage]
 
   def index
     if params[:user_id]

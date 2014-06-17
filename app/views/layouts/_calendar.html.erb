@@ -4,7 +4,12 @@
 
     $(function() {
 
+      var convertDateToUTC = function (date) { 
+        return new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds()); 
+    }
+
       $(".datepicker").datepicker({
+
         beforeShowDay: function(date) {
           var y = new Array()
 
@@ -12,7 +17,8 @@
           <% unless room.approved_requests.empty? %>
               var a =(
             <% room.approved_requests.each do |x| %>
-            (date < new Date(<%= to_ms(x.start_date) %>) || date > new Date(<%= to_ms(x.end_date) %>)) &&
+            (date < convertDateToUTC(new Date(<%= to_ms(x.start_date) %>)) || 
+            date > convertDateToUTC(new Date(<%= to_ms(x.end_date) %>))) &&
             <% end %> true);
           <% else %>
             var a = true
@@ -21,7 +27,7 @@
           // compare date against availabilities
           <% unless room.availabilities.empty? %>
             var b =(<% room.availabilities.each do |x| %>
-                      (date >= new Date(<%= to_ms(x.start_date) %>) && date <= new Date(<%= to_ms(x.end_date) %>)) ||
+                      (date >= convertDateToUTC(new Date(<%= to_ms(x.start_date) %>)) && date <= convertDateToUTC(new Date(<%= to_ms(x.end_date) %>))) ||
                     <% end %> false);
           <% else %>
             var b = false
