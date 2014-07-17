@@ -196,8 +196,9 @@ u = User.create!(fname: "Demo", lname: "User",
 l = u.listings.create!(basic_attrs(room_types, home_types, lorem).merge({ title: "Bright Tree Village", address_region: "hawaii",
    address_city: "Mauna Loa",  address_country: "United States" }))
 
-p l.availabilities.create!(start_date: "2014-05-01", end_date: "2014-05-15")
-p l.availabilities.create!(start_date: "2014-05-17", end_date: "2014-06-30")
+p l.availabilities.create!(start_date: "2014-07-07", end_date: "2014-08-05")
+p l.availabilities.create!(start_date: "2014-08-08", end_date: "2014-09-15")
+p l.availabilities.create!(start_date: "2014-09-20", end_date: "2014-12-31")
 
 l.pictures.create!(image: File.open(Rails.root.join("seed_images", "treehouse35-a.jpg")))
 l.pictures.create!(image: File.open(Rails.root.join("seed_images", "treehouse35-b.jpg")))
