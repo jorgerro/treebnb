@@ -178,8 +178,9 @@ room_attrs = [
 
   l = u.listings.create!(room_attrs[x])
 
-  l.availabilities.create!(start_date: "2014-05-01", end_date: "2014-05-15")
-  l.availabilities.create!(start_date: "2014-05-17", end_date: "2014-06-30")
+  l.availabilities.create!(start_date: "2014-07-07", end_date: "2014-08-05")
+  l.availabilities.create!(start_date: "2014-08-08", end_date: "2014-09-15")
+  l.availabilities.create!(start_date: "2014-09-20", end_date: "2014-12-31")
 
   l.pictures.create!(image: File.open(Rails.root.join("seed_images", "treehouse#{x}-a.jpg")))
   if Rails.root.join("seed_images", "treehouse#{x}-b.jpg").exist?
@@ -196,9 +197,9 @@ u = User.create!(fname: "Demo", lname: "User",
 l = u.listings.create!(basic_attrs(room_types, home_types, lorem).merge({ title: "Bright Tree Village", address_region: "hawaii",
    address_city: "Mauna Loa",  address_country: "United States" }))
 
-p l.availabilities.create!(start_date: "2014-07-07", end_date: "2014-08-05")
-p l.availabilities.create!(start_date: "2014-08-08", end_date: "2014-09-15")
-p l.availabilities.create!(start_date: "2014-09-20", end_date: "2014-12-31")
+l.availabilities.create!(start_date: "2014-07-07", end_date: "2014-08-05")
+l.availabilities.create!(start_date: "2014-08-08", end_date: "2014-09-15")
+l.availabilities.create!(start_date: "2014-09-20", end_date: "2014-12-31")
 
 l.pictures.create!(image: File.open(Rails.root.join("seed_images", "treehouse35-a.jpg")))
 l.pictures.create!(image: File.open(Rails.root.join("seed_images", "treehouse35-b.jpg")))
@@ -214,11 +215,11 @@ Review.create!(author_id: 1, body: lorem, reviewable_type: "Room", reviewable_id
 Review.create!(author_id: 1, body: "Had a fanstastic stay at Bright Tree Village. I thought it would be a bit too cozy at first,
 but it turned out to be a blast! Will definitely be back.", reviewable_type: "Room", reviewable_id: 36)
 
-RoomRequest.create!(guest_id: 36, room_id: 1, start_date: "2014-06-02", end_date: "2014-06-08", num_guests: 2, status: "DENIED")
-RoomRequest.create!(guest_id: 36, room_id: 1, start_date: "2014-05-20", end_date: "2014-05-27", num_guests: 2, status: "CANCELLED")
-RoomRequest.create!(guest_id: 36, room_id: 1, start_date: "2014-05-10", end_date: "2014-05-12", num_guests: 2, status: "PENDING")
-RoomRequest.create!(guest_id: 36, room_id: 1, start_date: "2014-05-03", end_date: "2014-05-08", num_guests: 2, status: "APPROVED")
+RoomRequest.create!(guest_id: 36, room_id: 1, start_date: "2014-07-12", end_date: "2014-07-15", num_guests: 2, status: "DENIED")
+RoomRequest.create!(guest_id: 36, room_id: 1, start_date: "2014-07-20", end_date: "2014-07-27", num_guests: 2, status: "CANCELLED")
+RoomRequest.create!(guest_id: 36, room_id: 1, start_date: "2014-07-16", end_date: "2014-07-20", num_guests: 2, status: "PENDING")
+RoomRequest.create!(guest_id: 36, room_id: 1, start_date: "2014-07-25", end_date: "2014-08-02", num_guests: 2, status: "APPROVED")
 
-RoomRequest.create!(guest_id: 1, room_id: 36, start_date: "2014-05-19", end_date: "2014-05-23", num_guests: 2, status: "PENDING")
-RoomRequest.create!(guest_id: 1, room_id: 36, start_date: "2014-05-25", end_date: "2014-05-30", num_guests: 2, status: "PENDING")
-RoomRequest.create!(guest_id: 1, room_id: 36, start_date: "2014-06-02", end_date: "2014-06-05", num_guests: 2, status: "PENDING")
+RoomRequest.create!(guest_id: 1, room_id: 36, start_date: "2014-07-19", end_date: "2014-07-23", num_guests: 2, status: "PENDING")
+RoomRequest.create!(guest_id: 1, room_id: 36, start_date: "2014-07-08", end_date: "2014-07-15", num_guests: 2, status: "PENDING")
+RoomRequest.create!(guest_id: 1, room_id: 36, start_date: "2014-08-15", end_date: "2014-08-20", num_guests: 2, status: "PENDING")
